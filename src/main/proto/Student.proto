@@ -1,0 +1,17 @@
+package com.example.university;
+
+message Student {
+
+    required string name = 1;
+    required string surname = 2;
+    required int32 year = 3;
+
+  message Exam {
+    required string name = 1;
+    required int32 mark = 2;
+    required string date = 3;
+  }
+
+  repeated Exam exam = 4;
+
+}
