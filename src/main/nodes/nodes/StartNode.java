@@ -1,26 +1,17 @@
 package nodes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-
-
-import org.eclipse.persistence.jaxb.MarshallerProperties;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
 import java.io.IOException;
 import java.util.*;
+
 
 public class StartNode {
 
     public static void main(String[] args) {
-
-        String outputNodeList;
 
         Node node = new Node(12, "localhost", 1254);
 

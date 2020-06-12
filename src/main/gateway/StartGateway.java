@@ -11,7 +11,6 @@ public class StartGateway {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println("ok");
         HttpServer server = HttpServerFactory.create("http://"+HOST+":"+PORT+"/");
         server.start();
 
