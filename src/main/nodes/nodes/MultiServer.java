@@ -14,6 +14,8 @@ public class MultiServer {
 
         // TODO: send POST for insert node in the system
 
+        // TODO: connect to the ring
+
         System.out.println("Node running");
 
 
@@ -26,8 +28,6 @@ public class MultiServer {
         ThreadAverage threadAverage = new ThreadAverage(buffer);
         threadAverage.start();
 
-        //avg = buffer.computeAvg();
-        //System.out.println("The average of first 12 is: " + avg);
 
 
         // TODO: stop node

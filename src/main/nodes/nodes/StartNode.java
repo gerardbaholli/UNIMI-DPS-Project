@@ -13,9 +13,9 @@ public class StartNode {
 
     public static void main(String[] args) {
 
-        Node node = new Node(12, "localhost", 1254);
+        Node node1 = new Node(12, "localhost", 1254);
 
-        start(node);
+        start(node1);
 
     }
 

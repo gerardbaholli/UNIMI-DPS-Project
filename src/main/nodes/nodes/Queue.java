@@ -58,9 +58,7 @@ public class Queue implements Buffer {
 
         avg = avg / 12;
 
-        for (int i = 0; i < 6; i++) {
-            buffer.remove(0);
-        }
+        buffer.subList(0, 6).clear();
 
         return avg;
     }
