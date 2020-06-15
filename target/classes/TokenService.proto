@@ -1,0 +1,22 @@
+syntax = "proto3";
+package com.example.token;
+
+message TokenMessage {
+
+  string from = 1;
+  string to = 2;
+  string message = 3;
+
+}
+
+message TokenResponse {
+
+  string act = 1;
+
+}
+
+service TokenService {
+
+  rpc token(TokenMessage) returns (TokenResponse);
+
+}

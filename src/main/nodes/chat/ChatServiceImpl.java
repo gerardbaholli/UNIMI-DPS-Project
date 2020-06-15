@@ -12,7 +12,8 @@ public class ChatServiceImpl extends ChatServiceImplBase {
     //an hashset to store all the streams which the server uses to communicate with each client
     HashSet<StreamObserver> observers = new LinkedHashSet<StreamObserver>();
 
-    @Override public StreamObserver<ChatMessage> chat(final StreamObserver<ChatMessage> responseObserver){
+    @Override
+    public StreamObserver<ChatMessage> chat(final StreamObserver<ChatMessage> responseObserver){
 
         //the stream used to communicate with a specific client is stored in a hash set (avoiding duplicates)
         synchronized (observers) {

@@ -1,0 +1,33 @@
+syntax = "proto3";
+package com.example.token;
+
+message JoinRequest {
+  string ip = 1;
+  int32 port = 2;
+}
+
+message JoinResponse {
+  string ip = 1;
+  int32 port = 2;
+  string message = 3;
+}
+
+
+message TokenMessage {
+  string from = 1;
+  string to = 2;
+  string message = 3;
+}
+
+message TokenResponse {
+  string ack = 1;
+}
+
+message Empty {
+}
+
+
+service NodeService {
+  rpc joinNetwork(JoinRequest) returns (JoinResponse);
+  rpc token(TokenMessage) returns (TokenResponse);
+}

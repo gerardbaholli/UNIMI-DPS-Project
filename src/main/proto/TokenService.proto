@@ -1,8 +1,0 @@
-syntax = "proto3";
-package com.example.token;
-
-message Token {
-
-  string name = 1;
-
-}

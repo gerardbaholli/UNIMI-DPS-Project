@@ -13,7 +13,8 @@ public class StartNode {
 
     public static void main(String[] args) {
 
-        Node node1 = new Node(12, "localhost", 1254);
+        Node node1 = new Node(1, "localhost", 8080);
+        Node node2 = new Node(2, "localhost", 8081);
 
         start(node1);
 
