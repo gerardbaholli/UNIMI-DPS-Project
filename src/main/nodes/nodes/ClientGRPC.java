@@ -10,16 +10,12 @@ import io.grpc.ManagedChannelBuilder;
 
 public class ClientGRPC extends Thread {
 
-    private int id;
-    private String ipAddress;
-    private int port;
+    private Node node;
     private TargetNode targetNode;
 
 
-    public ClientGRPC(int id, String ipAddress, int port, TargetNode targetNode) {
-        this.id = id;
-        this.ipAddress = ipAddress;
-        this.port = port;
+    public ClientGRPC(Node node, TargetNode targetNode) {
+        this.node = node;
         this.targetNode = targetNode;
     }
 
@@ -43,11 +39,11 @@ public class ClientGRPC extends Thread {
         // creating a blocking stub on the channel
         NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
-        // creating the JoinResponse object which will be provided as input to the RPC method
+        // creating the JoinRequest object which will be provided as input to the RPC method
         JoinRequest joinRequest = JoinRequest.newBuilder()
-                .setId(id)
-                .setIpAddress(ipAddress)
-                .setPort(port)
+                .setId(node.getId())
+                .setIpAddress(node.getIpAddress())
+                .setPort(node.getPort())
                 .build();
 
         // calling the method, it returns an instance of JoinResponse

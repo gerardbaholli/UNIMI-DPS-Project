@@ -46,7 +46,7 @@ public class StartNode {
             targetNode.setTargetPort(randomNode.getPort());
             System.out.println("Target node: " + targetNode.getTargetId());
 
-            ClientGRPC clientGRPC = new ClientGRPC(idNode, IP, PORT, targetNode);
+            ClientGRPC clientGRPC = new ClientGRPC(node, targetNode);
             clientGRPC.start();
 
         } else {

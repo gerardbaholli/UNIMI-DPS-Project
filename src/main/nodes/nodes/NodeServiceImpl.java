@@ -21,10 +21,10 @@ public class NodeServiceImpl extends NodeServiceImplBase {
     public synchronized void joinNetwork(JoinRequest joinRequest,
                             StreamObserver<JoinResponse> joinResponseStreamObserver){
 
-        System.out.println("Join Request:\n" +
-                joinRequest.getId() + " " +
-                joinRequest.getIpAddress() + " " +
-                joinRequest.getPort());
+        System.out.println("Join Request:\n" + "Ehy, I'm node " +
+                joinRequest.getId() + " - " + joinRequest.getPort() +
+                " and I want to join.");
+
 
         JoinResponse joinResponse = JoinResponse.newBuilder()
                 .setId(targetNode.getTargetId())
@@ -32,9 +32,13 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                 .setPort(targetNode.getTargetPort())
                 .setMessage("success").build();
 
+        // update the target of the node receiving the join request
+        targetNode.setTargetId(joinRequest.getId());
+        targetNode.setTargetIpAddress(joinRequest.getIpAddress());
+        targetNode.setTargetPort(joinRequest.getPort());
+
          joinResponseStreamObserver.onNext(joinResponse);
          joinResponseStreamObserver.onCompleted();
-
 
     }
 
