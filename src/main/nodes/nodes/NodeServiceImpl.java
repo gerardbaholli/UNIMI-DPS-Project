@@ -23,7 +23,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         System.out.println("Join Request:\n" + "Ehy, I'm node " +
                 joinRequest.getId() + " - " + joinRequest.getPort() +
-                " and I want to join.");
+                " join me as your target.");
 
 
         JoinResponse joinResponse = JoinResponse.newBuilder()
