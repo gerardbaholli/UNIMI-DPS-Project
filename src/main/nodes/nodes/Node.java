@@ -11,13 +11,18 @@ public class Node implements Comparable<Node> {
     private String ipAddress;
     private int port;
 
+    // private int targetId;
+    // private String targetIpAddress;
+    // private int targetPort;
+
     public Node(){}
 
-    public Node(int id, String ipAddress, int port){
-        this.id=id;
+    public Node(String ipAddress, int port){
         this.ipAddress=ipAddress;
         this.port=port;
     }
+
+
 
 
     public int getId() {
@@ -48,4 +53,6 @@ public class Node implements Comparable<Node> {
     public int compareTo(Node n) {
         return 0;
     }
+
+
 }

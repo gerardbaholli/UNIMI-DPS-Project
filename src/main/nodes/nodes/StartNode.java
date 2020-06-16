@@ -13,15 +13,54 @@ public class StartNode {
 
     public static void main(String[] args) {
 
-        Node node1 = new Node(1, "localhost", 8080);
-        Node node2 = new Node(2, "localhost", 8081);
+        Random rand = new Random();
 
-        start(node1);
+        int idNode;
+        String IP = "localhost";
+        int PORT = rand.nextInt((8090 - 8000) + 1) + 8000;
+        List<Node> nodeList;
+
+        Node node = new Node(IP, PORT);
+        TargetNode targetNode = new TargetNode();
+
+        nodeList = start(node);
+
+        idNode = node.getId();
+        System.out.println("I'm node: " + idNode);
+
+        ServerGRPC serverGRPC = new ServerGRPC(PORT, targetNode);
+        serverGRPC.start();
+
+        assert nodeList != null;
+        if (nodeList.size() > 1) {
+            Node randomNode;
+
+            // extract a random node to ask for the join
+            do {
+                randomNode = nodeList.get(rand.nextInt(nodeList.size()));
+            } while (randomNode.getId() == node.getId());
+
+            // TODO mettere come target il target di quello a cui si è chiesta la join
+            targetNode.setTargetId(randomNode.getId());
+            targetNode.setTargetIpAddress(randomNode.getIpAddress());
+            targetNode.setTargetPort(randomNode.getPort());
+            System.out.println("Target node: " + targetNode.getTargetId());
+
+            ClientGRPC clientGRPC = new ClientGRPC(idNode, IP, PORT, targetNode);
+            clientGRPC.start();
+
+        } else {
+            // mette se stesso come target SICURAMENTE DA REVISIONARE
+            targetNode.setTargetId(node.getId());
+            targetNode.setTargetIpAddress(node.getIpAddress());
+            targetNode.setTargetPort(node.getPort());
+            System.out.println("Target node: " + targetNode.getTargetId());
+        }
+
 
     }
 
-
-    public static void start(Node node) {
+    public static List<Node> start(Node node) {
 
         Client client = Client.create();
 
@@ -45,7 +84,7 @@ public class StartNode {
                 // send post and receive response as string
                 response = postNode(webResource, jsonStr);
             } while (Objects.equals(response, "error409"));
-            System.out.println("Output from Server:\n" + response);
+            // System.out.println("Output from Server:\n" + response);
 
             // cut the first 8 words and the last 1 from the string
             assert response != null;
@@ -56,17 +95,21 @@ public class StartNode {
                     .readValue(response, new TypeReference<List<Node>>(){});
 
             // sort and print the list of nodes
-            System.out.println("List of nodes:");
+            /* System.out.println("List of nodes:");
             nodeJsonToList.sort(Comparator.comparing(Node::getId));
             for (Node value : nodeJsonToList) {
                 System.out.println("id: " + value.getId() +
                         ", address: " + value.getIpAddress() +
                         ", port: " + value.getPort());
-            }
+            } */
+
+            return nodeJsonToList;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
 
     }
 
@@ -93,5 +136,7 @@ public class StartNode {
         }
         return null;
     }
+
+    // public static join();
 
 }

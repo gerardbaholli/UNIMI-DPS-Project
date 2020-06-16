@@ -9,20 +9,32 @@ import io.grpc.stub.StreamObserver;
 
 public class NodeServiceImpl extends NodeServiceImplBase {
 
+    TargetNode targetNode;
+
+    public NodeServiceImpl(TargetNode targetNode) {
+        this.targetNode = targetNode;
+    }
+
+    // service called to join the network
+    // synchronized to prevent to prevent two nodes joining at the same time
     @Override
-    public void joinNetwork(JoinRequest joinRequest,
+    public synchronized void joinNetwork(JoinRequest joinRequest,
                             StreamObserver<JoinResponse> joinResponseStreamObserver){
 
-        System.out.println(joinRequest);
+        System.out.println("Join Request:\n" +
+                joinRequest.getId() + " " +
+                joinRequest.getIpAddress() + " " +
+                joinRequest.getPort());
 
         JoinResponse joinResponse = JoinResponse.newBuilder()
-                .setIp("localhost")
-                .setPort(8080)
-                .setMessage("Ok").build();
+                .setId(targetNode.getTargetId())
+                .setIpAddress(targetNode.getTargetIpAddress())
+                .setPort(targetNode.getTargetPort())
+                .setMessage("success").build();
 
          joinResponseStreamObserver.onNext(joinResponse);
+         joinResponseStreamObserver.onCompleted();
 
-         // joinResponseStreamObserver.onCompleted();
 
     }
 
@@ -37,7 +49,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         tokenMessageStreamObserver.onNext(tokenResponse);
 
-        // tokenMessageStreamObserver.onCompleted();
+        tokenMessageStreamObserver.onCompleted();
 
     }
 

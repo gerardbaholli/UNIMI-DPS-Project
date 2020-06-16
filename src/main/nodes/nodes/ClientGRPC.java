@@ -1,115 +1,73 @@
 package nodes;
 
-
-import com.example.grpc.GreetingServiceOuterClass;
 import com.example.token.NodeServiceGrpc;
-import com.example.token.NodeServiceOuterClass;
-import com.example.token.NodeServiceOuterClass.TokenMessage;
-import com.example.token.NodeServiceOuterClass.TokenResponse;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
 import com.example.token.NodeServiceGrpc.NodeServiceBlockingStub;
-import com.example.token.NodeServiceGrpc.NodeServiceStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.StreamObserver;
 
-import java.util.concurrent.TimeUnit;
 
 public class ClientGRPC extends Thread {
 
+    private int id;
+    private String ipAddress;
+    private int port;
+    private TargetNode targetNode;
 
-    private int idNode;
-    private String targetIp;
-    private int targetPort;
 
-
-    public ClientGRPC(int idNode, String targetIp, int targetPort) {
-        this.idNode = idNode;
-        this.targetIp = targetIp;
-        this.targetPort = targetPort;
+    public ClientGRPC(int id, String ipAddress, int port, TargetNode targetNode) {
+        this.id = id;
+        this.ipAddress = ipAddress;
+        this.port = port;
+        this.targetNode = targetNode;
     }
 
 
     @Override
     public void run() {
-        System.out.println("Sending join request message to " + targetPort);
+        System.out.println("Sending join request message to " + targetNode.getTargetPort());
 
-        synchronousJoin();
+        syncJoinNet();
 
         System.out.println("Done");
     }
 
 
-    public void synchronousJoin() {
+    public void syncJoinNet() {
 
         final ManagedChannel channel = ManagedChannelBuilder
-                .forTarget(targetIp + ":" + targetPort).usePlaintext(true).build();
+                .forTarget(targetNode.getTargetIpAddress() + ":" + targetNode.getTargetPort())
+                .usePlaintext(true).build();
 
         // creating a blocking stub on the channel
         NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
         // creating the JoinResponse object which will be provided as input to the RPC method
         JoinRequest joinRequest = JoinRequest.newBuilder()
-                .setIp(targetIp)
-                .setPort(targetPort)
+                .setId(id)
+                .setIpAddress(ipAddress)
+                .setPort(port)
                 .build();
 
         // calling the method, it returns an instance of JoinResponse
         JoinResponse joinResponse = stub.joinNetwork(joinRequest);
 
+        // save the new target node after the join
+        targetNode.setTargetId(joinResponse.getId());
+        targetNode.setTargetIpAddress(joinResponse.getIpAddress());
+        targetNode.setTargetPort(joinResponse.getPort());
+
         // printing the answer
-        System.out.println(joinResponse.getIp() + " " +
-                        joinResponse.getPort() + " " +
-                        joinResponse.getMessage());
+        System.out.println("Join Response:\n" +
+                joinResponse.getId() + " " +
+                joinResponse.getIpAddress() + " " +
+                joinResponse.getPort() + " " +
+                joinResponse.getMessage());
 
-        // closing the channel
+
+        // TODO: closing the channel when the node want to esc
         //channel.shutdown();
-
-    }
-
-
-    public void asynchronousCall() throws InterruptedException {
-
-        // plaintext channel on the address (ip/port)
-        // which offers the TokenService service
-        final ManagedChannel channel = ManagedChannelBuilder
-                .forTarget(targetIp + ":" + targetPort).usePlaintext(true).build();
-
-        // creating an asynchronous stub on the channel
-        NodeServiceStub stub = NodeServiceGrpc.newStub(channel);
-
-        // creating the TokenMessage object which will be provided
-        // as input to the RPC method
-        TokenMessage message = TokenMessage.newBuilder()
-                .setFrom("node " + idNode)
-                .setTo(Integer.toString(targetPort))
-                .setMessage("token")
-                .build();
-
-
-        stub.token(message, new StreamObserver<TokenResponse>() {
-
-            @Override
-            public void onNext(TokenResponse tokenResponse) {
-                System.out.println(tokenResponse.getAck());
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                System.out.println("Error: " + throwable.getMessage());
-            }
-
-            @Override
-            public void onCompleted() {
-                channel.shutdown();
-            }
-
-        });
-
-        // need this, otherwise the method will terminate
-        // before that answer from the server are received
-        channel.awaitTermination(10, TimeUnit.SECONDS);
 
     }
 
