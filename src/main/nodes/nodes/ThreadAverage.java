@@ -2,10 +2,11 @@ package nodes;
 
 public class ThreadAverage extends Thread {
 
-    Queue q;
+    Queue queue;
+
 
     public ThreadAverage(Queue q){
-        this.q = q;
+        this.queue = q;
     }
 
     @Override
@@ -16,11 +17,12 @@ public class ThreadAverage extends Thread {
         while (true){
 
             try {
-                avg = q.slidingWindow();
+                avg = queue.slidingWindow();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+            LocalAvgList.getInstance().addValue(avg);
             System.out.println("The average is: " + avg);
         }
 

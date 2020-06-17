@@ -8,18 +8,16 @@ import java.io.IOException;
 public class ServerGRPC extends Thread {
 
     private int port;
-    TargetNode targetNode;
 
-    public ServerGRPC(int port, TargetNode targetNode){
+    public ServerGRPC(int port){
         this.port = port;
-        this.targetNode = targetNode;
     }
 
     @Override
     public void run(){
 
         Server server = ServerBuilder.forPort(port)
-                .addService(new NodeServiceImpl(targetNode)).build();
+                .addService(new NodeServiceImpl()).build();
 
         try {
 

@@ -38,5 +38,5 @@ message Empty {
 
 service NodeService {
   rpc joinNetwork(JoinRequest) returns (JoinResponse);
-  rpc tokenData(TokenData) returns (Empty);
+  rpc tokenDelivery(TokenData) returns (Empty);
 }

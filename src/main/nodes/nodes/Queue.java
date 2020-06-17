@@ -20,25 +20,6 @@ public class Queue implements Buffer {
                         m.getTimestamp());
     }
 
-    public synchronized Measurement take() {
-        Measurement m = null;
-
-        while (buffer.size() == 0) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (buffer.size() > 0) {
-            m = buffer.get(0);
-            buffer.remove(0);
-        }
-
-        return m;
-    }
-
     public synchronized double slidingWindow() throws InterruptedException {
         double avg = 0;
         int count = 0;
@@ -81,5 +62,23 @@ public class Queue implements Buffer {
         return m;
     }
 
+    public synchronized Measurement take() {
+        Measurement m = null;
+
+        while (buffer.size() == 0) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (buffer.size() > 0) {
+            m = buffer.get(0);
+            buffer.remove(0);
+        }
+
+        return m;
+    }
 
 }

@@ -42,16 +42,16 @@ public final class NodeServiceGrpc {
           .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static final io.grpc.MethodDescriptor<com.example.token.NodeServiceOuterClass.TokenData,
-      com.example.token.NodeServiceOuterClass.Empty> METHOD_TOKEN_DATA =
+      com.example.token.NodeServiceOuterClass.Empty> METHOD_TOKEN_DELIVERY =
       io.grpc.MethodDescriptor.<com.example.token.NodeServiceOuterClass.TokenData, com.example.token.NodeServiceOuterClass.Empty>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
-              "com.example.token.NodeService", "tokenData"))
+              "com.example.token.NodeService", "tokenDelivery"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.example.token.NodeServiceOuterClass.TokenData.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.example.token.NodeServiceOuterClass.Empty.getDefaultInstance()))
-          .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("tokenData"))
+          .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("tokenDelivery"))
           .build();
 
   /**
@@ -90,9 +90,9 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public void tokenData(com.example.token.NodeServiceOuterClass.TokenData request,
+    public void tokenDelivery(com.example.token.NodeServiceOuterClass.TokenData request,
         io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_TOKEN_DATA, responseObserver);
+      asyncUnimplementedUnaryCall(METHOD_TOKEN_DELIVERY, responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -105,12 +105,12 @@ public final class NodeServiceGrpc {
                 com.example.token.NodeServiceOuterClass.JoinResponse>(
                   this, METHODID_JOIN_NETWORK)))
           .addMethod(
-            METHOD_TOKEN_DATA,
+            METHOD_TOKEN_DELIVERY,
             asyncUnaryCall(
               new MethodHandlers<
                 com.example.token.NodeServiceOuterClass.TokenData,
                 com.example.token.NodeServiceOuterClass.Empty>(
-                  this, METHODID_TOKEN_DATA)))
+                  this, METHODID_TOKEN_DELIVERY)))
           .build();
     }
   }
@@ -143,10 +143,10 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public void tokenData(com.example.token.NodeServiceOuterClass.TokenData request,
+    public void tokenDelivery(com.example.token.NodeServiceOuterClass.TokenData request,
         io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(METHOD_TOKEN_DATA, getCallOptions()), request, responseObserver);
+          getChannel().newCall(METHOD_TOKEN_DELIVERY, getCallOptions()), request, responseObserver);
     }
   }
 
@@ -177,9 +177,9 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public com.example.token.NodeServiceOuterClass.Empty tokenData(com.example.token.NodeServiceOuterClass.TokenData request) {
+    public com.example.token.NodeServiceOuterClass.Empty tokenDelivery(com.example.token.NodeServiceOuterClass.TokenData request) {
       return blockingUnaryCall(
-          getChannel(), METHOD_TOKEN_DATA, getCallOptions(), request);
+          getChannel(), METHOD_TOKEN_DELIVERY, getCallOptions(), request);
     }
   }
 
@@ -211,15 +211,15 @@ public final class NodeServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.example.token.NodeServiceOuterClass.Empty> tokenData(
+    public com.google.common.util.concurrent.ListenableFuture<com.example.token.NodeServiceOuterClass.Empty> tokenDelivery(
         com.example.token.NodeServiceOuterClass.TokenData request) {
       return futureUnaryCall(
-          getChannel().newCall(METHOD_TOKEN_DATA, getCallOptions()), request);
+          getChannel().newCall(METHOD_TOKEN_DELIVERY, getCallOptions()), request);
     }
   }
 
   private static final int METHODID_JOIN_NETWORK = 0;
-  private static final int METHODID_TOKEN_DATA = 1;
+  private static final int METHODID_TOKEN_DELIVERY = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -242,8 +242,8 @@ public final class NodeServiceGrpc {
           serviceImpl.joinNetwork((com.example.token.NodeServiceOuterClass.JoinRequest) request,
               (io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.JoinResponse>) responseObserver);
           break;
-        case METHODID_TOKEN_DATA:
-          serviceImpl.tokenData((com.example.token.NodeServiceOuterClass.TokenData) request,
+        case METHODID_TOKEN_DELIVERY:
+          serviceImpl.tokenDelivery((com.example.token.NodeServiceOuterClass.TokenData) request,
               (io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty>) responseObserver);
           break;
         default:
@@ -308,7 +308,7 @@ public final class NodeServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new NodeServiceFileDescriptorSupplier())
               .addMethod(METHOD_JOIN_NETWORK)
-              .addMethod(METHOD_TOKEN_DATA)
+              .addMethod(METHOD_TOKEN_DELIVERY)
               .build();
         }
       }

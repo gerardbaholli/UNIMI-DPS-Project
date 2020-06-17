@@ -23,7 +23,6 @@ public class StartNode {
         List<Node> nodeList;
 
         Node node = new Node(IP, PORT);
-        TargetNode targetNode = new TargetNode();
 
 
 
@@ -37,15 +36,17 @@ public class StartNode {
         System.out.println("I'm node: " + idNode);
 
         // start the gRPC server
-        ServerGRPC serverGRPC = new ServerGRPC(PORT, targetNode);
+        ServerGRPC serverGRPC = new ServerGRPC(PORT);
         serverGRPC.start();
 
         // join the network
         assert nodeList != null;
-        join(nodeList, node, targetNode);
+        join(nodeList, node);
+
 
 
         /* ------------ NODE RUNNING ------------ */
+
         System.out.println("Node running in the network");
 
         Queue buffer = new Queue();
@@ -65,8 +66,8 @@ public class StartNode {
 
 
 
-
         // ------------ STOPPING NODE ------------ */
+
         System.out.println("Hit return to stop...");
         System.in.read();
         // TODO: STOP NODE --------v
@@ -156,9 +157,10 @@ public class StartNode {
         return null;
     }
 
-    public static void join(List<Node> nodeList, Node node, TargetNode targetNode){
+    public static void join(List<Node> nodeList, Node node){
         Random rand = new Random();
 
+        // if it is not the first node, he randomly puts one as target
         if (nodeList.size() > 1) {
             Node randomNode;
 
@@ -167,22 +169,22 @@ public class StartNode {
                 randomNode = nodeList.get(rand.nextInt(nodeList.size()));
             } while (randomNode.getId() == node.getId());
 
-            targetNode.setTargetId(randomNode.getId());
-            targetNode.setTargetIpAddress(randomNode.getIpAddress());
-            targetNode.setTargetPort(randomNode.getPort());
-            System.out.println("Target node: " + targetNode.getTargetId());
-
-            // trigger join request for the network
-            ClientGRPC clientGRPC = new ClientGRPC(node, targetNode);
-            clientGRPC.start();
+            TargetNode.getInstance().setTargetId(randomNode.getId());
+            TargetNode.getInstance().setTargetIpAddress(randomNode.getIpAddress());
+            TargetNode.getInstance().setTargetPort(randomNode.getPort());
 
         } else {
-            // if it is the first node he put himself as target node
-            targetNode.setTargetId(node.getId());
-            targetNode.setTargetIpAddress(node.getIpAddress());
-            targetNode.setTargetPort(node.getPort());
-            System.out.println("Target node: " + targetNode.getTargetId());
+            // if it is the first node, he put himself as target node
+            TargetNode.getInstance().setTargetId(node.getId());
+            TargetNode.getInstance().setTargetIpAddress(node.getIpAddress());
+            TargetNode.getInstance().setTargetPort(node.getPort());
         }
+
+        System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
+
+        // create the client GRPC
+        ClientGRPC clientGRPC = new ClientGRPC(node);
+        clientGRPC.start();
     }
 
 }

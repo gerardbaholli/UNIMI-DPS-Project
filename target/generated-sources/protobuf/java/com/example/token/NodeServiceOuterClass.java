@@ -3962,12 +3962,12 @@ public final class NodeServiceOuterClass {
       "ReadyList\022=\n\013waitingList\030\003 \003(\0132(.com.exa" +
       "mple.token.TokenData.WaitingList\032&\n\tRead" +
       "yList\022\n\n\002id\030\001 \001(\005\022\r\n\005value\030\002 \001(\001\032\031\n\013Wait" +
-      "ingList\022\n\n\002id\030\001 \001(\005\"\007\n\005Empty2\242\001\n\013NodeSer",
+      "ingList\022\n\n\002id\030\001 \001(\005\"\007\n\005Empty2\246\001\n\013NodeSer",
       "vice\022N\n\013joinNetwork\022\036.com.example.token." +
       "JoinRequest\032\037.com.example.token.JoinResp" +
-      "onse\022C\n\ttokenData\022\034.com.example.token.To" +
-      "kenData\032\030.com.example.token.Emptyb\006proto" +
-      "3"
+      "onse\022G\n\rtokenDelivery\022\034.com.example.toke" +
+      "n.TokenData\032\030.com.example.token.Emptyb\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

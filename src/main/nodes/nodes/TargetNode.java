@@ -6,12 +6,23 @@ public class TargetNode {
     private String targetIpAddress;
     private int targetPort;
 
-    public TargetNode(){}
+    private static TargetNode instance;
 
+    private TargetNode(){}
+
+    /*
     public TargetNode(int targetId, String targetIpAddress, int targetPort){
         this.targetId = targetId;
         this.targetIpAddress = targetIpAddress;
         this.targetPort = targetPort;
+    }
+    */
+
+    // singleton
+    public synchronized static TargetNode getInstance(){
+        if(instance==null)
+            instance = new TargetNode();
+        return instance;
     }
 
     public int getTargetId() {

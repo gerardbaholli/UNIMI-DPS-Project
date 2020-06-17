@@ -1,19 +1,16 @@
 package nodes;
 
 import com.example.token.NodeServiceGrpc.NodeServiceImplBase;
+import com.example.token.NodeServiceOuterClass.TokenData;
+import com.example.token.NodeServiceOuterClass.TokenData.WaitingList;
+import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
-import com.example.token.NodeServiceOuterClass.TokenResponse;
-import com.example.token.NodeServiceOuterClass.TokenMessage;
 import io.grpc.stub.StreamObserver;
+
 
 public class NodeServiceImpl extends NodeServiceImplBase {
 
-    TargetNode targetNode;
-
-    public NodeServiceImpl(TargetNode targetNode) {
-        this.targetNode = targetNode;
-    }
 
     // service called to join the network
     // synchronized to prevent to prevent two nodes joining at the same time
@@ -27,35 +24,41 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
 
         JoinResponse joinResponse = JoinResponse.newBuilder()
-                .setId(targetNode.getTargetId())
-                .setIpAddress(targetNode.getTargetIpAddress())
-                .setPort(targetNode.getTargetPort())
+                .setId(TargetNode.getInstance().getTargetId())
+                .setIpAddress(TargetNode.getInstance().getTargetIpAddress())
+                .setPort(TargetNode.getInstance().getTargetPort())
                 .setMessage("success").build();
 
         // update the target of the node receiving the join request
-        targetNode.setTargetId(joinRequest.getId());
-        targetNode.setTargetIpAddress(joinRequest.getIpAddress());
-        targetNode.setTargetPort(joinRequest.getPort());
+        TargetNode.getInstance().setTargetId(joinRequest.getId());
+        TargetNode.getInstance().setTargetIpAddress(joinRequest.getIpAddress());
+        TargetNode.getInstance().setTargetPort(joinRequest.getPort());
 
          joinResponseStreamObserver.onNext(joinResponse);
          joinResponseStreamObserver.onCompleted();
 
     }
 
+
     @Override
-    public void token(TokenMessage tokenMessage,
-                      StreamObserver<TokenResponse> tokenMessageStreamObserver){
+    public synchronized void tokenDelivery(TokenData request,
+                          StreamObserver<Empty> responseObserver) {
 
-        System.out.println(tokenMessage);
+        System.out.println(
+                "Ready list:\n" + request.getReadyListList() + "\n" +
+                "Waiting list:\n" + request.getWaitingListList());
 
-        TokenResponse tokenResponse = TokenResponse.newBuilder()
-                .setAck("Received ack from node " + tokenMessage.getTo()).build();
 
-        tokenMessageStreamObserver.onNext(tokenResponse);
+        for (WaitingList value : request.getWaitingListList()){
+            System.out.println(value);
+        }
 
-        tokenMessageStreamObserver.onCompleted();
+
+        Empty response = Empty.newBuilder().build();
+
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
 
     }
-
 
 }
