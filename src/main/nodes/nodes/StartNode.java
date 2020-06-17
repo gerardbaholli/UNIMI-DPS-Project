@@ -5,13 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import simulator.PM10Simulator;
+
 import java.io.IOException;
 import java.util.*;
 
 
 public class StartNode {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Random rand = new Random();
 
@@ -23,9 +25,14 @@ public class StartNode {
         Node node = new Node(IP, PORT);
         TargetNode targetNode = new TargetNode();
 
-        // post to the gateway the intention to join the network
+
+
+        /* ------------ NODE JOINING ------------ */
+
+        // post call, sends to the gateway the intention to join the network
         nodeList = start(node);
 
+        // sets the id node given from the gateway
         idNode = node.getId();
         System.out.println("I'm node: " + idNode);
 
@@ -38,8 +45,35 @@ public class StartNode {
         join(nodeList, node, targetNode);
 
 
+        /* ------------ NODE RUNNING ------------ */
+        System.out.println("Node running in the network");
+
+        Queue buffer = new Queue();
+        double avg = 0;
+
+        // create thread simulator
+        PM10Simulator pm10Simulator = new PM10Simulator(buffer);
+        pm10Simulator.start();
+
+        // create thread that compute avg of the data from the buffer
+        ThreadAverage threadAverage = new ThreadAverage(buffer);
+        threadAverage.start();
 
 
+
+
+
+
+
+
+        // ------------ STOPPING NODE ------------ */
+        System.out.println("Hit return to stop...");
+        System.in.read();
+        // TODO: STOP NODE --------v
+        // TODO: shutdown the channel of the gRPC Server
+        // TODO: post delete call to the gateway
+        pm10Simulator.stopMeGently();
+        System.out.println("Node stopped");
 
 
 

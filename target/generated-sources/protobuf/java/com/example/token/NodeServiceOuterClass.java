@@ -1447,56 +1447,73 @@ public final class NodeServiceOuterClass {
 
   }
 
-  public interface TokenMessageOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.example.token.TokenMessage)
+  public interface TokenDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.example.token.TokenData)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string from = 1;</code>
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
      */
-    java.lang.String getFrom();
+    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> 
+        getReadyListList();
     /**
-     * <code>string from = 1;</code>
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getFromBytes();
+    com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index);
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    int getReadyListCount();
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
+        getReadyListOrBuilderList();
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+        int index);
 
     /**
-     * <code>string to = 2;</code>
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
      */
-    java.lang.String getTo();
+    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> 
+        getWaitingListList();
     /**
-     * <code>string to = 2;</code>
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
      */
-    com.google.protobuf.ByteString
-        getToBytes();
-
+    com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index);
     /**
-     * <code>string message = 3;</code>
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
      */
-    java.lang.String getMessage();
+    int getWaitingListCount();
     /**
-     * <code>string message = 3;</code>
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
      */
-    com.google.protobuf.ByteString
-        getMessageBytes();
+    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
+        getWaitingListOrBuilderList();
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+        int index);
   }
   /**
-   * Protobuf type {@code com.example.token.TokenMessage}
+   * Protobuf type {@code com.example.token.TokenData}
    */
-  public  static final class TokenMessage extends
+  public  static final class TokenData extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.example.token.TokenMessage)
-      TokenMessageOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.example.token.TokenData)
+      TokenDataOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use TokenMessage.newBuilder() to construct.
-    private TokenMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TokenData.newBuilder() to construct.
+    private TokenData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private TokenMessage() {
-      from_ = "";
-      to_ = "";
-      message_ = "";
+    private TokenData() {
+      readyList_ = java.util.Collections.emptyList();
+      waitingList_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1504,7 +1521,7 @@ public final class NodeServiceOuterClass {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private TokenMessage(
+    private TokenData(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1525,786 +1542,24 @@ public final class NodeServiceOuterClass {
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              from_ = s;
               break;
             }
             case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              to_ = s;
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                readyList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.ReadyList>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              readyList_.add(
+                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.ReadyList.parser(), extensionRegistry));
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              message_ = s;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenMessage_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenMessage_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.token.NodeServiceOuterClass.TokenMessage.class, com.example.token.NodeServiceOuterClass.TokenMessage.Builder.class);
-    }
-
-    public static final int FROM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object from_;
-    /**
-     * <code>string from = 1;</code>
-     */
-    public java.lang.String getFrom() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        from_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string from = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getFromBytes() {
-      java.lang.Object ref = from_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        from_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int TO_FIELD_NUMBER = 2;
-    private volatile java.lang.Object to_;
-    /**
-     * <code>string to = 2;</code>
-     */
-    public java.lang.String getTo() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        to_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string to = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getToBytes() {
-      java.lang.Object ref = to_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        to_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int MESSAGE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object message_;
-    /**
-     * <code>string message = 3;</code>
-     */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        message_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string message = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        message_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getFromBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, from_);
-      }
-      if (!getToBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, to_);
-      }
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, message_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getFromBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, from_);
-      }
-      if (!getToBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, to_);
-      }
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, message_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenMessage)) {
-        return super.equals(obj);
-      }
-      com.example.token.NodeServiceOuterClass.TokenMessage other = (com.example.token.NodeServiceOuterClass.TokenMessage) obj;
-
-      boolean result = true;
-      result = result && getFrom()
-          .equals(other.getFrom());
-      result = result && getTo()
-          .equals(other.getTo());
-      result = result && getMessage()
-          .equals(other.getMessage());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + FROM_FIELD_NUMBER;
-      hash = (53 * hash) + getFrom().hashCode();
-      hash = (37 * hash) + TO_FIELD_NUMBER;
-      hash = (53 * hash) + getTo().hashCode();
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.example.token.NodeServiceOuterClass.TokenMessage parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenMessage prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code com.example.token.TokenMessage}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.example.token.TokenMessage)
-        com.example.token.NodeServiceOuterClass.TokenMessageOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenMessage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenMessage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.token.NodeServiceOuterClass.TokenMessage.class, com.example.token.NodeServiceOuterClass.TokenMessage.Builder.class);
-      }
-
-      // Construct using com.example.token.NodeServiceOuterClass.TokenMessage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        from_ = "";
-
-        to_ = "";
-
-        message_ = "";
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenMessage_descriptor;
-      }
-
-      public com.example.token.NodeServiceOuterClass.TokenMessage getDefaultInstanceForType() {
-        return com.example.token.NodeServiceOuterClass.TokenMessage.getDefaultInstance();
-      }
-
-      public com.example.token.NodeServiceOuterClass.TokenMessage build() {
-        com.example.token.NodeServiceOuterClass.TokenMessage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.example.token.NodeServiceOuterClass.TokenMessage buildPartial() {
-        com.example.token.NodeServiceOuterClass.TokenMessage result = new com.example.token.NodeServiceOuterClass.TokenMessage(this);
-        result.from_ = from_;
-        result.to_ = to_;
-        result.message_ = message_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.token.NodeServiceOuterClass.TokenMessage) {
-          return mergeFrom((com.example.token.NodeServiceOuterClass.TokenMessage)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenMessage other) {
-        if (other == com.example.token.NodeServiceOuterClass.TokenMessage.getDefaultInstance()) return this;
-        if (!other.getFrom().isEmpty()) {
-          from_ = other.from_;
-          onChanged();
-        }
-        if (!other.getTo().isEmpty()) {
-          to_ = other.to_;
-          onChanged();
-        }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.example.token.NodeServiceOuterClass.TokenMessage parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.token.NodeServiceOuterClass.TokenMessage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object from_ = "";
-      /**
-       * <code>string from = 1;</code>
-       */
-      public java.lang.String getFrom() {
-        java.lang.Object ref = from_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          from_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string from = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getFromBytes() {
-        java.lang.Object ref = from_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          from_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string from = 1;</code>
-       */
-      public Builder setFrom(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        from_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string from = 1;</code>
-       */
-      public Builder clearFrom() {
-        
-        from_ = getDefaultInstance().getFrom();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string from = 1;</code>
-       */
-      public Builder setFromBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        from_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object to_ = "";
-      /**
-       * <code>string to = 2;</code>
-       */
-      public java.lang.String getTo() {
-        java.lang.Object ref = to_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          to_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string to = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getToBytes() {
-        java.lang.Object ref = to_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          to_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string to = 2;</code>
-       */
-      public Builder setTo(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        to_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string to = 2;</code>
-       */
-      public Builder clearTo() {
-        
-        to_ = getDefaultInstance().getTo();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string to = 2;</code>
-       */
-      public Builder setToBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        to_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object message_ = "";
-      /**
-       * <code>string message = 3;</code>
-       */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          message_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string message = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          message_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string message = 3;</code>
-       */
-      public Builder setMessage(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        message_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 3;</code>
-       */
-      public Builder clearMessage() {
-        
-        message_ = getDefaultInstance().getMessage();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string message = 3;</code>
-       */
-      public Builder setMessageBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        message_ = value;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:com.example.token.TokenMessage)
-    }
-
-    // @@protoc_insertion_point(class_scope:com.example.token.TokenMessage)
-    private static final com.example.token.NodeServiceOuterClass.TokenMessage DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenMessage();
-    }
-
-    public static com.example.token.NodeServiceOuterClass.TokenMessage getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TokenMessage>
-        PARSER = new com.google.protobuf.AbstractParser<TokenMessage>() {
-      public TokenMessage parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new TokenMessage(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TokenMessage> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TokenMessage> getParserForType() {
-      return PARSER;
-    }
-
-    public com.example.token.NodeServiceOuterClass.TokenMessage getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface TokenResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.example.token.TokenResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>string ack = 1;</code>
-     */
-    java.lang.String getAck();
-    /**
-     * <code>string ack = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAckBytes();
-  }
-  /**
-   * Protobuf type {@code com.example.token.TokenResponse}
-   */
-  public  static final class TokenResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.example.token.TokenResponse)
-      TokenResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use TokenResponse.newBuilder() to construct.
-    private TokenResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TokenResponse() {
-      ack_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TokenResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                waitingList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.WaitingList>();
+                mutable_bitField0_ |= 0x00000002;
               }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              ack_ = s;
+              waitingList_.add(
+                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.WaitingList.parser(), extensionRegistry));
               break;
             }
           }
@@ -2315,54 +1570,1058 @@ public final class NodeServiceOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          readyList_ = java.util.Collections.unmodifiableList(readyList_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          waitingList_ = java.util.Collections.unmodifiableList(waitingList_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenResponse_descriptor;
+      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenResponse_fieldAccessorTable
+      return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.example.token.NodeServiceOuterClass.TokenResponse.class, com.example.token.NodeServiceOuterClass.TokenResponse.Builder.class);
+              com.example.token.NodeServiceOuterClass.TokenData.class, com.example.token.NodeServiceOuterClass.TokenData.Builder.class);
     }
 
-    public static final int ACK_FIELD_NUMBER = 1;
-    private volatile java.lang.Object ack_;
-    /**
-     * <code>string ack = 1;</code>
-     */
-    public java.lang.String getAck() {
-      java.lang.Object ref = ack_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        ack_ = s;
-        return s;
-      }
+    public interface ReadyListOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.ReadyList)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      int getId();
+
+      /**
+       * <code>double value = 2;</code>
+       */
+      double getValue();
     }
     /**
-     * <code>string ack = 1;</code>
+     * Protobuf type {@code com.example.token.TokenData.ReadyList}
      */
-    public com.google.protobuf.ByteString
-        getAckBytes() {
-      java.lang.Object ref = ack_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        ack_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    public  static final class ReadyList extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.ReadyList)
+        ReadyListOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use ReadyList.newBuilder() to construct.
+      private ReadyList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
       }
+      private ReadyList() {
+        id_ = 0;
+        value_ = 0D;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private ReadyList(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                id_ = input.readInt32();
+                break;
+              }
+              case 17: {
+
+                value_ = input.readDouble();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.token.NodeServiceOuterClass.TokenData.ReadyList.class, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder.class);
+      }
+
+      public static final int ID_FIELD_NUMBER = 1;
+      private int id_;
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+
+      public static final int VALUE_FIELD_NUMBER = 2;
+      private double value_;
+      /**
+       * <code>double value = 2;</code>
+       */
+      public double getValue() {
+        return value_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (id_ != 0) {
+          output.writeInt32(1, id_);
+        }
+        if (value_ != 0D) {
+          output.writeDouble(2, value_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (id_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, id_);
+        }
+        if (value_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(2, value_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.ReadyList)) {
+          return super.equals(obj);
+        }
+        com.example.token.NodeServiceOuterClass.TokenData.ReadyList other = (com.example.token.NodeServiceOuterClass.TokenData.ReadyList) obj;
+
+        boolean result = true;
+        result = result && (getId()
+            == other.getId());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getValue())
+            == java.lang.Double.doubleToLongBits(
+                other.getValue()));
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+        hash = (37 * hash) + VALUE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getValue()));
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.ReadyList prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code com.example.token.TokenData.ReadyList}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.ReadyList)
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.example.token.NodeServiceOuterClass.TokenData.ReadyList.class, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder.class);
+        }
+
+        // Construct using com.example.token.NodeServiceOuterClass.TokenData.ReadyList.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          id_ = 0;
+
+          value_ = 0D;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstanceForType() {
+          return com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance();
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList build() {
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList buildPartial() {
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList result = new com.example.token.NodeServiceOuterClass.TokenData.ReadyList(this);
+          result.id_ = id_;
+          result.value_ = value_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.ReadyList) {
+            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.ReadyList)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.ReadyList other) {
+          if (other == com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance()) return this;
+          if (other.getId() != 0) {
+            setId(other.getId());
+          }
+          if (other.getValue() != 0D) {
+            setValue(other.getValue());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.ReadyList) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int id_ ;
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public int getId() {
+          return id_;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder setId(int value) {
+          
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder clearId() {
+          
+          id_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private double value_ ;
+        /**
+         * <code>double value = 2;</code>
+         */
+        public double getValue() {
+          return value_;
+        }
+        /**
+         * <code>double value = 2;</code>
+         */
+        public Builder setValue(double value) {
+          
+          value_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double value = 2;</code>
+         */
+        public Builder clearValue() {
+          
+          value_ = 0D;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.ReadyList)
+      }
+
+      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.ReadyList)
+      private static final com.example.token.NodeServiceOuterClass.TokenData.ReadyList DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.ReadyList();
+      }
+
+      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<ReadyList>
+          PARSER = new com.google.protobuf.AbstractParser<ReadyList>() {
+        public ReadyList parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new ReadyList(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<ReadyList> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<ReadyList> getParserForType() {
+        return PARSER;
+      }
+
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface WaitingListOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.WaitingList)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      int getId();
+    }
+    /**
+     * Protobuf type {@code com.example.token.TokenData.WaitingList}
+     */
+    public  static final class WaitingList extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.WaitingList)
+        WaitingListOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use WaitingList.newBuilder() to construct.
+      private WaitingList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private WaitingList() {
+        id_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private WaitingList(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                id_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.token.NodeServiceOuterClass.TokenData.WaitingList.class, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder.class);
+      }
+
+      public static final int ID_FIELD_NUMBER = 1;
+      private int id_;
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (id_ != 0) {
+          output.writeInt32(1, id_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (id_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, id_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.WaitingList)) {
+          return super.equals(obj);
+        }
+        com.example.token.NodeServiceOuterClass.TokenData.WaitingList other = (com.example.token.NodeServiceOuterClass.TokenData.WaitingList) obj;
+
+        boolean result = true;
+        result = result && (getId()
+            == other.getId());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.WaitingList prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code com.example.token.TokenData.WaitingList}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.WaitingList)
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.example.token.NodeServiceOuterClass.TokenData.WaitingList.class, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder.class);
+        }
+
+        // Construct using com.example.token.NodeServiceOuterClass.TokenData.WaitingList.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          id_ = 0;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstanceForType() {
+          return com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance();
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList build() {
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList buildPartial() {
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList result = new com.example.token.NodeServiceOuterClass.TokenData.WaitingList(this);
+          result.id_ = id_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.WaitingList) {
+            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.WaitingList)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.WaitingList other) {
+          if (other == com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance()) return this;
+          if (other.getId() != 0) {
+            setId(other.getId());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.WaitingList) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int id_ ;
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public int getId() {
+          return id_;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder setId(int value) {
+          
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder clearId() {
+          
+          id_ = 0;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.WaitingList)
+      }
+
+      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.WaitingList)
+      private static final com.example.token.NodeServiceOuterClass.TokenData.WaitingList DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.WaitingList();
+      }
+
+      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<WaitingList>
+          PARSER = new com.google.protobuf.AbstractParser<WaitingList>() {
+        public WaitingList parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new WaitingList(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<WaitingList> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<WaitingList> getParserForType() {
+        return PARSER;
+      }
+
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int READYLIST_FIELD_NUMBER = 2;
+    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> readyList_;
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> getReadyListList() {
+      return readyList_;
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
+        getReadyListOrBuilderList() {
+      return readyList_;
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    public int getReadyListCount() {
+      return readyList_.size();
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index) {
+      return readyList_.get(index);
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     */
+    public com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+        int index) {
+      return readyList_.get(index);
+    }
+
+    public static final int WAITINGLIST_FIELD_NUMBER = 3;
+    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> waitingList_;
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> getWaitingListList() {
+      return waitingList_;
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
+        getWaitingListOrBuilderList() {
+      return waitingList_;
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    public int getWaitingListCount() {
+      return waitingList_.size();
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index) {
+      return waitingList_.get(index);
+    }
+    /**
+     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     */
+    public com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+        int index) {
+      return waitingList_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2377,8 +2636,11 @@ public final class NodeServiceOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAckBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, ack_);
+      for (int i = 0; i < readyList_.size(); i++) {
+        output.writeMessage(2, readyList_.get(i));
+      }
+      for (int i = 0; i < waitingList_.size(); i++) {
+        output.writeMessage(3, waitingList_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2388,8 +2650,13 @@ public final class NodeServiceOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAckBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, ack_);
+      for (int i = 0; i < readyList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, readyList_.get(i));
+      }
+      for (int i = 0; i < waitingList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, waitingList_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2401,14 +2668,16 @@ public final class NodeServiceOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenResponse)) {
+      if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData)) {
         return super.equals(obj);
       }
-      com.example.token.NodeServiceOuterClass.TokenResponse other = (com.example.token.NodeServiceOuterClass.TokenResponse) obj;
+      com.example.token.NodeServiceOuterClass.TokenData other = (com.example.token.NodeServiceOuterClass.TokenData) obj;
 
       boolean result = true;
-      result = result && getAck()
-          .equals(other.getAck());
+      result = result && getReadyListList()
+          .equals(other.getReadyListList());
+      result = result && getWaitingListList()
+          .equals(other.getWaitingListList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2420,76 +2689,82 @@ public final class NodeServiceOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ACK_FIELD_NUMBER;
-      hash = (53 * hash) + getAck().hashCode();
+      if (getReadyListCount() > 0) {
+        hash = (37 * hash) + READYLIST_FIELD_NUMBER;
+        hash = (53 * hash) + getReadyListList().hashCode();
+      }
+      if (getWaitingListCount() > 0) {
+        hash = (37 * hash) + WAITINGLIST_FIELD_NUMBER;
+        hash = (53 * hash) + getWaitingListList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(byte[] data)
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(java.io.InputStream input)
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseDelimitedFrom(java.io.InputStream input)
+    public static com.example.token.NodeServiceOuterClass.TokenData parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseDelimitedFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.example.token.NodeServiceOuterClass.TokenResponse parseFrom(
+    public static com.example.token.NodeServiceOuterClass.TokenData parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2501,7 +2776,7 @@ public final class NodeServiceOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenResponse prototype) {
+    public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -2516,25 +2791,25 @@ public final class NodeServiceOuterClass {
       return builder;
     }
     /**
-     * Protobuf type {@code com.example.token.TokenResponse}
+     * Protobuf type {@code com.example.token.TokenData}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.example.token.TokenResponse)
-        com.example.token.NodeServiceOuterClass.TokenResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.example.token.TokenData)
+        com.example.token.NodeServiceOuterClass.TokenDataOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenResponse_descriptor;
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenResponse_fieldAccessorTable
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.example.token.NodeServiceOuterClass.TokenResponse.class, com.example.token.NodeServiceOuterClass.TokenResponse.Builder.class);
+                com.example.token.NodeServiceOuterClass.TokenData.class, com.example.token.NodeServiceOuterClass.TokenData.Builder.class);
       }
 
-      // Construct using com.example.token.NodeServiceOuterClass.TokenResponse.newBuilder()
+      // Construct using com.example.token.NodeServiceOuterClass.TokenData.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2547,35 +2822,65 @@ public final class NodeServiceOuterClass {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getReadyListFieldBuilder();
+          getWaitingListFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        ack_ = "";
-
+        if (readyListBuilder_ == null) {
+          readyList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          readyListBuilder_.clear();
+        }
+        if (waitingListBuilder_ == null) {
+          waitingList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          waitingListBuilder_.clear();
+        }
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenResponse_descriptor;
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_descriptor;
       }
 
-      public com.example.token.NodeServiceOuterClass.TokenResponse getDefaultInstanceForType() {
-        return com.example.token.NodeServiceOuterClass.TokenResponse.getDefaultInstance();
+      public com.example.token.NodeServiceOuterClass.TokenData getDefaultInstanceForType() {
+        return com.example.token.NodeServiceOuterClass.TokenData.getDefaultInstance();
       }
 
-      public com.example.token.NodeServiceOuterClass.TokenResponse build() {
-        com.example.token.NodeServiceOuterClass.TokenResponse result = buildPartial();
+      public com.example.token.NodeServiceOuterClass.TokenData build() {
+        com.example.token.NodeServiceOuterClass.TokenData result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public com.example.token.NodeServiceOuterClass.TokenResponse buildPartial() {
-        com.example.token.NodeServiceOuterClass.TokenResponse result = new com.example.token.NodeServiceOuterClass.TokenResponse(this);
-        result.ack_ = ack_;
+      public com.example.token.NodeServiceOuterClass.TokenData buildPartial() {
+        com.example.token.NodeServiceOuterClass.TokenData result = new com.example.token.NodeServiceOuterClass.TokenData(this);
+        int from_bitField0_ = bitField0_;
+        if (readyListBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            readyList_ = java.util.Collections.unmodifiableList(readyList_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.readyList_ = readyList_;
+        } else {
+          result.readyList_ = readyListBuilder_.build();
+        }
+        if (waitingListBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            waitingList_ = java.util.Collections.unmodifiableList(waitingList_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.waitingList_ = waitingList_;
+        } else {
+          result.waitingList_ = waitingListBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -2607,19 +2912,67 @@ public final class NodeServiceOuterClass {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.example.token.NodeServiceOuterClass.TokenResponse) {
-          return mergeFrom((com.example.token.NodeServiceOuterClass.TokenResponse)other);
+        if (other instanceof com.example.token.NodeServiceOuterClass.TokenData) {
+          return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenResponse other) {
-        if (other == com.example.token.NodeServiceOuterClass.TokenResponse.getDefaultInstance()) return this;
-        if (!other.getAck().isEmpty()) {
-          ack_ = other.ack_;
-          onChanged();
+      public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData other) {
+        if (other == com.example.token.NodeServiceOuterClass.TokenData.getDefaultInstance()) return this;
+        if (readyListBuilder_ == null) {
+          if (!other.readyList_.isEmpty()) {
+            if (readyList_.isEmpty()) {
+              readyList_ = other.readyList_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureReadyListIsMutable();
+              readyList_.addAll(other.readyList_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.readyList_.isEmpty()) {
+            if (readyListBuilder_.isEmpty()) {
+              readyListBuilder_.dispose();
+              readyListBuilder_ = null;
+              readyList_ = other.readyList_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              readyListBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getReadyListFieldBuilder() : null;
+            } else {
+              readyListBuilder_.addAllMessages(other.readyList_);
+            }
+          }
+        }
+        if (waitingListBuilder_ == null) {
+          if (!other.waitingList_.isEmpty()) {
+            if (waitingList_.isEmpty()) {
+              waitingList_ = other.waitingList_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureWaitingListIsMutable();
+              waitingList_.addAll(other.waitingList_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.waitingList_.isEmpty()) {
+            if (waitingListBuilder_.isEmpty()) {
+              waitingListBuilder_.dispose();
+              waitingListBuilder_ = null;
+              waitingList_ = other.waitingList_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              waitingListBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getWaitingListFieldBuilder() : null;
+            } else {
+              waitingListBuilder_.addAllMessages(other.waitingList_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2634,11 +2987,11 @@ public final class NodeServiceOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.example.token.NodeServiceOuterClass.TokenResponse parsedMessage = null;
+        com.example.token.NodeServiceOuterClass.TokenData parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.example.token.NodeServiceOuterClass.TokenResponse) e.getUnfinishedMessage();
+          parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2647,74 +3000,486 @@ public final class NodeServiceOuterClass {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object ack_ = "";
+      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> readyList_ =
+        java.util.Collections.emptyList();
+      private void ensureReadyListIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          readyList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.ReadyList>(readyList_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> readyListBuilder_;
+
       /**
-       * <code>string ack = 1;</code>
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
        */
-      public java.lang.String getAck() {
-        java.lang.Object ref = ack_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          ack_ = s;
-          return s;
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> getReadyListList() {
+        if (readyListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(readyList_);
         } else {
-          return (java.lang.String) ref;
+          return readyListBuilder_.getMessageList();
         }
       }
       /**
-       * <code>string ack = 1;</code>
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getAckBytes() {
-        java.lang.Object ref = ack_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          ack_ = b;
-          return b;
+      public int getReadyListCount() {
+        if (readyListBuilder_ == null) {
+          return readyList_.size();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          return readyListBuilder_.getCount();
         }
       }
       /**
-       * <code>string ack = 1;</code>
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
        */
-      public Builder setAck(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        ack_ = value;
-        onChanged();
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index) {
+        if (readyListBuilder_ == null) {
+          return readyList_.get(index);
+        } else {
+          return readyListBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder setReadyList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
+        if (readyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyListIsMutable();
+          readyList_.set(index, value);
+          onChanged();
+        } else {
+          readyListBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>string ack = 1;</code>
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
        */
-      public Builder clearAck() {
-        
-        ack_ = getDefaultInstance().getAck();
-        onChanged();
+      public Builder setReadyList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
+        if (readyListBuilder_ == null) {
+          ensureReadyListIsMutable();
+          readyList_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          readyListBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>string ack = 1;</code>
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
        */
-      public Builder setAckBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        ack_ = value;
-        onChanged();
+      public Builder addReadyList(com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
+        if (readyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyListIsMutable();
+          readyList_.add(value);
+          onChanged();
+        } else {
+          readyListBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder addReadyList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
+        if (readyListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyListIsMutable();
+          readyList_.add(index, value);
+          onChanged();
+        } else {
+          readyListBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder addReadyList(
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
+        if (readyListBuilder_ == null) {
+          ensureReadyListIsMutable();
+          readyList_.add(builderForValue.build());
+          onChanged();
+        } else {
+          readyListBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder addReadyList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
+        if (readyListBuilder_ == null) {
+          ensureReadyListIsMutable();
+          readyList_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          readyListBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder addAllReadyList(
+          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyList> values) {
+        if (readyListBuilder_ == null) {
+          ensureReadyListIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, readyList_);
+          onChanged();
+        } else {
+          readyListBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder clearReadyList() {
+        if (readyListBuilder_ == null) {
+          readyList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          readyListBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public Builder removeReadyList(int index) {
+        if (readyListBuilder_ == null) {
+          ensureReadyListIsMutable();
+          readyList_.remove(index);
+          onChanged();
+        } else {
+          readyListBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder getReadyListBuilder(
+          int index) {
+        return getReadyListFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+          int index) {
+        if (readyListBuilder_ == null) {
+          return readyList_.get(index);  } else {
+          return readyListBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
+           getReadyListOrBuilderList() {
+        if (readyListBuilder_ != null) {
+          return readyListBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(readyList_);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder addReadyListBuilder() {
+        return getReadyListFieldBuilder().addBuilder(
+            com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder addReadyListBuilder(
+          int index) {
+        return getReadyListFieldBuilder().addBuilder(
+            index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       */
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder> 
+           getReadyListBuilderList() {
+        return getReadyListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
+          getReadyListFieldBuilder() {
+        if (readyListBuilder_ == null) {
+          readyListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder>(
+                  readyList_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          readyList_ = null;
+        }
+        return readyListBuilder_;
+      }
+
+      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> waitingList_ =
+        java.util.Collections.emptyList();
+      private void ensureWaitingListIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          waitingList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.WaitingList>(waitingList_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> waitingListBuilder_;
+
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> getWaitingListList() {
+        if (waitingListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(waitingList_);
+        } else {
+          return waitingListBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public int getWaitingListCount() {
+        if (waitingListBuilder_ == null) {
+          return waitingList_.size();
+        } else {
+          return waitingListBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index) {
+        if (waitingListBuilder_ == null) {
+          return waitingList_.get(index);
+        } else {
+          return waitingListBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder setWaitingList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
+        if (waitingListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingListIsMutable();
+          waitingList_.set(index, value);
+          onChanged();
+        } else {
+          waitingListBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder setWaitingList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
+        if (waitingListBuilder_ == null) {
+          ensureWaitingListIsMutable();
+          waitingList_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          waitingListBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder addWaitingList(com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
+        if (waitingListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingListIsMutable();
+          waitingList_.add(value);
+          onChanged();
+        } else {
+          waitingListBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder addWaitingList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
+        if (waitingListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingListIsMutable();
+          waitingList_.add(index, value);
+          onChanged();
+        } else {
+          waitingListBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder addWaitingList(
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
+        if (waitingListBuilder_ == null) {
+          ensureWaitingListIsMutable();
+          waitingList_.add(builderForValue.build());
+          onChanged();
+        } else {
+          waitingListBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder addWaitingList(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
+        if (waitingListBuilder_ == null) {
+          ensureWaitingListIsMutable();
+          waitingList_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          waitingListBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder addAllWaitingList(
+          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingList> values) {
+        if (waitingListBuilder_ == null) {
+          ensureWaitingListIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, waitingList_);
+          onChanged();
+        } else {
+          waitingListBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder clearWaitingList() {
+        if (waitingListBuilder_ == null) {
+          waitingList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          waitingListBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public Builder removeWaitingList(int index) {
+        if (waitingListBuilder_ == null) {
+          ensureWaitingListIsMutable();
+          waitingList_.remove(index);
+          onChanged();
+        } else {
+          waitingListBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder getWaitingListBuilder(
+          int index) {
+        return getWaitingListFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+          int index) {
+        if (waitingListBuilder_ == null) {
+          return waitingList_.get(index);  } else {
+          return waitingListBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
+           getWaitingListOrBuilderList() {
+        if (waitingListBuilder_ != null) {
+          return waitingListBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(waitingList_);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder addWaitingListBuilder() {
+        return getWaitingListFieldBuilder().addBuilder(
+            com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder addWaitingListBuilder(
+          int index) {
+        return getWaitingListFieldBuilder().addBuilder(
+            index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       */
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder> 
+           getWaitingListBuilderList() {
+        return getWaitingListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
+          getWaitingListFieldBuilder() {
+        if (waitingListBuilder_ == null) {
+          waitingListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder>(
+                  waitingList_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          waitingList_ = null;
+        }
+        return waitingListBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2727,39 +3492,39 @@ public final class NodeServiceOuterClass {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.example.token.TokenResponse)
+      // @@protoc_insertion_point(builder_scope:com.example.token.TokenData)
     }
 
-    // @@protoc_insertion_point(class_scope:com.example.token.TokenResponse)
-    private static final com.example.token.NodeServiceOuterClass.TokenResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.example.token.TokenData)
+    private static final com.example.token.NodeServiceOuterClass.TokenData DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenResponse();
+      DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData();
     }
 
-    public static com.example.token.NodeServiceOuterClass.TokenResponse getDefaultInstance() {
+    public static com.example.token.NodeServiceOuterClass.TokenData getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<TokenResponse>
-        PARSER = new com.google.protobuf.AbstractParser<TokenResponse>() {
-      public TokenResponse parsePartialFrom(
+    private static final com.google.protobuf.Parser<TokenData>
+        PARSER = new com.google.protobuf.AbstractParser<TokenData>() {
+      public TokenData parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-          return new TokenResponse(input, extensionRegistry);
+          return new TokenData(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<TokenResponse> parser() {
+    public static com.google.protobuf.Parser<TokenData> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TokenResponse> getParserForType() {
+    public com.google.protobuf.Parser<TokenData> getParserForType() {
       return PARSER;
     }
 
-    public com.example.token.NodeServiceOuterClass.TokenResponse getDefaultInstanceForType() {
+    public com.example.token.NodeServiceOuterClass.TokenData getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3160,15 +3925,20 @@ public final class NodeServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_example_token_JoinResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_example_token_TokenMessage_descriptor;
+    internal_static_com_example_token_TokenData_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_example_token_TokenMessage_fieldAccessorTable;
+      internal_static_com_example_token_TokenData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_example_token_TokenResponse_descriptor;
+    internal_static_com_example_token_TokenData_ReadyList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_example_token_TokenResponse_fieldAccessorTable;
+      internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_token_TokenData_WaitingList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_example_token_Empty_descriptor;
   private static final 
@@ -3187,14 +3957,17 @@ public final class NodeServiceOuterClass {
       "\n\013JoinRequest\022\n\n\002id\030\001 \001(\005\022\021\n\tipAddress\030\002" +
       " \001(\t\022\014\n\004port\030\003 \001(\005\"L\n\014JoinResponse\022\n\n\002id" +
       "\030\001 \001(\005\022\021\n\tipAddress\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022" +
-      "\017\n\007message\030\004 \001(\t\"9\n\014TokenMessage\022\014\n\004from" +
-      "\030\001 \001(\t\022\n\n\002to\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"\034\n\rT" +
-      "okenResponse\022\013\n\003ack\030\001 \001(\t\"\007\n\005Empty2\251\001\n\013N" +
-      "odeService\022N\n\013joinNetwork\022\036.com.example." +
-      "token.JoinRequest\032\037.com.example.token.Jo" +
-      "inResponse\022J\n\005token\022\037.com.example.token.",
-      "TokenMessage\032 .com.example.token.TokenRe" +
-      "sponseb\006proto3"
+      "\017\n\007message\030\004 \001(\t\"\310\001\n\tTokenData\0229\n\treadyL" +
+      "ist\030\002 \003(\0132&.com.example.token.TokenData." +
+      "ReadyList\022=\n\013waitingList\030\003 \003(\0132(.com.exa" +
+      "mple.token.TokenData.WaitingList\032&\n\tRead" +
+      "yList\022\n\n\002id\030\001 \001(\005\022\r\n\005value\030\002 \001(\001\032\031\n\013Wait" +
+      "ingList\022\n\n\002id\030\001 \001(\005\"\007\n\005Empty2\242\001\n\013NodeSer",
+      "vice\022N\n\013joinNetwork\022\036.com.example.token." +
+      "JoinRequest\032\037.com.example.token.JoinResp" +
+      "onse\022C\n\ttokenData\022\034.com.example.token.To" +
+      "kenData\032\030.com.example.token.Emptyb\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3220,20 +3993,26 @@ public final class NodeServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_example_token_JoinResponse_descriptor,
         new java.lang.String[] { "Id", "IpAddress", "Port", "Message", });
-    internal_static_com_example_token_TokenMessage_descriptor =
+    internal_static_com_example_token_TokenData_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_com_example_token_TokenMessage_fieldAccessorTable = new
+    internal_static_com_example_token_TokenData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_example_token_TokenMessage_descriptor,
-        new java.lang.String[] { "From", "To", "Message", });
-    internal_static_com_example_token_TokenResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_com_example_token_TokenResponse_fieldAccessorTable = new
+        internal_static_com_example_token_TokenData_descriptor,
+        new java.lang.String[] { "ReadyList", "WaitingList", });
+    internal_static_com_example_token_TokenData_ReadyList_descriptor =
+      internal_static_com_example_token_TokenData_descriptor.getNestedTypes().get(0);
+    internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_example_token_TokenResponse_descriptor,
-        new java.lang.String[] { "Ack", });
+        internal_static_com_example_token_TokenData_ReadyList_descriptor,
+        new java.lang.String[] { "Id", "Value", });
+    internal_static_com_example_token_TokenData_WaitingList_descriptor =
+      internal_static_com_example_token_TokenData_descriptor.getNestedTypes().get(1);
+    internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_token_TokenData_WaitingList_descriptor,
+        new java.lang.String[] { "Id", });
     internal_static_com_example_token_Empty_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_com_example_token_Empty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_example_token_Empty_descriptor,

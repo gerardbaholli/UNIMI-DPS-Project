@@ -12,9 +12,9 @@ public class MultiServer {
         Queue buffer = new Queue();
         double avg = 0;
 
-        // TODO: send POST for insert node in the system
+        // TODO: send POST for insert node in the system - DONE
 
-        // TODO: connect to the ring
+        // TODO: connect to the ring - DONE
 
         System.out.println("Node running");
 

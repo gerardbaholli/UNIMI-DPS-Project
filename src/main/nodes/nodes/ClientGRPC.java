@@ -26,7 +26,7 @@ public class ClientGRPC extends Thread {
 
         syncJoinNet();
 
-        System.out.println("Done");
+        System.out.println("Node " + node.getId() + " linked to node " + targetNode.getTargetId());
     }
 
 
