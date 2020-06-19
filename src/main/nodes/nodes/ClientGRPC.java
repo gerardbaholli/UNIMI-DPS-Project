@@ -2,7 +2,6 @@ package nodes;
 
 import com.example.token.NodeServiceGrpc;
 import com.example.token.NodeServiceOuterClass.TokenData;
-import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
 import com.example.token.NodeServiceGrpc.NodeServiceBlockingStub;
@@ -23,7 +22,7 @@ public class ClientGRPC extends Thread {
         System.out.println("Sending join request message to " +
                 TargetNode.getInstance().getTargetId());
 
-        syncJoinNet();
+        joinNet();
 
         System.out.println("Node " + node.getId() + " linked to node " +
                 TargetNode.getInstance().getTargetId());
@@ -36,11 +35,11 @@ public class ClientGRPC extends Thread {
         }
 
 
-
     }
 
 
-    public void syncJoinNet() {
+    // make the node join the network
+    public void joinNet() {
 
         ManagedChannel channel = ManagedChannelBuilder
                 .forTarget(TargetNode.getInstance().getTargetIpAddress() + ":" + TargetNode.getInstance().getTargetPort())
@@ -76,7 +75,7 @@ public class ClientGRPC extends Thread {
 
     }
 
-
+    // add the token on the network
     public void addToken(){
 
         ManagedChannel channel = ManagedChannelBuilder
@@ -88,16 +87,7 @@ public class ClientGRPC extends Thread {
         // creating a blocking stub on the channel
         NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
-        /* DA DECOMMENTARE
-        // adding the id and the value to the ready list
-        TokenData tokenData = TokenData.newBuilder()
-                .addReadyList(TokenData.ReadyList.newBuilder()
-                        .setId(node.getId())
-                        .setValue(LocalAvgList.getInstance().getLastValue())
-                        .build())
-                .build();
-        */
-
+        // create the token data
         TokenData tokenData = TokenData.newBuilder().build();
 
         // send the token to the target node

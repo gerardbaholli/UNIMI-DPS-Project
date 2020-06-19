@@ -3,6 +3,8 @@ package nodes;
 import com.example.token.NodeServiceGrpc;
 import com.example.token.NodeServiceGrpc.NodeServiceImplBase;
 import com.example.token.NodeServiceOuterClass.TokenData;
+import com.example.token.NodeServiceOuterClass.TokenData.Ready;
+import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
 import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
@@ -10,12 +12,15 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class NodeServiceImpl extends NodeServiceImplBase {
 
     Node node;
 
-    public NodeServiceImpl(Node node){
+    public NodeServiceImpl(Node node) {
         this.node = node;
     }
 
@@ -23,7 +28,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
     // synchronized to prevent to prevent two nodes joining at the same time
     @Override
     public synchronized void joinNetwork(JoinRequest joinRequest,
-                            StreamObserver<JoinResponse> joinResponseStreamObserver){
+                                         StreamObserver<JoinResponse> joinResponseStreamObserver) {
 
         System.out.println("Ehy, I'm node " + joinRequest.getId() +
                 " - " + joinRequest.getPort() + " join me as your target.");
@@ -39,20 +44,21 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         TargetNode.getInstance().setTargetIpAddress(joinRequest.getIpAddress());
         TargetNode.getInstance().setTargetPort(joinRequest.getPort());
 
-         joinResponseStreamObserver.onNext(joinResponse);
-         joinResponseStreamObserver.onCompleted();
+        joinResponseStreamObserver.onNext(joinResponse);
+        joinResponseStreamObserver.onCompleted();
 
     }
 
 
-
     @Override
-    public synchronized void tokenDelivery(TokenData request,
-                          StreamObserver<Empty> responseObserver) {
+    public synchronized void tokenDelivery(TokenData tokenData,
+                                           StreamObserver<Empty> responseObserver) {
 
         Empty response = Empty.newBuilder().build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
+
+        System.out.println("Arrivato token a nodo " + node.getId());
 
 
         ManagedChannel channel = ManagedChannelBuilder
@@ -61,36 +67,101 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                                 TargetNode.getInstance().getTargetPort())
                 .usePlaintext(true).build();
 
-
-        TokenData newRequest = request.toBuilder()
-                .addReady(TokenData.Ready.newBuilder()
-                    .setId(1)
-                    .setValue(1.2).build())
-                .addWaiting(TokenData.Waiting.newBuilder()
-                        .setId(1).build())
-                .addWaiting(TokenData.Waiting.newBuilder()
-                    .setId(2).build())
-                .build();
-
-        System.out.println("OK 1");
-
-        System.out.println(
-                "Ready list:\n" + newRequest.getReadyList() + "\n" +
-                "Waiting list:\n" + newRequest.getWaitingList());
-
-        System.out.println("OK 2");
-
-        System.out.println("Mando token a " + TargetNode.getInstance().getTargetId());
-
         // creating a blocking stub on the channel
         NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
-        // send the token to the target node
-        stub.tokenDelivery(newRequest);
+
+        TokenData newTokenData = tokenData.toBuilder().build();
+
+
+        // CONTROLLA SE E' PRESENTE L'ID IN READY LIST
+        Boolean insideReady = false;
+        for (Ready item : tokenData.getReadyList()) {
+            if (item.getId() == node.getId()) {
+                insideReady = true;
+            }
+        }
+
+
+        // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
+        if ((tokenData.getReadyCount() == tokenData.getWaitingCount()) && insideReady) {
+            double finalAvg = computeFinalAvg(tokenData);
+            // TODO: INVIARE AL GATEWAY
+            System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
+            newTokenData = TokenData.newBuilder().build();
+        }
+
+
+        // CONTROLLA SE E' PRESENTE L'ID IN WAITING LIST
+        Boolean insideWaiting = false;
+        for (Waiting item : tokenData.getWaitingList()) {
+            if (item.getId() == node.getId()) {
+                insideWaiting = true;
+            }
+        }
+
+
+        if (LocalAvgList.getInstance().getSize() >= 1) {
+
+            System.out.println("Ok la mia statistica è pronta!");
+            if (insideReady) {
+                System.out.println("1");
+                stub.tokenDelivery(tokenData);
+                channel.shutdown();
+            } else if (insideWaiting) {
+                System.out.println("2");
+                newTokenData = tokenData.toBuilder()
+                        .addReady(TokenData.Ready.newBuilder()
+                                .setId(node.getId())
+                                .setValue(LocalAvgList.getInstance().getLastValue()))
+                        .build();
+                stub.tokenDelivery(newTokenData);
+                channel.shutdown();
+            }
+
+        } else {
+
+            System.out.println("La mia statistica non è pronta!");
+            if (insideReady || insideWaiting) {
+                System.out.println("3");
+                stub.tokenDelivery(tokenData);
+                channel.shutdown();
+            } else if (!insideWaiting) {
+                System.out.println("4");
+                newTokenData = tokenData.toBuilder()
+                        .addWaiting(TokenData.Waiting.newBuilder()
+                                .setId(node.getId()).build())
+                        .build();
+                stub.tokenDelivery(newTokenData);
+                channel.shutdown();
+            }
+
+        }
+
+
+        System.out.println("Ready list:\n" + newTokenData.getReadyList());
+        System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
+        System.out.println("Mando token a " + TargetNode.getInstance().getTargetId());
+
 
         channel.shutdown();
 
-
     }
+
+    public double computeFinalAvg(TokenData tokenData) {
+
+        double result = 0.0;
+        int count = 0;
+
+        for (Ready item : tokenData.getReadyList()) {
+            if (item.getId() == node.getId()) {
+                result += item.getValue();
+                count++;
+            }
+        }
+
+        return result / count;
+    }
+
 
 }
