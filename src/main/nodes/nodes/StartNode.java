@@ -36,7 +36,7 @@ public class StartNode {
         System.out.println("I'm node: " + idNode);
 
         // start the gRPC server
-        ServerGRPC serverGRPC = new ServerGRPC(PORT);
+        ServerGRPC serverGRPC = new ServerGRPC(node);
         serverGRPC.start();
 
         // join the network

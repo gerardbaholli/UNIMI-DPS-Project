@@ -7,23 +7,23 @@ import java.io.IOException;
 
 public class ServerGRPC extends Thread {
 
-    private int port;
+    private Node node;
 
-    public ServerGRPC(int port){
-        this.port = port;
+    public ServerGRPC(Node node){
+        this.node = node;
     }
 
     @Override
     public void run(){
 
-        Server server = ServerBuilder.forPort(port)
-                .addService(new NodeServiceImpl()).build();
+        Server server = ServerBuilder.forPort(node.getPort())
+                .addService(new NodeServiceImpl(node)).build();
 
         try {
 
             server.start();
 
-            System.out.println("gRPC server started at port " + port);
+            System.out.println("gRPC server started at port " + node.getPort());
 
             server.awaitTermination();
 

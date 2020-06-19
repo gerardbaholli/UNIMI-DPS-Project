@@ -1452,51 +1452,76 @@ public final class NodeServiceOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> 
-        getReadyListList();
+    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready> 
+        getReadyList();
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index);
+    com.example.token.NodeServiceOuterClass.TokenData.Ready getReady(int index);
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    int getReadyListCount();
+    int getReadyCount();
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
-        getReadyListOrBuilderList();
+    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder> 
+        getReadyOrBuilderList();
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+    com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder getReadyOrBuilder(
         int index);
 
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> 
-        getWaitingListList();
+    java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting> 
+        getWaitingList();
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index);
+    com.example.token.NodeServiceOuterClass.TokenData.Waiting getWaiting(int index);
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    int getWaitingListCount();
+    int getWaitingCount();
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
-        getWaitingListOrBuilderList();
+    java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder> 
+        getWaitingOrBuilderList();
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+    com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder getWaitingOrBuilder(
         int index);
   }
   /**
@@ -1512,8 +1537,8 @@ public final class NodeServiceOuterClass {
       super(builder);
     }
     private TokenData() {
-      readyList_ = java.util.Collections.emptyList();
-      waitingList_ = java.util.Collections.emptyList();
+      ready_ = java.util.Collections.emptyList();
+      waiting_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1544,22 +1569,22 @@ public final class NodeServiceOuterClass {
               }
               break;
             }
-            case 18: {
+            case 10: {
               if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                readyList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.ReadyList>();
+                ready_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.Ready>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              readyList_.add(
-                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.ReadyList.parser(), extensionRegistry));
+              ready_.add(
+                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.Ready.parser(), extensionRegistry));
               break;
             }
-            case 26: {
+            case 18: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                waitingList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.WaitingList>();
+                waiting_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.Waiting>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              waitingList_.add(
-                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.WaitingList.parser(), extensionRegistry));
+              waiting_.add(
+                  input.readMessage(com.example.token.NodeServiceOuterClass.TokenData.Waiting.parser(), extensionRegistry));
               break;
             }
           }
@@ -1571,10 +1596,10 @@ public final class NodeServiceOuterClass {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          readyList_ = java.util.Collections.unmodifiableList(readyList_);
+          ready_ = java.util.Collections.unmodifiableList(ready_);
         }
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-          waitingList_ = java.util.Collections.unmodifiableList(waitingList_);
+          waiting_ = java.util.Collections.unmodifiableList(waiting_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1592,8 +1617,8 @@ public final class NodeServiceOuterClass {
               com.example.token.NodeServiceOuterClass.TokenData.class, com.example.token.NodeServiceOuterClass.TokenData.Builder.class);
     }
 
-    public interface ReadyListOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.ReadyList)
+    public interface ReadyOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.Ready)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -1607,18 +1632,18 @@ public final class NodeServiceOuterClass {
       double getValue();
     }
     /**
-     * Protobuf type {@code com.example.token.TokenData.ReadyList}
+     * Protobuf type {@code com.example.token.TokenData.Ready}
      */
-    public  static final class ReadyList extends
+    public  static final class Ready extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.ReadyList)
-        ReadyListOrBuilder {
+        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.Ready)
+        ReadyOrBuilder {
     private static final long serialVersionUID = 0L;
-      // Use ReadyList.newBuilder() to construct.
-      private ReadyList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // Use Ready.newBuilder() to construct.
+      private Ready(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
-      private ReadyList() {
+      private Ready() {
         id_ = 0;
         value_ = 0D;
       }
@@ -1628,7 +1653,7 @@ public final class NodeServiceOuterClass {
       getUnknownFields() {
         return this.unknownFields;
       }
-      private ReadyList(
+      private Ready(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1675,14 +1700,14 @@ public final class NodeServiceOuterClass {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Ready_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Ready_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.example.token.NodeServiceOuterClass.TokenData.ReadyList.class, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder.class);
+                com.example.token.NodeServiceOuterClass.TokenData.Ready.class, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder.class);
       }
 
       public static final int ID_FIELD_NUMBER = 1;
@@ -1747,10 +1772,10 @@ public final class NodeServiceOuterClass {
         if (obj == this) {
          return true;
         }
-        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.ReadyList)) {
+        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.Ready)) {
           return super.equals(obj);
         }
-        com.example.token.NodeServiceOuterClass.TokenData.ReadyList other = (com.example.token.NodeServiceOuterClass.TokenData.ReadyList) obj;
+        com.example.token.NodeServiceOuterClass.TokenData.Ready other = (com.example.token.NodeServiceOuterClass.TokenData.Ready) obj;
 
         boolean result = true;
         result = result && (getId()
@@ -1780,69 +1805,69 @@ public final class NodeServiceOuterClass {
         return hash;
       }
 
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(byte[] data)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(java.io.InputStream input)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseDelimitedFrom(java.io.InputStream input)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseDelimitedFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -1854,7 +1879,7 @@ public final class NodeServiceOuterClass {
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
       }
-      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.ReadyList prototype) {
+      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.Ready prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
       public Builder toBuilder() {
@@ -1869,25 +1894,25 @@ public final class NodeServiceOuterClass {
         return builder;
       }
       /**
-       * Protobuf type {@code com.example.token.TokenData.ReadyList}
+       * Protobuf type {@code com.example.token.TokenData.Ready}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.ReadyList)
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder {
+          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.Ready)
+          com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Ready_descriptor;
         }
 
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Ready_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  com.example.token.NodeServiceOuterClass.TokenData.ReadyList.class, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder.class);
+                  com.example.token.NodeServiceOuterClass.TokenData.Ready.class, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder.class);
         }
 
-        // Construct using com.example.token.NodeServiceOuterClass.TokenData.ReadyList.newBuilder()
+        // Construct using com.example.token.NodeServiceOuterClass.TokenData.Ready.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -1913,23 +1938,23 @@ public final class NodeServiceOuterClass {
 
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_ReadyList_descriptor;
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Ready_descriptor;
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstanceForType() {
-          return com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance();
+        public com.example.token.NodeServiceOuterClass.TokenData.Ready getDefaultInstanceForType() {
+          return com.example.token.NodeServiceOuterClass.TokenData.Ready.getDefaultInstance();
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList build() {
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList result = buildPartial();
+        public com.example.token.NodeServiceOuterClass.TokenData.Ready build() {
+          com.example.token.NodeServiceOuterClass.TokenData.Ready result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
           return result;
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.ReadyList buildPartial() {
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList result = new com.example.token.NodeServiceOuterClass.TokenData.ReadyList(this);
+        public com.example.token.NodeServiceOuterClass.TokenData.Ready buildPartial() {
+          com.example.token.NodeServiceOuterClass.TokenData.Ready result = new com.example.token.NodeServiceOuterClass.TokenData.Ready(this);
           result.id_ = id_;
           result.value_ = value_;
           onBuilt();
@@ -1963,16 +1988,16 @@ public final class NodeServiceOuterClass {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.ReadyList) {
-            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.ReadyList)other);
+          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.Ready) {
+            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.Ready)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.ReadyList other) {
-          if (other == com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance()) return this;
+        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.Ready other) {
+          if (other == com.example.token.NodeServiceOuterClass.TokenData.Ready.getDefaultInstance()) return this;
           if (other.getId() != 0) {
             setId(other.getId());
           }
@@ -1992,11 +2017,11 @@ public final class NodeServiceOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList parsedMessage = null;
+          com.example.token.NodeServiceOuterClass.TokenData.Ready parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.ReadyList) e.getUnfinishedMessage();
+            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.Ready) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
             if (parsedMessage != null) {
@@ -2068,46 +2093,46 @@ public final class NodeServiceOuterClass {
         }
 
 
-        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.ReadyList)
+        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.Ready)
       }
 
-      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.ReadyList)
-      private static final com.example.token.NodeServiceOuterClass.TokenData.ReadyList DEFAULT_INSTANCE;
+      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.Ready)
+      private static final com.example.token.NodeServiceOuterClass.TokenData.Ready DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.ReadyList();
+        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.Ready();
       }
 
-      public static com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstance() {
+      public static com.example.token.NodeServiceOuterClass.TokenData.Ready getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static final com.google.protobuf.Parser<ReadyList>
-          PARSER = new com.google.protobuf.AbstractParser<ReadyList>() {
-        public ReadyList parsePartialFrom(
+      private static final com.google.protobuf.Parser<Ready>
+          PARSER = new com.google.protobuf.AbstractParser<Ready>() {
+        public Ready parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-            return new ReadyList(input, extensionRegistry);
+            return new Ready(input, extensionRegistry);
         }
       };
 
-      public static com.google.protobuf.Parser<ReadyList> parser() {
+      public static com.google.protobuf.Parser<Ready> parser() {
         return PARSER;
       }
 
       @java.lang.Override
-      public com.google.protobuf.Parser<ReadyList> getParserForType() {
+      public com.google.protobuf.Parser<Ready> getParserForType() {
         return PARSER;
       }
 
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getDefaultInstanceForType() {
+      public com.example.token.NodeServiceOuterClass.TokenData.Ready getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
 
     }
 
-    public interface WaitingListOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.WaitingList)
+    public interface WaitingOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token.TokenData.Waiting)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -2116,18 +2141,18 @@ public final class NodeServiceOuterClass {
       int getId();
     }
     /**
-     * Protobuf type {@code com.example.token.TokenData.WaitingList}
+     * Protobuf type {@code com.example.token.TokenData.Waiting}
      */
-    public  static final class WaitingList extends
+    public  static final class Waiting extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.WaitingList)
-        WaitingListOrBuilder {
+        // @@protoc_insertion_point(message_implements:com.example.token.TokenData.Waiting)
+        WaitingOrBuilder {
     private static final long serialVersionUID = 0L;
-      // Use WaitingList.newBuilder() to construct.
-      private WaitingList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // Use Waiting.newBuilder() to construct.
+      private Waiting(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
-      private WaitingList() {
+      private Waiting() {
         id_ = 0;
       }
 
@@ -2136,7 +2161,7 @@ public final class NodeServiceOuterClass {
       getUnknownFields() {
         return this.unknownFields;
       }
-      private WaitingList(
+      private Waiting(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2178,14 +2203,14 @@ public final class NodeServiceOuterClass {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Waiting_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable
+        return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Waiting_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.example.token.NodeServiceOuterClass.TokenData.WaitingList.class, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder.class);
+                com.example.token.NodeServiceOuterClass.TokenData.Waiting.class, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder.class);
       }
 
       public static final int ID_FIELD_NUMBER = 1;
@@ -2234,10 +2259,10 @@ public final class NodeServiceOuterClass {
         if (obj == this) {
          return true;
         }
-        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.WaitingList)) {
+        if (!(obj instanceof com.example.token.NodeServiceOuterClass.TokenData.Waiting)) {
           return super.equals(obj);
         }
-        com.example.token.NodeServiceOuterClass.TokenData.WaitingList other = (com.example.token.NodeServiceOuterClass.TokenData.WaitingList) obj;
+        com.example.token.NodeServiceOuterClass.TokenData.Waiting other = (com.example.token.NodeServiceOuterClass.TokenData.Waiting) obj;
 
         boolean result = true;
         result = result && (getId()
@@ -2260,69 +2285,69 @@ public final class NodeServiceOuterClass {
         return hash;
       }
 
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(byte[] data)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(java.io.InputStream input)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseDelimitedFrom(java.io.InputStream input)
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseDelimitedFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList parseFrom(
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -2334,7 +2359,7 @@ public final class NodeServiceOuterClass {
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
       }
-      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.WaitingList prototype) {
+      public static Builder newBuilder(com.example.token.NodeServiceOuterClass.TokenData.Waiting prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
       public Builder toBuilder() {
@@ -2349,25 +2374,25 @@ public final class NodeServiceOuterClass {
         return builder;
       }
       /**
-       * Protobuf type {@code com.example.token.TokenData.WaitingList}
+       * Protobuf type {@code com.example.token.TokenData.Waiting}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.WaitingList)
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder {
+          // @@protoc_insertion_point(builder_implements:com.example.token.TokenData.Waiting)
+          com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Waiting_descriptor;
         }
 
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Waiting_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  com.example.token.NodeServiceOuterClass.TokenData.WaitingList.class, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder.class);
+                  com.example.token.NodeServiceOuterClass.TokenData.Waiting.class, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder.class);
         }
 
-        // Construct using com.example.token.NodeServiceOuterClass.TokenData.WaitingList.newBuilder()
+        // Construct using com.example.token.NodeServiceOuterClass.TokenData.Waiting.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -2391,23 +2416,23 @@ public final class NodeServiceOuterClass {
 
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_WaitingList_descriptor;
+          return com.example.token.NodeServiceOuterClass.internal_static_com_example_token_TokenData_Waiting_descriptor;
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstanceForType() {
-          return com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance();
+        public com.example.token.NodeServiceOuterClass.TokenData.Waiting getDefaultInstanceForType() {
+          return com.example.token.NodeServiceOuterClass.TokenData.Waiting.getDefaultInstance();
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList build() {
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList result = buildPartial();
+        public com.example.token.NodeServiceOuterClass.TokenData.Waiting build() {
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
           return result;
         }
 
-        public com.example.token.NodeServiceOuterClass.TokenData.WaitingList buildPartial() {
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList result = new com.example.token.NodeServiceOuterClass.TokenData.WaitingList(this);
+        public com.example.token.NodeServiceOuterClass.TokenData.Waiting buildPartial() {
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting result = new com.example.token.NodeServiceOuterClass.TokenData.Waiting(this);
           result.id_ = id_;
           onBuilt();
           return result;
@@ -2440,16 +2465,16 @@ public final class NodeServiceOuterClass {
           return (Builder) super.addRepeatedField(field, value);
         }
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.WaitingList) {
-            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.WaitingList)other);
+          if (other instanceof com.example.token.NodeServiceOuterClass.TokenData.Waiting) {
+            return mergeFrom((com.example.token.NodeServiceOuterClass.TokenData.Waiting)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.WaitingList other) {
-          if (other == com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance()) return this;
+        public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData.Waiting other) {
+          if (other == com.example.token.NodeServiceOuterClass.TokenData.Waiting.getDefaultInstance()) return this;
           if (other.getId() != 0) {
             setId(other.getId());
           }
@@ -2466,11 +2491,11 @@ public final class NodeServiceOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList parsedMessage = null;
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.WaitingList) e.getUnfinishedMessage();
+            parsedMessage = (com.example.token.NodeServiceOuterClass.TokenData.Waiting) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
             if (parsedMessage != null) {
@@ -2516,112 +2541,137 @@ public final class NodeServiceOuterClass {
         }
 
 
-        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.WaitingList)
+        // @@protoc_insertion_point(builder_scope:com.example.token.TokenData.Waiting)
       }
 
-      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.WaitingList)
-      private static final com.example.token.NodeServiceOuterClass.TokenData.WaitingList DEFAULT_INSTANCE;
+      // @@protoc_insertion_point(class_scope:com.example.token.TokenData.Waiting)
+      private static final com.example.token.NodeServiceOuterClass.TokenData.Waiting DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.WaitingList();
+        DEFAULT_INSTANCE = new com.example.token.NodeServiceOuterClass.TokenData.Waiting();
       }
 
-      public static com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstance() {
+      public static com.example.token.NodeServiceOuterClass.TokenData.Waiting getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static final com.google.protobuf.Parser<WaitingList>
-          PARSER = new com.google.protobuf.AbstractParser<WaitingList>() {
-        public WaitingList parsePartialFrom(
+      private static final com.google.protobuf.Parser<Waiting>
+          PARSER = new com.google.protobuf.AbstractParser<Waiting>() {
+        public Waiting parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-            return new WaitingList(input, extensionRegistry);
+            return new Waiting(input, extensionRegistry);
         }
       };
 
-      public static com.google.protobuf.Parser<WaitingList> parser() {
+      public static com.google.protobuf.Parser<Waiting> parser() {
         return PARSER;
       }
 
       @java.lang.Override
-      public com.google.protobuf.Parser<WaitingList> getParserForType() {
+      public com.google.protobuf.Parser<Waiting> getParserForType() {
         return PARSER;
       }
 
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getDefaultInstanceForType() {
+      public com.example.token.NodeServiceOuterClass.TokenData.Waiting getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
 
     }
 
-    public static final int READYLIST_FIELD_NUMBER = 2;
-    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> readyList_;
+    public static final int READY_FIELD_NUMBER = 1;
+    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready> ready_;
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> getReadyListList() {
-      return readyList_;
+    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready> getReadyList() {
+      return ready_;
     }
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
-        getReadyListOrBuilderList() {
-      return readyList_;
+    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder> 
+        getReadyOrBuilderList() {
+      return ready_;
     }
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    public int getReadyListCount() {
-      return readyList_.size();
+    public int getReadyCount() {
+      return ready_.size();
     }
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index) {
-      return readyList_.get(index);
+    public com.example.token.NodeServiceOuterClass.TokenData.Ready getReady(int index) {
+      return ready_.get(index);
     }
     /**
-     * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+     * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
      */
-    public com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+    public com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder getReadyOrBuilder(
         int index) {
-      return readyList_.get(index);
+      return ready_.get(index);
     }
 
-    public static final int WAITINGLIST_FIELD_NUMBER = 3;
-    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> waitingList_;
+    public static final int WAITING_FIELD_NUMBER = 2;
+    private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting> waiting_;
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> getWaitingListList() {
-      return waitingList_;
+    public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting> getWaitingList() {
+      return waiting_;
     }
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
-        getWaitingListOrBuilderList() {
-      return waitingList_;
+    public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder> 
+        getWaitingOrBuilderList() {
+      return waiting_;
     }
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    public int getWaitingListCount() {
-      return waitingList_.size();
+    public int getWaitingCount() {
+      return waiting_.size();
     }
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index) {
-      return waitingList_.get(index);
+    public com.example.token.NodeServiceOuterClass.TokenData.Waiting getWaiting(int index) {
+      return waiting_.get(index);
     }
     /**
-     * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+     * <pre>
+     * int32 idNode = 3;
+     * double value = 4;
+     * </pre>
+     *
+     * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
      */
-    public com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+    public com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder getWaitingOrBuilder(
         int index) {
-      return waitingList_.get(index);
+      return waiting_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2636,11 +2686,11 @@ public final class NodeServiceOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < readyList_.size(); i++) {
-        output.writeMessage(2, readyList_.get(i));
+      for (int i = 0; i < ready_.size(); i++) {
+        output.writeMessage(1, ready_.get(i));
       }
-      for (int i = 0; i < waitingList_.size(); i++) {
-        output.writeMessage(3, waitingList_.get(i));
+      for (int i = 0; i < waiting_.size(); i++) {
+        output.writeMessage(2, waiting_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2650,13 +2700,13 @@ public final class NodeServiceOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < readyList_.size(); i++) {
+      for (int i = 0; i < ready_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, readyList_.get(i));
+          .computeMessageSize(1, ready_.get(i));
       }
-      for (int i = 0; i < waitingList_.size(); i++) {
+      for (int i = 0; i < waiting_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, waitingList_.get(i));
+          .computeMessageSize(2, waiting_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2674,10 +2724,10 @@ public final class NodeServiceOuterClass {
       com.example.token.NodeServiceOuterClass.TokenData other = (com.example.token.NodeServiceOuterClass.TokenData) obj;
 
       boolean result = true;
-      result = result && getReadyListList()
-          .equals(other.getReadyListList());
-      result = result && getWaitingListList()
-          .equals(other.getWaitingListList());
+      result = result && getReadyList()
+          .equals(other.getReadyList());
+      result = result && getWaitingList()
+          .equals(other.getWaitingList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2689,13 +2739,13 @@ public final class NodeServiceOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getReadyListCount() > 0) {
-        hash = (37 * hash) + READYLIST_FIELD_NUMBER;
-        hash = (53 * hash) + getReadyListList().hashCode();
+      if (getReadyCount() > 0) {
+        hash = (37 * hash) + READY_FIELD_NUMBER;
+        hash = (53 * hash) + getReadyList().hashCode();
       }
-      if (getWaitingListCount() > 0) {
-        hash = (37 * hash) + WAITINGLIST_FIELD_NUMBER;
-        hash = (53 * hash) + getWaitingListList().hashCode();
+      if (getWaitingCount() > 0) {
+        hash = (37 * hash) + WAITING_FIELD_NUMBER;
+        hash = (53 * hash) + getWaitingList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2822,23 +2872,23 @@ public final class NodeServiceOuterClass {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getReadyListFieldBuilder();
-          getWaitingListFieldBuilder();
+          getReadyFieldBuilder();
+          getWaitingFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        if (readyListBuilder_ == null) {
-          readyList_ = java.util.Collections.emptyList();
+        if (readyBuilder_ == null) {
+          ready_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          readyListBuilder_.clear();
+          readyBuilder_.clear();
         }
-        if (waitingListBuilder_ == null) {
-          waitingList_ = java.util.Collections.emptyList();
+        if (waitingBuilder_ == null) {
+          waiting_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000002);
         } else {
-          waitingListBuilder_.clear();
+          waitingBuilder_.clear();
         }
         return this;
       }
@@ -2863,23 +2913,23 @@ public final class NodeServiceOuterClass {
       public com.example.token.NodeServiceOuterClass.TokenData buildPartial() {
         com.example.token.NodeServiceOuterClass.TokenData result = new com.example.token.NodeServiceOuterClass.TokenData(this);
         int from_bitField0_ = bitField0_;
-        if (readyListBuilder_ == null) {
+        if (readyBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            readyList_ = java.util.Collections.unmodifiableList(readyList_);
+            ready_ = java.util.Collections.unmodifiableList(ready_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.readyList_ = readyList_;
+          result.ready_ = ready_;
         } else {
-          result.readyList_ = readyListBuilder_.build();
+          result.ready_ = readyBuilder_.build();
         }
-        if (waitingListBuilder_ == null) {
+        if (waitingBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002)) {
-            waitingList_ = java.util.Collections.unmodifiableList(waitingList_);
+            waiting_ = java.util.Collections.unmodifiableList(waiting_);
             bitField0_ = (bitField0_ & ~0x00000002);
           }
-          result.waitingList_ = waitingList_;
+          result.waiting_ = waiting_;
         } else {
-          result.waitingList_ = waitingListBuilder_.build();
+          result.waiting_ = waitingBuilder_.build();
         }
         onBuilt();
         return result;
@@ -2922,55 +2972,55 @@ public final class NodeServiceOuterClass {
 
       public Builder mergeFrom(com.example.token.NodeServiceOuterClass.TokenData other) {
         if (other == com.example.token.NodeServiceOuterClass.TokenData.getDefaultInstance()) return this;
-        if (readyListBuilder_ == null) {
-          if (!other.readyList_.isEmpty()) {
-            if (readyList_.isEmpty()) {
-              readyList_ = other.readyList_;
+        if (readyBuilder_ == null) {
+          if (!other.ready_.isEmpty()) {
+            if (ready_.isEmpty()) {
+              ready_ = other.ready_;
               bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureReadyListIsMutable();
-              readyList_.addAll(other.readyList_);
+              ensureReadyIsMutable();
+              ready_.addAll(other.ready_);
             }
             onChanged();
           }
         } else {
-          if (!other.readyList_.isEmpty()) {
-            if (readyListBuilder_.isEmpty()) {
-              readyListBuilder_.dispose();
-              readyListBuilder_ = null;
-              readyList_ = other.readyList_;
+          if (!other.ready_.isEmpty()) {
+            if (readyBuilder_.isEmpty()) {
+              readyBuilder_.dispose();
+              readyBuilder_ = null;
+              ready_ = other.ready_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              readyListBuilder_ = 
+              readyBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getReadyListFieldBuilder() : null;
+                   getReadyFieldBuilder() : null;
             } else {
-              readyListBuilder_.addAllMessages(other.readyList_);
+              readyBuilder_.addAllMessages(other.ready_);
             }
           }
         }
-        if (waitingListBuilder_ == null) {
-          if (!other.waitingList_.isEmpty()) {
-            if (waitingList_.isEmpty()) {
-              waitingList_ = other.waitingList_;
+        if (waitingBuilder_ == null) {
+          if (!other.waiting_.isEmpty()) {
+            if (waiting_.isEmpty()) {
+              waiting_ = other.waiting_;
               bitField0_ = (bitField0_ & ~0x00000002);
             } else {
-              ensureWaitingListIsMutable();
-              waitingList_.addAll(other.waitingList_);
+              ensureWaitingIsMutable();
+              waiting_.addAll(other.waiting_);
             }
             onChanged();
           }
         } else {
-          if (!other.waitingList_.isEmpty()) {
-            if (waitingListBuilder_.isEmpty()) {
-              waitingListBuilder_.dispose();
-              waitingListBuilder_ = null;
-              waitingList_ = other.waitingList_;
+          if (!other.waiting_.isEmpty()) {
+            if (waitingBuilder_.isEmpty()) {
+              waitingBuilder_.dispose();
+              waitingBuilder_ = null;
+              waiting_ = other.waiting_;
               bitField0_ = (bitField0_ & ~0x00000002);
-              waitingListBuilder_ = 
+              waitingBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getWaitingListFieldBuilder() : null;
+                   getWaitingFieldBuilder() : null;
             } else {
-              waitingListBuilder_.addAllMessages(other.waitingList_);
+              waitingBuilder_.addAllMessages(other.waiting_);
             }
           }
         }
@@ -3002,484 +3052,574 @@ public final class NodeServiceOuterClass {
       }
       private int bitField0_;
 
-      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> readyList_ =
+      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready> ready_ =
         java.util.Collections.emptyList();
-      private void ensureReadyListIsMutable() {
+      private void ensureReadyIsMutable() {
         if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          readyList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.ReadyList>(readyList_);
+          ready_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.Ready>(ready_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> readyListBuilder_;
+          com.example.token.NodeServiceOuterClass.TokenData.Ready, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder> readyBuilder_;
 
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList> getReadyListList() {
-        if (readyListBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(readyList_);
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready> getReadyList() {
+        if (readyBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(ready_);
         } else {
-          return readyListBuilder_.getMessageList();
+          return readyBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public int getReadyListCount() {
-        if (readyListBuilder_ == null) {
-          return readyList_.size();
+      public int getReadyCount() {
+        if (readyBuilder_ == null) {
+          return ready_.size();
         } else {
-          return readyListBuilder_.getCount();
+          return readyBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList getReadyList(int index) {
-        if (readyListBuilder_ == null) {
-          return readyList_.get(index);
+      public com.example.token.NodeServiceOuterClass.TokenData.Ready getReady(int index) {
+        if (readyBuilder_ == null) {
+          return ready_.get(index);
         } else {
-          return readyListBuilder_.getMessage(index);
+          return readyBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder setReadyList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
-        if (readyListBuilder_ == null) {
+      public Builder setReady(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Ready value) {
+        if (readyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureReadyListIsMutable();
-          readyList_.set(index, value);
+          ensureReadyIsMutable();
+          ready_.set(index, value);
           onChanged();
         } else {
-          readyListBuilder_.setMessage(index, value);
+          readyBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder setReadyList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
-        if (readyListBuilder_ == null) {
-          ensureReadyListIsMutable();
-          readyList_.set(index, builderForValue.build());
+      public Builder setReady(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.set(index, builderForValue.build());
           onChanged();
         } else {
-          readyListBuilder_.setMessage(index, builderForValue.build());
+          readyBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder addReadyList(com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
-        if (readyListBuilder_ == null) {
+      public Builder addReady(com.example.token.NodeServiceOuterClass.TokenData.Ready value) {
+        if (readyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureReadyListIsMutable();
-          readyList_.add(value);
+          ensureReadyIsMutable();
+          ready_.add(value);
           onChanged();
         } else {
-          readyListBuilder_.addMessage(value);
+          readyBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder addReadyList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList value) {
-        if (readyListBuilder_ == null) {
+      public Builder addReady(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Ready value) {
+        if (readyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureReadyListIsMutable();
-          readyList_.add(index, value);
+          ensureReadyIsMutable();
+          ready_.add(index, value);
           onChanged();
         } else {
-          readyListBuilder_.addMessage(index, value);
+          readyBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder addReadyList(
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
-        if (readyListBuilder_ == null) {
-          ensureReadyListIsMutable();
-          readyList_.add(builderForValue.build());
+      public Builder addReady(
+          com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.add(builderForValue.build());
           onChanged();
         } else {
-          readyListBuilder_.addMessage(builderForValue.build());
+          readyBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder addReadyList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder builderForValue) {
-        if (readyListBuilder_ == null) {
-          ensureReadyListIsMutable();
-          readyList_.add(index, builderForValue.build());
+      public Builder addReady(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.add(index, builderForValue.build());
           onChanged();
         } else {
-          readyListBuilder_.addMessage(index, builderForValue.build());
+          readyBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder addAllReadyList(
-          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyList> values) {
-        if (readyListBuilder_ == null) {
-          ensureReadyListIsMutable();
+      public Builder addAllReady(
+          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.Ready> values) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, readyList_);
+              values, ready_);
           onChanged();
         } else {
-          readyListBuilder_.addAllMessages(values);
+          readyBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder clearReadyList() {
-        if (readyListBuilder_ == null) {
-          readyList_ = java.util.Collections.emptyList();
+      public Builder clearReady() {
+        if (readyBuilder_ == null) {
+          ready_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          readyListBuilder_.clear();
+          readyBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public Builder removeReadyList(int index) {
-        if (readyListBuilder_ == null) {
-          ensureReadyListIsMutable();
-          readyList_.remove(index);
+      public Builder removeReady(int index) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.remove(index);
           onChanged();
         } else {
-          readyListBuilder_.remove(index);
+          readyBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder getReadyListBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder getReadyBuilder(
           int index) {
-        return getReadyListFieldBuilder().getBuilder(index);
+        return getReadyFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder getReadyListOrBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder getReadyOrBuilder(
           int index) {
-        if (readyListBuilder_ == null) {
-          return readyList_.get(index);  } else {
-          return readyListBuilder_.getMessageOrBuilder(index);
+        if (readyBuilder_ == null) {
+          return ready_.get(index);  } else {
+          return readyBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
-           getReadyListOrBuilderList() {
-        if (readyListBuilder_ != null) {
-          return readyListBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder> 
+           getReadyOrBuilderList() {
+        if (readyBuilder_ != null) {
+          return readyBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(readyList_);
+          return java.util.Collections.unmodifiableList(ready_);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder addReadyListBuilder() {
-        return getReadyListFieldBuilder().addBuilder(
-            com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance());
+      public com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder addReadyBuilder() {
+        return getReadyFieldBuilder().addBuilder(
+            com.example.token.NodeServiceOuterClass.TokenData.Ready.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder addReadyListBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder addReadyBuilder(
           int index) {
-        return getReadyListFieldBuilder().addBuilder(
-            index, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.getDefaultInstance());
+        return getReadyFieldBuilder().addBuilder(
+            index, com.example.token.NodeServiceOuterClass.TokenData.Ready.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.example.token.TokenData.ReadyList readyList = 2;</code>
+       * <code>repeated .com.example.token.TokenData.Ready ready = 1;</code>
        */
-      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder> 
-           getReadyListBuilderList() {
-        return getReadyListFieldBuilder().getBuilderList();
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder> 
+           getReadyBuilderList() {
+        return getReadyFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder> 
-          getReadyListFieldBuilder() {
-        if (readyListBuilder_ == null) {
-          readyListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.token.NodeServiceOuterClass.TokenData.ReadyList, com.example.token.NodeServiceOuterClass.TokenData.ReadyList.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyListOrBuilder>(
-                  readyList_,
+          com.example.token.NodeServiceOuterClass.TokenData.Ready, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder> 
+          getReadyFieldBuilder() {
+        if (readyBuilder_ == null) {
+          readyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token.NodeServiceOuterClass.TokenData.Ready, com.example.token.NodeServiceOuterClass.TokenData.Ready.Builder, com.example.token.NodeServiceOuterClass.TokenData.ReadyOrBuilder>(
+                  ready_,
                   ((bitField0_ & 0x00000001) == 0x00000001),
                   getParentForChildren(),
                   isClean());
-          readyList_ = null;
+          ready_ = null;
         }
-        return readyListBuilder_;
+        return readyBuilder_;
       }
 
-      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> waitingList_ =
+      private java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting> waiting_ =
         java.util.Collections.emptyList();
-      private void ensureWaitingListIsMutable() {
+      private void ensureWaitingIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          waitingList_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.WaitingList>(waitingList_);
+          waiting_ = new java.util.ArrayList<com.example.token.NodeServiceOuterClass.TokenData.Waiting>(waiting_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> waitingListBuilder_;
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder> waitingBuilder_;
 
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList> getWaitingListList() {
-        if (waitingListBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(waitingList_);
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting> getWaitingList() {
+        if (waitingBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(waiting_);
         } else {
-          return waitingListBuilder_.getMessageList();
+          return waitingBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public int getWaitingListCount() {
-        if (waitingListBuilder_ == null) {
-          return waitingList_.size();
+      public int getWaitingCount() {
+        if (waitingBuilder_ == null) {
+          return waiting_.size();
         } else {
-          return waitingListBuilder_.getCount();
+          return waitingBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList getWaitingList(int index) {
-        if (waitingListBuilder_ == null) {
-          return waitingList_.get(index);
+      public com.example.token.NodeServiceOuterClass.TokenData.Waiting getWaiting(int index) {
+        if (waitingBuilder_ == null) {
+          return waiting_.get(index);
         } else {
-          return waitingListBuilder_.getMessage(index);
+          return waitingBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder setWaitingList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
-        if (waitingListBuilder_ == null) {
+      public Builder setWaiting(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Waiting value) {
+        if (waitingBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureWaitingListIsMutable();
-          waitingList_.set(index, value);
+          ensureWaitingIsMutable();
+          waiting_.set(index, value);
           onChanged();
         } else {
-          waitingListBuilder_.setMessage(index, value);
+          waitingBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder setWaitingList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
-        if (waitingListBuilder_ == null) {
-          ensureWaitingListIsMutable();
-          waitingList_.set(index, builderForValue.build());
+      public Builder setWaiting(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.set(index, builderForValue.build());
           onChanged();
         } else {
-          waitingListBuilder_.setMessage(index, builderForValue.build());
+          waitingBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder addWaitingList(com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
-        if (waitingListBuilder_ == null) {
+      public Builder addWaiting(com.example.token.NodeServiceOuterClass.TokenData.Waiting value) {
+        if (waitingBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureWaitingListIsMutable();
-          waitingList_.add(value);
+          ensureWaitingIsMutable();
+          waiting_.add(value);
           onChanged();
         } else {
-          waitingListBuilder_.addMessage(value);
+          waitingBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder addWaitingList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList value) {
-        if (waitingListBuilder_ == null) {
+      public Builder addWaiting(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Waiting value) {
+        if (waitingBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureWaitingListIsMutable();
-          waitingList_.add(index, value);
+          ensureWaitingIsMutable();
+          waiting_.add(index, value);
           onChanged();
         } else {
-          waitingListBuilder_.addMessage(index, value);
+          waitingBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder addWaitingList(
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
-        if (waitingListBuilder_ == null) {
-          ensureWaitingListIsMutable();
-          waitingList_.add(builderForValue.build());
+      public Builder addWaiting(
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.add(builderForValue.build());
           onChanged();
         } else {
-          waitingListBuilder_.addMessage(builderForValue.build());
+          waitingBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder addWaitingList(
-          int index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder builderForValue) {
-        if (waitingListBuilder_ == null) {
-          ensureWaitingListIsMutable();
-          waitingList_.add(index, builderForValue.build());
+      public Builder addWaiting(
+          int index, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.add(index, builderForValue.build());
           onChanged();
         } else {
-          waitingListBuilder_.addMessage(index, builderForValue.build());
+          waitingBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder addAllWaitingList(
-          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingList> values) {
-        if (waitingListBuilder_ == null) {
-          ensureWaitingListIsMutable();
+      public Builder addAllWaiting(
+          java.lang.Iterable<? extends com.example.token.NodeServiceOuterClass.TokenData.Waiting> values) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, waitingList_);
+              values, waiting_);
           onChanged();
         } else {
-          waitingListBuilder_.addAllMessages(values);
+          waitingBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder clearWaitingList() {
-        if (waitingListBuilder_ == null) {
-          waitingList_ = java.util.Collections.emptyList();
+      public Builder clearWaiting() {
+        if (waitingBuilder_ == null) {
+          waiting_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
-          waitingListBuilder_.clear();
+          waitingBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public Builder removeWaitingList(int index) {
-        if (waitingListBuilder_ == null) {
-          ensureWaitingListIsMutable();
-          waitingList_.remove(index);
+      public Builder removeWaiting(int index) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.remove(index);
           onChanged();
         } else {
-          waitingListBuilder_.remove(index);
+          waitingBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder getWaitingListBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder getWaitingBuilder(
           int index) {
-        return getWaitingListFieldBuilder().getBuilder(index);
+        return getWaitingFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder getWaitingListOrBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder getWaitingOrBuilder(
           int index) {
-        if (waitingListBuilder_ == null) {
-          return waitingList_.get(index);  } else {
-          return waitingListBuilder_.getMessageOrBuilder(index);
+        if (waitingBuilder_ == null) {
+          return waiting_.get(index);  } else {
+          return waitingBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
-           getWaitingListOrBuilderList() {
-        if (waitingListBuilder_ != null) {
-          return waitingListBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder> 
+           getWaitingOrBuilderList() {
+        if (waitingBuilder_ != null) {
+          return waitingBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(waitingList_);
+          return java.util.Collections.unmodifiableList(waiting_);
         }
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder addWaitingListBuilder() {
-        return getWaitingListFieldBuilder().addBuilder(
-            com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance());
+      public com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder addWaitingBuilder() {
+        return getWaitingFieldBuilder().addBuilder(
+            com.example.token.NodeServiceOuterClass.TokenData.Waiting.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder addWaitingListBuilder(
+      public com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder addWaitingBuilder(
           int index) {
-        return getWaitingListFieldBuilder().addBuilder(
-            index, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.getDefaultInstance());
+        return getWaitingFieldBuilder().addBuilder(
+            index, com.example.token.NodeServiceOuterClass.TokenData.Waiting.getDefaultInstance());
       }
       /**
-       * <code>repeated .com.example.token.TokenData.WaitingList waitingList = 3;</code>
+       * <pre>
+       * int32 idNode = 3;
+       * double value = 4;
+       * </pre>
+       *
+       * <code>repeated .com.example.token.TokenData.Waiting waiting = 2;</code>
        */
-      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder> 
-           getWaitingListBuilderList() {
-        return getWaitingListFieldBuilder().getBuilderList();
+      public java.util.List<com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder> 
+           getWaitingBuilderList() {
+        return getWaitingFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder> 
-          getWaitingListFieldBuilder() {
-        if (waitingListBuilder_ == null) {
-          waitingListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.token.NodeServiceOuterClass.TokenData.WaitingList, com.example.token.NodeServiceOuterClass.TokenData.WaitingList.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingListOrBuilder>(
-                  waitingList_,
+          com.example.token.NodeServiceOuterClass.TokenData.Waiting, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder> 
+          getWaitingFieldBuilder() {
+        if (waitingBuilder_ == null) {
+          waitingBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token.NodeServiceOuterClass.TokenData.Waiting, com.example.token.NodeServiceOuterClass.TokenData.Waiting.Builder, com.example.token.NodeServiceOuterClass.TokenData.WaitingOrBuilder>(
+                  waiting_,
                   ((bitField0_ & 0x00000002) == 0x00000002),
                   getParentForChildren(),
                   isClean());
-          waitingList_ = null;
+          waiting_ = null;
         }
-        return waitingListBuilder_;
+        return waitingBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3930,15 +4070,15 @@ public final class NodeServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_example_token_TokenData_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_example_token_TokenData_ReadyList_descriptor;
+    internal_static_com_example_token_TokenData_Ready_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable;
+      internal_static_com_example_token_TokenData_Ready_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_example_token_TokenData_WaitingList_descriptor;
+    internal_static_com_example_token_TokenData_Waiting_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable;
+      internal_static_com_example_token_TokenData_Waiting_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_example_token_Empty_descriptor;
   private static final 
@@ -3957,17 +4097,16 @@ public final class NodeServiceOuterClass {
       "\n\013JoinRequest\022\n\n\002id\030\001 \001(\005\022\021\n\tipAddress\030\002" +
       " \001(\t\022\014\n\004port\030\003 \001(\005\"L\n\014JoinResponse\022\n\n\002id" +
       "\030\001 \001(\005\022\021\n\tipAddress\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022" +
-      "\017\n\007message\030\004 \001(\t\"\310\001\n\tTokenData\0229\n\treadyL" +
-      "ist\030\002 \003(\0132&.com.example.token.TokenData." +
-      "ReadyList\022=\n\013waitingList\030\003 \003(\0132(.com.exa" +
-      "mple.token.TokenData.WaitingList\032&\n\tRead" +
-      "yList\022\n\n\002id\030\001 \001(\005\022\r\n\005value\030\002 \001(\001\032\031\n\013Wait" +
-      "ingList\022\n\n\002id\030\001 \001(\005\"\007\n\005Empty2\246\001\n\013NodeSer",
-      "vice\022N\n\013joinNetwork\022\036.com.example.token." +
-      "JoinRequest\032\037.com.example.token.JoinResp" +
-      "onse\022G\n\rtokenDelivery\022\034.com.example.toke" +
-      "n.TokenData\032\030.com.example.token.Emptyb\006p" +
-      "roto3"
+      "\017\n\007message\030\004 \001(\t\"\260\001\n\tTokenData\0221\n\005ready\030" +
+      "\001 \003(\0132\".com.example.token.TokenData.Read" +
+      "y\0225\n\007waiting\030\002 \003(\0132$.com.example.token.T" +
+      "okenData.Waiting\032\"\n\005Ready\022\n\n\002id\030\001 \001(\005\022\r\n" +
+      "\005value\030\002 \001(\001\032\025\n\007Waiting\022\n\n\002id\030\001 \001(\005\"\007\n\005E" +
+      "mpty2\246\001\n\013NodeService\022N\n\013joinNetwork\022\036.co",
+      "m.example.token.JoinRequest\032\037.com.exampl" +
+      "e.token.JoinResponse\022G\n\rtokenDelivery\022\034." +
+      "com.example.token.TokenData\032\030.com.exampl" +
+      "e.token.Emptyb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3998,18 +4137,18 @@ public final class NodeServiceOuterClass {
     internal_static_com_example_token_TokenData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_example_token_TokenData_descriptor,
-        new java.lang.String[] { "ReadyList", "WaitingList", });
-    internal_static_com_example_token_TokenData_ReadyList_descriptor =
+        new java.lang.String[] { "Ready", "Waiting", });
+    internal_static_com_example_token_TokenData_Ready_descriptor =
       internal_static_com_example_token_TokenData_descriptor.getNestedTypes().get(0);
-    internal_static_com_example_token_TokenData_ReadyList_fieldAccessorTable = new
+    internal_static_com_example_token_TokenData_Ready_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_example_token_TokenData_ReadyList_descriptor,
+        internal_static_com_example_token_TokenData_Ready_descriptor,
         new java.lang.String[] { "Id", "Value", });
-    internal_static_com_example_token_TokenData_WaitingList_descriptor =
+    internal_static_com_example_token_TokenData_Waiting_descriptor =
       internal_static_com_example_token_TokenData_descriptor.getNestedTypes().get(1);
-    internal_static_com_example_token_TokenData_WaitingList_fieldAccessorTable = new
+    internal_static_com_example_token_TokenData_Waiting_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_example_token_TokenData_WaitingList_descriptor,
+        internal_static_com_example_token_TokenData_Waiting_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_com_example_token_Empty_descriptor =
       getDescriptor().getMessageTypes().get(3);
