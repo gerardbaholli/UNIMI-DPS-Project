@@ -27,13 +27,20 @@ public class ClientGRPC extends Thread {
         System.out.println("Node " + node.getId() + " linked to node " +
                 TargetNode.getInstance().getTargetId());
 
-        // if is the first node then create the token
-        if (node.getId() == TargetNode.getInstance().getTargetId()){
-            // createTokenData();
-        } else {
+
+        // add token if there are only two nodes
+        if (NodeList.getInstance().getSize()==2){
             addToken();
         }
 
+        /*
+        // if is the first node
+        if (node.getId() == TargetNode.getInstance().getTargetId()){
+            // don't do nothing;
+        } else {
+            addToken();
+        }
+        */
 
     }
 

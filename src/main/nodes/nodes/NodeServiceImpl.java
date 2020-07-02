@@ -101,6 +101,15 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
 
 
+        // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
         if (LocalAvgList.getInstance().getSize() >= 1) {
 
             System.out.println("Ok la mia statistica è pronta!");
@@ -114,6 +123,16 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                         .addReady(TokenData.Ready.newBuilder()
                                 .setId(node.getId())
                                 .setValue(LocalAvgList.getInstance().getLastValue()))
+                        .build();
+                stub.tokenDelivery(newTokenData);
+                channel.shutdown();
+            } else if (!insideReady && !insideWaiting){
+                newTokenData = tokenData.toBuilder()
+                        .addReady(TokenData.Ready.newBuilder()
+                                .setId(node.getId())
+                                .setValue(LocalAvgList.getInstance().getLastValue()))
+                        .addWaiting(TokenData.Waiting.newBuilder()
+                                .setId(node.getId()))
                         .build();
                 stub.tokenDelivery(newTokenData);
                 channel.shutdown();

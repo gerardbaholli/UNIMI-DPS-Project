@@ -20,16 +20,22 @@ public class StartNode {
         int idNode;
         String IP = "localhost";
         int PORT = rand.nextInt((8090 - 8000) + 1) + 8000;
-        List<Node> nodeList;
 
         Node node = new Node(IP, PORT);
+
 
 
 
         /* ------------ NODE JOINING ------------ */
 
         // post call, sends to the gateway the intention to join the network
-        nodeList = start(node);
+        NodeList.getInstance().setNodeList(start(node));
+
+        // TODO: eliminare, stampa lista nodi ricevuta dal gateway
+        System.out.println("STAMPA QUI");
+        for (Node value : NodeList.getInstance().getNodeList())
+            System.out.println(value.getId());
+
 
         // sets the id node given from the gateway
         idNode = node.getId();
@@ -40,8 +46,8 @@ public class StartNode {
         serverGRPC.start();
 
         // join the network
-        assert nodeList != null;
-        join(nodeList, node);
+        join(NodeList.getInstance().getNodeList(), node);
+
 
 
 
