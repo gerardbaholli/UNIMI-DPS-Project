@@ -14,7 +14,9 @@ it\ewlab\researcher\ResearcherOuterClass$Researcher$Paper$1.class
 com\example\sum\SumServiceGrpc.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$PaperOrBuilder.class
 com\example\sum\SumServiceOuterClass$1.class
+com\example\token\NodeServiceOuterClass$TokenDeleteOrBuilder.class
 com\example\sum\SumServiceGrpc$SumServiceImplBase.class
+com\example\token\NodeServiceOuterClass$TokenDelete.class
 com\example\token\NodeServiceOuterClass$TokenData$ReadyOrBuilder.class
 com\example\sum\SumServiceGrpc$1.class
 it\ewlab\researcher\ResearcherOuterClass$ResearcherOrBuilder.class
@@ -36,11 +38,13 @@ it\ewlab\researcher\ResearcherOuterClass$Researcher$Paper$Builder.class
 com\example\token\NodeServiceGrpc$NodeServiceFutureStub.class
 com\example\university\StudentOuterClass$Student$Exam.class
 com\example\sum\SumServiceGrpc$SumServiceStub.class
+com\example\token\NodeServiceOuterClass$TokenDelete$1.class
 com\example\token\NodeServiceOuterClass$JoinResponseOrBuilder.class
 com\example\token\NodeServiceGrpc$NodeServiceImplBase.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$Paper.class
 com\example\token\NodeServiceGrpc$1.class
 com\example\university\StudentOuterClass.class
+com\example\token\NodeServiceOuterClass$TokenDelete$Builder.class
 com\example\token\NodeServiceGrpc$NodeServiceStub.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$1.class
 com\example\university\StudentOuterClass$Student$Builder.class

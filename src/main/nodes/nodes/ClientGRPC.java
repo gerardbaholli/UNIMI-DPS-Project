@@ -82,13 +82,13 @@ public class ClientGRPC extends Thread {
 
     }
 
-    // add the token on the network
+    // add the token data on the network
     public void addToken(){
 
         ManagedChannel channel = ManagedChannelBuilder
                 .forTarget(
                         TargetNode.getInstance().getTargetIpAddress() + ":" +
-                        TargetNode.getInstance().getTargetPort())
+                                TargetNode.getInstance().getTargetPort())
                 .usePlaintext(true).build();
 
         // creating a blocking stub on the channel
@@ -98,7 +98,7 @@ public class ClientGRPC extends Thread {
         TokenData tokenData = TokenData.newBuilder().build();
 
         // send the token to the target node
-        stub.tokenDelivery(tokenData);
+        stub.tokenDeliveryData(tokenData);
 
         channel.shutdown();
     }

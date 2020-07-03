@@ -53,10 +53,12 @@ public class Nodes {
 
     // OK
     public synchronized String delete(Node n){
-        for (Node node : nodesList) {
-            if (node.getId()==n.getId()){
-                this.nodesList.remove(node);
-                return "Success";
+        if (n!=null){
+            for (Node node : nodesList) {
+                if (node.getId()==n.getId()){
+                    this.nodesList.remove(node);
+                    return "Success";
+                }
             }
         }
         return "notFound";

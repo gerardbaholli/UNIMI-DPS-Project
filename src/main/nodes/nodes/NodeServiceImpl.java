@@ -2,7 +2,9 @@ package nodes;
 
 import com.example.token.NodeServiceGrpc;
 import com.example.token.NodeServiceGrpc.NodeServiceImplBase;
+import com.example.token.NodeServiceOuterClass;
 import com.example.token.NodeServiceOuterClass.TokenData;
+import com.example.token.NodeServiceOuterClass.TokenDelete;
 import com.example.token.NodeServiceOuterClass.TokenData.Ready;
 import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
 import com.example.token.NodeServiceOuterClass.Empty;
@@ -11,10 +13,6 @@ import com.example.token.NodeServiceOuterClass.JoinResponse;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class NodeServiceImpl extends NodeServiceImplBase {
 
@@ -51,7 +49,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
 
     @Override
-    public synchronized void tokenDelivery(TokenData tokenData,
+    public synchronized void tokenDeliveryData(TokenData tokenData,
                                            StreamObserver<Empty> responseObserver) {
 
         Empty response = Empty.newBuilder().build();
@@ -70,12 +68,11 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         // creating a blocking stub on the channel
         NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
-
         TokenData newTokenData = tokenData.toBuilder().build();
 
 
         // CONTROLLA SE E' PRESENTE L'ID IN READY LIST
-        Boolean insideReady = false;
+        boolean insideReady = false;
         for (Ready item : tokenData.getReadyList()) {
             if (item.getId() == node.getId()) {
                 insideReady = true;
@@ -93,7 +90,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
 
         // CONTROLLA SE E' PRESENTE L'ID IN WAITING LIST
-        Boolean insideWaiting = false;
+        boolean insideWaiting = false;
         for (Waiting item : tokenData.getWaitingList()) {
             if (item.getId() == node.getId()) {
                 insideWaiting = true;
@@ -115,7 +112,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             System.out.println("Ok la mia statistica è pronta!");
             if (insideReady) {
                 System.out.println("1");
-                stub.tokenDelivery(tokenData);
+                stub.tokenDeliveryData(tokenData);
                 channel.shutdown();
             } else if (insideWaiting) {
                 System.out.println("2");
@@ -124,7 +121,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                                 .setId(node.getId())
                                 .setValue(LocalAvgList.getInstance().getLastValue()))
                         .build();
-                stub.tokenDelivery(newTokenData);
+                stub.tokenDeliveryData(newTokenData);
                 channel.shutdown();
             } else if (!insideReady && !insideWaiting){
                 newTokenData = tokenData.toBuilder()
@@ -134,7 +131,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                         .addWaiting(TokenData.Waiting.newBuilder()
                                 .setId(node.getId()))
                         .build();
-                stub.tokenDelivery(newTokenData);
+                stub.tokenDeliveryData(newTokenData);
                 channel.shutdown();
             }
 
@@ -143,7 +140,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             System.out.println("La mia statistica non è pronta!");
             if (insideReady || insideWaiting) {
                 System.out.println("3");
-                stub.tokenDelivery(tokenData);
+                stub.tokenDeliveryData(tokenData);
                 channel.shutdown();
             } else if (!insideWaiting) {
                 System.out.println("4");
@@ -151,7 +148,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                         .addWaiting(TokenData.Waiting.newBuilder()
                                 .setId(node.getId()).build())
                         .build();
-                stub.tokenDelivery(newTokenData);
+                stub.tokenDeliveryData(newTokenData);
                 channel.shutdown();
             }
 
@@ -180,6 +177,60 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
 
         return result / count;
+    }
+
+
+    @Override
+    public synchronized void tokenDeliveryDelete(NodeServiceOuterClass.TokenDelete tokenDelete,
+                                                 StreamObserver<Empty> responseObserver) {
+
+        Empty response = Empty.newBuilder().build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+
+        System.out.println("Arrivato tokenDelete a nodo " + node.getId());
+
+
+        // CONTROLLA SE IL TOKEN E' ARRIVATO AL CREATORE
+        boolean isCreator = false;
+        if (node.getId()==tokenDelete.getId()){
+            isCreator = true;
+            System.out.println("Ok dovrei essere uscito!");
+        }
+
+
+        if (!isCreator) {
+
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forTarget(
+                            TargetNode.getInstance().getTargetIpAddress() + ":" +
+                                    TargetNode.getInstance().getTargetPort())
+                    .usePlaintext(true).build();
+
+            // creating a blocking stub on the channel
+            NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
+
+
+            TokenDelete newTokenDelete = tokenDelete.toBuilder().build();
+
+
+            // CONTROLLA SE IL TARGET E' IL CREATORE DEL TOKEN
+            if (TargetNode.getInstance().getTargetId()==tokenDelete.getId()){
+
+                TargetNode.getInstance().setTargetId(tokenDelete.getTargetId());
+                TargetNode.getInstance().setTargetIpAddress(tokenDelete.getTargetIpAddress());
+                TargetNode.getInstance().setTargetPort(tokenDelete.getTargetPort());
+
+                // send the token to the next node
+                stub.tokenDeliveryDelete(newTokenDelete);
+
+                channel.shutdown();
+            }
+
+        }
+
+
+
     }
 
 

@@ -1,5 +1,6 @@
 package nodes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
@@ -77,6 +78,12 @@ public class StartNode {
         System.out.println("Hit return to stop...");
         System.in.read();
         // TODO: STOP NODE --------v
+        StopNodeGRPC stopNodeGRPC = new StopNodeGRPC(node);
+        stopNodeGRPC.start();
+
+
+        System.out.println(remove(node));
+
         // TODO: shutdown the channel of the gRPC Server
         // TODO: post delete call to the gateway
         pm10Simulator.stopMeGently();
@@ -87,11 +94,6 @@ public class StartNode {
     }
 
     public static List<Node> start(Node node) {
-
-        Client client = Client.create();
-
-        WebResource webResource = client
-                .resource("http://localhost:1200/nodes/add");
 
         Random rand = new Random();
         String jsonStr;
@@ -108,7 +110,7 @@ public class StartNode {
                 jsonStr = mapper.writeValueAsString(node);
 
                 // send post and receive response as string
-                response = postNode(webResource, jsonStr);
+                response = addNode(jsonStr);
             } while (Objects.equals(response, "error409"));
             // System.out.println("Output from Server:\n" + response);
 
@@ -120,15 +122,6 @@ public class StartNode {
             List<Node> nodeJsonToList = mapper
                     .readValue(response, new TypeReference<List<Node>>(){});
 
-            // sort and print the list of nodes
-            /* System.out.println("List of nodes:");
-            nodeJsonToList.sort(Comparator.comparing(Node::getId));
-            for (Node value : nodeJsonToList) {
-                System.out.println("id: " + value.getId() +
-                        ", address: " + value.getIpAddress() +
-                        ", port: " + value.getPort());
-            } */
-
             return nodeJsonToList;
 
         } catch (IOException e) {
@@ -139,27 +132,33 @@ public class StartNode {
 
     }
 
-    public static String postNode(WebResource webResource, String input){
-        try {
-            ClientResponse response;
+    public static String addNode(String input){
 
-            response = webResource.accept("application/json").type("application/json")
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource("http://localhost:1200/nodes/add");
+
+        ClientResponse response;
+
+        response = webResource.accept("application/json").type("application/json")
                     .post(ClientResponse.class, input);
 
-            if (response.getStatus() == 409) {
-                return "error409";
-            }
+        if (response.getStatus() == 409) {
+            return "error409";
+        }
 
+        try {
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed - HTTP error code : "
                         + response.getStatus());
             }
-
             return response.getEntity(String.class);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -191,6 +190,42 @@ public class StartNode {
         // create the client GRPC
         ClientGRPC clientGRPC = new ClientGRPC(node);
         clientGRPC.start();
+    }
+
+    public static String remove(Node node){
+
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource("http://localhost:1200/nodes/remove");
+
+        ClientResponse response;
+
+        String jsonStr;
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        // get node object as a json string
+        try {
+            jsonStr = mapper.writeValueAsString(node);
+
+            response = webResource.accept("application/json").type("application/json")
+                        .delete(ClientResponse.class, jsonStr);
+
+            if (response.getStatus() == 409) {
+                return "error409";
+            }
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed - HTTP error code : "
+                        + response.getStatus());
+            }
+            return response.getEntity(String.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
