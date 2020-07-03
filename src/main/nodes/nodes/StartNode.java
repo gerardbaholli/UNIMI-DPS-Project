@@ -118,11 +118,8 @@ public class StartNode {
             assert response != null;
             response = response.substring(8, response.length()-1);
 
-            // put the json into the list of nodes
-            List<Node> nodeJsonToList = mapper
-                    .readValue(response, new TypeReference<List<Node>>(){});
-
-            return nodeJsonToList;
+            // returns the list of nodes mapped from the json
+            return mapper.readValue(response, new TypeReference<List<Node>>(){});
 
         } catch (IOException e) {
             e.printStackTrace();
