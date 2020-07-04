@@ -17,7 +17,7 @@ public class Nodes {
     private static Nodes instance;
 
     private Nodes() {
-        nodesList = new ArrayList<Node>();
+        nodesList = new ArrayList<>();
     }
 
     //singleton
@@ -29,11 +29,6 @@ public class Nodes {
 
     public synchronized List<Node> getNodesList() {
         return new ArrayList<>(nodesList);
-    }
-
-    // togliere forse
-    public synchronized void setUserslist(List<Node> userslist) {
-        this.nodesList = userslist;
     }
 
 
@@ -66,13 +61,13 @@ public class Nodes {
 
     // OK
     public synchronized int getNodesNumber(){
+        List<Node> tempList = new ArrayList<>(nodesList);
         int count = 0;
-        for (Node n : nodesList){
+        for (Node n : tempList){
             count++;
         }
         return count;
     }
-
 
 
 
@@ -84,6 +79,12 @@ public class Nodes {
             if(n.getIpAddress().toLowerCase().equals(name.toLowerCase()))
                 return n;
         return null;
+    }
+
+
+    // togliere forse
+    public synchronized void setUserslist(List<Node> userslist) {
+        this.nodesList = userslist;
     }
 
 
