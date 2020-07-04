@@ -159,6 +159,42 @@ public class StartNode {
         return null;
     }
 
+    public static String remove(Node node){
+
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource("http://localhost:1200/nodes/remove");
+
+        ClientResponse response;
+
+        String jsonStr;
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        // get node object as a json string
+        try {
+            jsonStr = mapper.writeValueAsString(node);
+
+            response = webResource.accept("application/json").type("application/json")
+                    .delete(ClientResponse.class, jsonStr);
+
+            if (response.getStatus() == 409) {
+                return "error409";
+            }
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed - HTTP error code : "
+                        + response.getStatus());
+            }
+            return response.getEntity(String.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static void join(List<Node> nodeList, Node node){
         Random rand = new Random();
 
@@ -187,42 +223,6 @@ public class StartNode {
         // create the client GRPC
         ClientGRPC clientGRPC = new ClientGRPC(node);
         clientGRPC.start();
-    }
-
-    public static String remove(Node node){
-
-        Client client = Client.create();
-
-        WebResource webResource = client
-                .resource("http://localhost:1200/nodes/remove");
-
-        ClientResponse response;
-
-        String jsonStr;
-        ObjectMapper mapper = new ObjectMapper();
-
-
-        // get node object as a json string
-        try {
-            jsonStr = mapper.writeValueAsString(node);
-
-            response = webResource.accept("application/json").type("application/json")
-                        .delete(ClientResponse.class, jsonStr);
-
-            if (response.getStatus() == 409) {
-                return "error409";
-            }
-
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed - HTTP error code : "
-                        + response.getStatus());
-            }
-            return response.getEntity(String.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 }
