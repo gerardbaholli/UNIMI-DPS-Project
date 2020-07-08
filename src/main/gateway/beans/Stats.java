@@ -1,12 +1,18 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Stats {
 
-    private List<Double> statsList;
+    @XmlElement(name="stats")
+    private List<Stat> statsList;
 
     private static Stats instance;
 
@@ -21,18 +27,20 @@ public class Stats {
         return instance;
     }
 
-    public synchronized void addStats(double stats) {
-        statsList.add(stats);
+
+    public synchronized String addStats(Stat s) {
+        statsList.add(s);
+        return "Success";
     }
 
 
-    public synchronized List<Double> getLastNStats(int n) {
+    public synchronized List<Stat> getLastNStats(int n) {
 
         // create a copy of the list to iterate on it
-        List<Double> tempList = new ArrayList<>(statsList);
+        List<Stat> tempList = new ArrayList<>(statsList);
 
         // create a clean array to add the last N stats
-        List<Double> response = new ArrayList<>();
+        List<Stat> response = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
             response.add(tempList.get(i));
@@ -45,10 +53,10 @@ public class Stats {
     public synchronized List<Double> getStanDevAvg(int n) {
 
         // create a copy of the list to iterate on it
-        List<Double> tempList = new ArrayList<>(statsList);
+        List<Stat> tempList = new ArrayList<>(statsList);
 
         // create a clean array to add the last N stats
-        List<Double> lastNStats = new ArrayList<>();
+        List<Stat> lastNStats = new ArrayList<>();
 
         // create the response array to add the calculate
         List<Double> response = new ArrayList<>(2);
@@ -63,32 +71,32 @@ public class Stats {
         return response;
     }
 
-    public double calculateAVG(List<Double> list) {
+    public double calculateAVG(List<Stat> list) {
         double sum = 0.0;
         int count = list.size();
 
-        for (double value : list) {
-            sum += value;
+        for (Stat value : list) {
+            sum += value.getValue();
         }
 
         return sum / count;
 
     }
 
-    public double calculateSD(List<Double> list) {
+    public double calculateSD(List<Stat> list) {
         double sum = 0.0;
         double standardDeviation = 0.0;
 
         int count = list.size();
 
-        for (double value : list) {
-            sum += value;
+        for (Stat value : list) {
+            sum += value.getValue();
         }
 
         double mean = sum / count;
 
-        for (double value : list) {
-            standardDeviation += Math.pow(value - mean, 2);
+        for (Stat value : list) {
+            standardDeviation += Math.pow(value.getValue() - mean, 2);
         }
 
         return Math.sqrt(standardDeviation / count);

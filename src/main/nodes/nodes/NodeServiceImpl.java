@@ -10,6 +10,11 @@ import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
 import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -84,8 +89,11 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         if ((tokenData.getReadyCount() == tokenData.getWaitingCount()) && insideReady) {
             double finalAvg = computeFinalAvg(tokenData);
             // TODO: INVIARE AL GATEWAY
+            System.out.println(sendToGateway(finalAvg));
             System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
             newTokenData = TokenData.newBuilder().build();
+            stub.tokenDeliveryData(newTokenData);
+            channel.shutdown();
         }
 
 
@@ -113,7 +121,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             if (insideReady) {
                 System.out.println("1");
                 stub.tokenDeliveryData(tokenData);
-                channel.shutdown();
             } else if (insideWaiting) {
                 System.out.println("2");
                 newTokenData = tokenData.toBuilder()
@@ -132,7 +139,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                                 .setId(node.getId()))
                         .build();
                 stub.tokenDeliveryData(newTokenData);
-                channel.shutdown();
             }
 
         } else {
@@ -149,7 +155,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                                 .setId(node.getId()).build())
                         .build();
                 stub.tokenDeliveryData(newTokenData);
-                channel.shutdown();
             }
 
         }
@@ -164,19 +169,49 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
     }
 
+
     public double computeFinalAvg(TokenData tokenData) {
 
         double result = 0.0;
         int count = 0;
 
+        // CALCOLA LA MEDIA FINALE ITERANDO SU READY LIST
         for (Ready item : tokenData.getReadyList()) {
-            if (item.getId() == node.getId()) {
                 result += item.getValue();
                 count++;
-            }
         }
 
         return result / count;
+    }
+
+    public String sendToGateway(double avg){
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource("http://localhost:1200/stats/add");
+
+        ClientResponse response;
+
+        String jsonStr = "{\"value\":" + avg + ",\"timestamp\":\"localhost\"}";
+        // ObjectMapper mapper = new ObjectMapper();
+
+
+        // get node object as a json string
+        // jsonStr = mapper.writeValueAsString(node);
+
+        response = webResource.accept("application/json").type("application/json")
+                .post(ClientResponse.class, jsonStr);
+
+        if (response.getStatus() == 409) {
+            return "error409";
+        }
+
+        if (response.getStatus() != 200) {
+            throw new RuntimeException("Failed - HTTP error code : "
+                    + response.getStatus());
+        }
+        return response.getEntity(String.class);
+
     }
 
 

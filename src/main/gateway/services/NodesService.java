@@ -2,6 +2,7 @@ package services;
 
 import beans.Node;
 import beans.Nodes;
+import beans.Stat;
 import beans.Stats;
 
 import javax.ws.rs.*;
@@ -48,8 +49,6 @@ public class NodesService {
     }
 
 
-
-    // TODO: getNodesNumber(){}
     @Path("nodesNumber")
     @GET
     @Produces({"application/json", "application/xml"})
@@ -57,23 +56,6 @@ public class NodesService {
         return Response.ok(Nodes.getInstance().getNodesNumber()).build();
     }
 
-
-    // TODO: getLastNStats(int n){} FIX!!!
-    @Path("lastNStats")
-    @GET
-    @Produces({"application/json", "application/xml"})
-    public Response getLastNStats(int n){
-        return Response.ok(Stats.getInstance().getLastNStats(n)).build();
-    }
-
-
-    // TODO: getStanDevAvg(int n){} FIX!!!
-    @Path("standardDevAvg")
-    @GET
-    @Produces({"application/json", "application/xml"})
-    public Response getStanDevAvg(int n){
-        return Response.ok(Stats.getInstance().getStanDevAvg(n)).build();
-    }
 
 
 }
