@@ -55,7 +55,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
     @Override
     public synchronized void tokenDeliveryData(TokenData tokenData,
-                                           StreamObserver<Empty> responseObserver) {
+                                               StreamObserver<Empty> responseObserver) {
 
         Empty response = Empty.newBuilder().build();
         responseObserver.onNext(response);
@@ -85,18 +85,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
 
 
-        // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
-        if ((tokenData.getReadyCount() == tokenData.getWaitingCount()) && insideReady) {
-            double finalAvg = computeFinalAvg(tokenData);
-            // TODO: INVIARE AL GATEWAY
-            System.out.println(sendToGateway(finalAvg));
-            System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
-            newTokenData = TokenData.newBuilder().build();
-            stub.tokenDeliveryData(newTokenData);
-            channel.shutdown();
-        }
-
-
         // CONTROLLA SE E' PRESENTE L'ID IN WAITING LIST
         boolean insideWaiting = false;
         for (Waiting item : tokenData.getWaitingList()) {
@@ -108,14 +96,22 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
 
-
-        if (LocalAvgList.getInstance().getSize() >= 1) {
+        // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
+        // SE NON E' PIENO INSERISCE IL VALORE NELLA LISTA CORRISPONDENTE AL SUO STATO
+        if ((tokenData.getReadyCount() == tokenData.getWaitingCount()) && insideReady) {
+            double finalAvg = computeFinalAvg(tokenData);
+            // INVIA STATISTICA AL GATEWAY
+            System.out.println(sendToGateway(finalAvg));
+            System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
+            newTokenData = TokenData.newBuilder().build();
+            stub.tokenDeliveryData(newTokenData);
+        } else if (LocalAvgList.getInstance().getSize() >= 1) {
 
             //System.out.println("Ok la mia statistica è pronta!");
             if (insideReady) {
@@ -130,7 +126,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                         .build();
                 stub.tokenDeliveryData(newTokenData);
                 channel.shutdown();
-            } else if (!insideReady && !insideWaiting){
+            } else if (!insideReady && !insideWaiting) {
                 newTokenData = tokenData.toBuilder()
                         .addReady(TokenData.Ready.newBuilder()
                                 .setId(node.getId())
@@ -177,14 +173,14 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         // CALCOLA LA MEDIA FINALE ITERANDO SU READY LIST
         for (Ready item : tokenData.getReadyList()) {
-                result += item.getValue();
-                count++;
+            result += item.getValue();
+            count++;
         }
 
         return result / count;
     }
 
-    public String sendToGateway(double avg){
+    public String sendToGateway(double avg) {
         Client client = Client.create();
 
         WebResource webResource = client
@@ -228,7 +224,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         // CONTROLLA SE IL TOKEN E' ARRIVATO AL CREATORE
         boolean isCreator = false;
-        if (node.getId()==tokenDelete.getId()){
+        if (node.getId() == tokenDelete.getId()) {
             isCreator = true;
             System.out.println("Appena arrivato al creatore!");
         }
@@ -248,7 +244,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             TokenDelete newTokenDelete = tokenDelete.toBuilder().build();
 
             // CONTROLLA SE IL TARGET E' IL CREATORE DEL TOKEN
-            if (TargetNode.getInstance().getTargetId()==tokenDelete.getId()){
+            if (TargetNode.getInstance().getTargetId() == tokenDelete.getId()) {
 
                 System.out.println("Il mio target è il creatore!");
                 TargetNode.getInstance().setTargetId(tokenDelete.getTargetId());
@@ -265,11 +261,9 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             channel.shutdown();
 
 
-
         } else if (isCreator) {
             System.out.println("Ok sono uscito!");
         }
-
 
 
     }
