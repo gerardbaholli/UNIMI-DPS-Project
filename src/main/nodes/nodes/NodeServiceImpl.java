@@ -56,7 +56,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
-        System.out.println("Arrivato token a nodo " + node.getId());
+        //System.out.println("Arrivato token a nodo " + node.getId());
 
 
         ManagedChannel channel = ManagedChannelBuilder
@@ -109,7 +109,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         if (LocalAvgList.getInstance().getSize() >= 1) {
 
-            System.out.println("Ok la mia statistica è pronta!");
+            //System.out.println("Ok la mia statistica è pronta!");
             if (insideReady) {
                 System.out.println("1");
                 stub.tokenDeliveryData(tokenData);
@@ -137,7 +137,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         } else {
 
-            System.out.println("La mia statistica non è pronta!");
+            //System.out.println("La mia statistica non è pronta!");
             if (insideReady || insideWaiting) {
                 System.out.println("3");
                 stub.tokenDeliveryData(tokenData);
@@ -154,11 +154,11 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         }
 
-
+        /*
         System.out.println("Ready list:\n" + newTokenData.getReadyList());
         System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
         System.out.println("Mando token a " + TargetNode.getInstance().getTargetId());
-
+        */
 
         channel.shutdown();
 
@@ -188,14 +188,14 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
-        System.out.println("Arrivato tokenDelete a nodo " + node.getId());
+        System.out.println("Arrivato TOKEN DELETE a nodo " + node.getId());
 
 
         // CONTROLLA SE IL TOKEN E' ARRIVATO AL CREATORE
         boolean isCreator = false;
         if (node.getId()==tokenDelete.getId()){
             isCreator = true;
-            System.out.println("Ok dovrei essere uscito!");
+            System.out.println("Appena arrivato al creatore!");
         }
 
 
@@ -210,23 +210,29 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             // creating a blocking stub on the channel
             NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
-
             TokenDelete newTokenDelete = tokenDelete.toBuilder().build();
-
 
             // CONTROLLA SE IL TARGET E' IL CREATORE DEL TOKEN
             if (TargetNode.getInstance().getTargetId()==tokenDelete.getId()){
 
+                System.out.println("Il mio target è il creatore!");
                 TargetNode.getInstance().setTargetId(tokenDelete.getTargetId());
                 TargetNode.getInstance().setTargetIpAddress(tokenDelete.getTargetIpAddress());
                 TargetNode.getInstance().setTargetPort(tokenDelete.getTargetPort());
+                System.out.println("Il mio nuovo target è: " + TargetNode.getInstance().getTargetId());
 
-                // send the token to the next node
-                stub.tokenDeliveryDelete(newTokenDelete);
-
-                channel.shutdown();
             }
 
+
+            // send the token to the next node
+            stub.tokenDeliveryDelete(newTokenDelete);
+
+            channel.shutdown();
+
+
+
+        } else if (isCreator) {
+            System.out.println("Ok sono uscito!");
         }
 
 
