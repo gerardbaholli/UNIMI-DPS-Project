@@ -50,6 +50,7 @@ public class NodesService {
 
 
     // TODO: getNodesNumber(){}
+    @Path("nodesNumber")
     @GET
     @Produces({"application/json", "application/xml"})
     public Response getNodesNumber(){
@@ -58,6 +59,7 @@ public class NodesService {
 
 
     // TODO: getLastNStats(int n){} FIX!!!
+    @Path("lastNStats")
     @GET
     @Produces({"application/json", "application/xml"})
     public Response getLastNStats(int n){
@@ -66,6 +68,7 @@ public class NodesService {
 
 
     // TODO: getStanDevAvg(int n){} FIX!!!
+    @Path("standardDevAvg")
     @GET
     @Produces({"application/json", "application/xml"})
     public Response getStanDevAvg(int n){
