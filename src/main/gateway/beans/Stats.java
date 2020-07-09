@@ -43,7 +43,7 @@ public class Stats {
         List<Stat> response = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
-            response.add(tempList.get(i));
+            response.add(tempList.get((tempList.size()-1)-i));
         }
 
         return response;
@@ -62,7 +62,7 @@ public class Stats {
         List<Double> response = new ArrayList<>(2);
 
         for (int i = 0; i < n; i++) {
-            lastNStats.add(tempList.get(i));
+            lastNStats.add(tempList.get((tempList.size()-1)-i));
         }
 
         response.add(calculateSD(lastNStats));
@@ -100,6 +100,18 @@ public class Stats {
         }
 
         return Math.sqrt(standardDeviation / count);
+    }
+
+    public void setStatsList(List<Stat> list){
+        this.statsList = list;
+    }
+
+    public void printStatsList(){
+        System.out.println("Lista statistiche: ");
+
+        for (Stat value : statsList) {
+            System.out.println(value.getValue() + " " + value.getTimestamp());
+        }
     }
 
 

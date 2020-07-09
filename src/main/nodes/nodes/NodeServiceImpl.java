@@ -10,14 +10,14 @@ import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
 import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+
+import java.sql.Timestamp;
 
 public class NodeServiceImpl extends NodeServiceImplBase {
 
@@ -96,10 +96,11 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
 
         // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
@@ -115,10 +116,10 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
             //System.out.println("Ok la mia statistica è pronta!");
             if (insideReady) {
-                System.out.println("1");
+                //System.out.println("1");
                 stub.tokenDeliveryData(tokenData);
             } else if (insideWaiting) {
-                System.out.println("2");
+                //System.out.println("2");
                 newTokenData = tokenData.toBuilder()
                         .addReady(TokenData.Ready.newBuilder()
                                 .setId(node.getId())
@@ -141,11 +142,11 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
             //System.out.println("La mia statistica non è pronta!");
             if (insideReady || insideWaiting) {
-                System.out.println("3");
+                //System.out.println("3");
                 stub.tokenDeliveryData(tokenData);
                 channel.shutdown();
             } else if (!insideWaiting) {
-                System.out.println("4");
+                //System.out.println("4");
                 newTokenData = tokenData.toBuilder()
                         .addWaiting(TokenData.Waiting.newBuilder()
                                 .setId(node.getId()).build())
@@ -188,12 +189,10 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         ClientResponse response;
 
-        String jsonStr = "{\"value\":" + avg + ",\"timestamp\":\"localhost\"}";
-        // ObjectMapper mapper = new ObjectMapper();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
+        String jsonStr = "{\"value\":" + avg + ",\"timestamp\":\"" + timestamp +"\"}";
 
-        // get node object as a json string
-        // jsonStr = mapper.writeValueAsString(node);
 
         response = webResource.accept("application/json").type("application/json")
                 .post(ClientResponse.class, jsonStr);
