@@ -71,21 +71,4 @@ public class Nodes {
 
 
 
-    public Node getByName(String name){
-
-        List<Node> usersCopy = getNodesList();
-
-        for(Node n: usersCopy)
-            if(n.getIpAddress().toLowerCase().equals(name.toLowerCase()))
-                return n;
-        return null;
-    }
-
-
-    // togliere forse
-    public synchronized void setUserslist(List<Node> userslist) {
-        this.nodesList = userslist;
-    }
-
-
 }

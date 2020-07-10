@@ -177,6 +177,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
     }
 
+
     public boolean isInsideReady(TokenData tokenData) {
         for (Ready item : tokenData.getReadyList()) {
             if (item.getId() == node.getId()) {

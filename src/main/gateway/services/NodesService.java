@@ -15,7 +15,7 @@ public class NodesService {
     @GET
     @Produces({"application/json", "application/xml"})
     public Response getNodesList(){
-        return Response.ok(Nodes.getInstance()).build();
+        return Response.ok(Nodes.getInstance().getNodesList()).build();
     }
 
     //permette di inserire un nodo (id, ipAddress, port)
