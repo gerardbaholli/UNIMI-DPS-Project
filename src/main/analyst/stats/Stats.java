@@ -22,10 +22,13 @@ public class Stats {
         this.statsList = statsList;
     }
 
-    public void printStatsList(){
+    public String printStatsList(){
+        String response = "";
         for (Stat value : statsList) {
-            System.out.println(value.getValue() + " " + value.getTimestamp());
+            response += value.getValue() + " " + value.getTimestamp() + "\n";
         }
+
+        return response;
     }
 
 }

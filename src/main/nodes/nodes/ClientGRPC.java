@@ -33,15 +33,6 @@ public class ClientGRPC extends Thread {
             addToken();
         }
 
-        /*
-        // if is the first node
-        if (node.getId() == TargetNode.getInstance().getTargetId()){
-            // don't do nothing;
-        } else {
-            addToken();
-        }
-        */
-
     }
 
 

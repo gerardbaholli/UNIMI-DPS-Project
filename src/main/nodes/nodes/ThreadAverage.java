@@ -4,7 +4,6 @@ public class ThreadAverage extends Thread {
 
     Queue queue;
 
-
     public ThreadAverage(Queue q){
         this.queue = q;
     }

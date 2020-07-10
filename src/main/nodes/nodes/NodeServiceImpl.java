@@ -15,6 +15,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Timestamp;
@@ -57,11 +58,15 @@ public class NodeServiceImpl extends NodeServiceImplBase {
     public synchronized void tokenDeliveryData(TokenData tokenData,
                                                StreamObserver<Empty> responseObserver) {
 
+        System.out.println("Test 1");
+
         Empty response = Empty.newBuilder().build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
-        //System.out.println("Arrivato token a nodo " + node.getId());
+        System.out.println("Test 2");
+
+        System.out.println("Arrivato token a nodo " + node.getId());
 
 
         ManagedChannel channel = ManagedChannelBuilder
@@ -77,30 +82,20 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
 
         // CONTROLLA SE E' PRESENTE L'ID IN READY LIST
-        boolean insideReady = false;
-        for (Ready item : tokenData.getReadyList()) {
-            if (item.getId() == node.getId()) {
-                insideReady = true;
-            }
-        }
-
+        boolean insideReady = isInsideReady(tokenData);
 
         // CONTROLLA SE E' PRESENTE L'ID IN WAITING LIST
-        boolean insideWaiting = false;
-        for (Waiting item : tokenData.getWaitingList()) {
-            if (item.getId() == node.getId()) {
-                insideWaiting = true;
-            }
-        }
+        boolean insideWaiting = isInsideWaiting(tokenData);
 
-
+        
+        /*
         // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
         try {
-            Thread.sleep(2000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        */
 
 
         // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
@@ -112,14 +107,16 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
             newTokenData = TokenData.newBuilder().build();
             stub.tokenDeliveryData(newTokenData);
+            channel.shutdown();
         } else if (LocalAvgList.getInstance().getSize() >= 1) {
 
-            //System.out.println("Ok la mia statistica è pronta!");
+            // ESEGUITO QUANDO LA STATISTICA E' PRONTA
             if (insideReady) {
-                //System.out.println("1");
+                System.out.println("1");
                 stub.tokenDeliveryData(tokenData);
+                channel.shutdown();
             } else if (insideWaiting) {
-                //System.out.println("2");
+                System.out.println("2");
                 newTokenData = tokenData.toBuilder()
                         .addReady(TokenData.Ready.newBuilder()
                                 .setId(node.getId())
@@ -136,36 +133,67 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                                 .setId(node.getId()))
                         .build();
                 stub.tokenDeliveryData(newTokenData);
+                channel.shutdown();
             }
 
         } else {
 
-            //System.out.println("La mia statistica non è pronta!");
+            // ESEGUITO QUANDO LA STATISTICA NON E' PRONTA
             if (insideReady || insideWaiting) {
-                //System.out.println("3");
+                System.out.println("3");
+
                 stub.tokenDeliveryData(tokenData);
                 channel.shutdown();
+                System.out.println("QUI NON ARRIVO");
             } else if (!insideWaiting) {
-                //System.out.println("4");
+                System.out.println("4");
                 newTokenData = tokenData.toBuilder()
                         .addWaiting(TokenData.Waiting.newBuilder()
                                 .setId(node.getId()).build())
                         .build();
                 stub.tokenDeliveryData(newTokenData);
+                channel.shutdown();
             }
 
         }
 
+
+
+
         /*
-        System.out.println("Ready list:\n" + newTokenData.getReadyList());
-        System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
-        System.out.println("Mando token a " + TargetNode.getInstance().getTargetId());
+        // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         */
 
-        channel.shutdown();
+
+        System.out.println("Ready list:\n" + newTokenData.getReadyList());
+        System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
+        System.out.println("Invio token a " + TargetNode.getInstance().getTargetId());
+
 
     }
 
+    public boolean isInsideReady(TokenData tokenData) {
+        for (Ready item : tokenData.getReadyList()) {
+            if (item.getId() == node.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInsideWaiting(TokenData tokenData) {
+        for (Waiting item : tokenData.getWaitingList()) {
+            if (item.getId() == node.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public double computeFinalAvg(TokenData tokenData) {
 
@@ -191,7 +219,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        String jsonStr = "{\"value\":" + avg + ",\"timestamp\":\"" + timestamp +"\"}";
+        String jsonStr = "{\"value\":" + avg + ",\"timestamp\":\"" + timestamp + "\"}";
 
 
         response = webResource.accept("application/json").type("application/json")

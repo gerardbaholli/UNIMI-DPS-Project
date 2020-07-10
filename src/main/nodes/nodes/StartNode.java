@@ -1,5 +1,6 @@
 package nodes;
 
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,8 +47,14 @@ public class StartNode {
         ServerGRPC serverGRPC = new ServerGRPC(node);
         serverGRPC.start();
 
-        // join the network
+        // read from the node list and select a target
         join(NodeList.getInstance().getNodeList(), node);
+
+
+        // create the client GRPC
+        ClientGRPC clientGRPC = new ClientGRPC(node);
+        clientGRPC.start();
+
 
 
 
@@ -57,7 +64,6 @@ public class StartNode {
         System.out.println("Node running in the network");
 
         Queue buffer = new Queue();
-        double avg = 0;
 
         // create thread simulator
         PM10Simulator pm10Simulator = new PM10Simulator(buffer);
@@ -78,14 +84,15 @@ public class StartNode {
         System.out.println("Hit return to stop...");
         System.in.read();
         // TODO: STOP NODE --------v
+
+        // this thread add the token delete to the network
         StopNodeGRPC stopNodeGRPC = new StopNodeGRPC(node);
         stopNodeGRPC.start();
 
-
+        // DELETE call to the gateway
         System.out.println(remove(node));
 
         // TODO: shutdown the channel of the gRPC Server
-        // TODO: post delete call to the gateway
         pm10Simulator.stopMeGently();
         System.out.println("Node stopped");
 
@@ -219,10 +226,6 @@ public class StartNode {
         }
 
         System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
-
-        // create the client GRPC
-        ClientGRPC clientGRPC = new ClientGRPC(node);
-        clientGRPC.start();
     }
 
 }

@@ -1,6 +1,5 @@
 package services;
 
-import beans.Count;
 import beans.Stat;
 import beans.Stats;
 
@@ -33,22 +32,18 @@ public class StatsService {
     }
 
 
-    // TODO: getLastNStats(int n){} FIX!!!
-    @Path("lastNStats")
-    @POST
+    @Path("lastStats/{number}")
+    @GET
     @Produces({"application/json", "application/xml"})
-    public Response getLastNStats(Count number){
-        int n = number.getN();
+    public Response getLastNStats(@PathParam("number") int n){
         return Response.ok(Stats.getInstance().getLastNStats(n)).build();
     }
 
 
-    // TODO: getStanDevAvg(int n){} FIX!!!
-    @Path("standardDevAvg")
-    @POST
+    @Path("standardDevAvg/{number}")
+    @GET
     @Produces({"application/json", "application/xml"})
-    public Response getStanDevAvg(Count number){
-        int n = number.getN();
+    public Response getStanDevAvg(@PathParam("number") int n){
         return Response.ok(Stats.getInstance().getStanDevAvg(n)).build();
     }
 
