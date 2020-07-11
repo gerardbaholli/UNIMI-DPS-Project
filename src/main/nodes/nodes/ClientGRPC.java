@@ -28,6 +28,7 @@ public class ClientGRPC extends Thread {
                 TargetNode.getInstance().getTargetId());
 
 
+        System.out.println("Dimensione lista nodi " + NodeList.getInstance().getSize());
         // add token if there are only two nodes
         if (NodeList.getInstance().getSize()==2){
             addToken();

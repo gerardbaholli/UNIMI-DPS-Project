@@ -34,7 +34,7 @@ public class StartNode {
         NodeList.getInstance().setNodeList(start(node));
 
         // TODO: eliminare, stampa lista nodi ricevuta dal gateway
-        System.out.println("STAMPA QUI");
+        System.out.println("LISTA NODI DEL GATEWAY:");
         for (Node value : NodeList.getInstance().getNodeList())
             System.out.println(value.getId());
 
@@ -77,20 +77,24 @@ public class StartNode {
 
 
 
-
-
         // ------------ STOPPING NODE ------------ */
 
         System.out.println("Hit return to stop...");
         System.in.read();
         // TODO: STOP NODE --------v
 
+        NodeStatus.getInstance().setDelete(true);
+
+        // TODO: decommentare
+        /*
         // this thread add the token delete to the network
         StopNodeGRPC stopNodeGRPC = new StopNodeGRPC(node);
         stopNodeGRPC.start();
+        */
 
         // DELETE call to the gateway
-        System.out.println(remove(node));
+        //System.out.println(remove(node));
+
 
         // TODO: shutdown the channel of the gRPC Server
         pm10Simulator.stopMeGently();

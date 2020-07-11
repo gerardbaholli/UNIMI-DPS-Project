@@ -25,27 +25,27 @@ public class TargetNode {
         return instance;
     }
 
-    public int getTargetId() {
+    public synchronized int getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(int targetId) {
+    public synchronized void setTargetId(int targetId) {
         this.targetId = targetId;
     }
 
-    public String getTargetIpAddress() {
+    public synchronized String getTargetIpAddress() {
         return targetIpAddress;
     }
 
-    public void setTargetIpAddress(String targetIpAddress) {
+    public synchronized void setTargetIpAddress(String targetIpAddress) {
         this.targetIpAddress = targetIpAddress;
     }
 
-    public int getTargetPort() {
+    public synchronized int getTargetPort() {
         return targetPort;
     }
 
-    public void setTargetPort(int targetPort) {
+    public synchronized void setTargetPort(int targetPort) {
         this.targetPort = targetPort;
     }
 }

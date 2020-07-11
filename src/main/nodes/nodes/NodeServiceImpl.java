@@ -7,15 +7,17 @@ import com.example.token.NodeServiceOuterClass.TokenData;
 import com.example.token.NodeServiceOuterClass.TokenDelete;
 import com.example.token.NodeServiceOuterClass.TokenData.Ready;
 import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
+import com.example.token.NodeServiceOuterClass.TokenData.Delete;
 import com.example.token.NodeServiceOuterClass.Empty;
 import com.example.token.NodeServiceOuterClass.JoinRequest;
 import com.example.token.NodeServiceOuterClass.JoinResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
 import java.sql.Timestamp;
@@ -58,126 +60,211 @@ public class NodeServiceImpl extends NodeServiceImplBase {
     public synchronized void tokenDeliveryData(TokenData tokenData,
                                                StreamObserver<Empty> responseObserver) {
 
-        System.out.println("Test 1");
 
         Empty response = Empty.newBuilder().build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
-        System.out.println("Test 2");
-
         System.out.println("Arrivato token a nodo " + node.getId());
+        System.out.println("Da cancellare? " + NodeStatus.getInstance().isDelete());
 
 
-        ManagedChannel channel = ManagedChannelBuilder
-                .forTarget(
-                        TargetNode.getInstance().getTargetIpAddress() + ":" +
-                                TargetNode.getInstance().getTargetPort())
-                .usePlaintext(true).build();
-
-        // creating a blocking stub on the channel
-        NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
         TokenData newTokenData = tokenData.toBuilder().build();
+        boolean wantToEsc = NodeStatus.getInstance().isDelete();
 
 
-        // CONTROLLA SE E' PRESENTE L'ID IN READY LIST
-        boolean insideReady = isInsideReady(tokenData);
+        // SE VUOLE USCIRE INSERISCE NEL TOKEN CHE VUOLE USCIRE
+        if (wantToEsc) {
+            newTokenData = insertDeleteOnToken(newTokenData);
+            newTokenData = deleteFromReadyWaitingListOnToken(newTokenData);
+            System.out.println("INSERTED ON DELETE LIST");
 
-        // CONTROLLA SE E' PRESENTE L'ID IN WAITING LIST
-        boolean insideWaiting = isInsideWaiting(tokenData);
+            // TODO: mi inserisco in delete, mi cancello da ready e waiting
+            //  invio al gateway la richiesta di uscita e mando avanti il
+            //  token e BASTA
 
-        
-        /*
-        // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
+            System.out.println("POST DELETE:");
+            System.out.println(postDeleteOnGateway(node));
 
 
-        // CONTROLLA SE IL TOKEN E' PIENO IN CASO POSITIVO MANDA AL GATEWAY
-        // SE NON E' PIENO INSERISCE IL VALORE NELLA LISTA CORRISPONDENTE AL SUO STATO
-        if ((tokenData.getReadyCount() == tokenData.getWaitingCount()) && insideReady) {
-            double finalAvg = computeFinalAvg(tokenData);
-            // INVIA STATISTICA AL GATEWAY
-            System.out.println(sendToGateway(finalAvg));
-            System.out.println("SENT TOKEN TO THE GATEWAY " + finalAvg);
-            newTokenData = TokenData.newBuilder().build();
+            /* ------------------ CREATE CHANNEL -------------------- */
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forTarget(
+                            TargetNode.getInstance().getTargetIpAddress() + ":" +
+                                    TargetNode.getInstance().getTargetPort())
+                    .usePlaintext(true).build();
+
+            NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
+
+
             stub.tokenDeliveryData(newTokenData);
             channel.shutdown();
-        } else if (LocalAvgList.getInstance().getSize() >= 1) {
-
-            // ESEGUITO QUANDO LA STATISTICA E' PRONTA
-            if (insideReady) {
-                System.out.println("1");
-                stub.tokenDeliveryData(tokenData);
-                channel.shutdown();
-            } else if (insideWaiting) {
-                System.out.println("2");
-                newTokenData = tokenData.toBuilder()
-                        .addReady(TokenData.Ready.newBuilder()
-                                .setId(node.getId())
-                                .setValue(LocalAvgList.getInstance().getLastValue()))
-                        .build();
-                stub.tokenDeliveryData(newTokenData);
-                channel.shutdown();
-            } else if (!insideReady && !insideWaiting) {
-                newTokenData = tokenData.toBuilder()
-                        .addReady(TokenData.Ready.newBuilder()
-                                .setId(node.getId())
-                                .setValue(LocalAvgList.getInstance().getLastValue()))
-                        .addWaiting(TokenData.Waiting.newBuilder()
-                                .setId(node.getId()))
-                        .build();
-                stub.tokenDeliveryData(newTokenData);
-                channel.shutdown();
-            }
-
         } else {
 
-            // ESEGUITO QUANDO LA STATISTICA NON E' PRONTA
-            if (insideReady || insideWaiting) {
-                System.out.println("3");
 
-                stub.tokenDeliveryData(tokenData);
-                channel.shutdown();
-                System.out.println("QUI NON ARRIVO");
-            } else if (!insideWaiting) {
-                System.out.println("4");
-                newTokenData = tokenData.toBuilder()
-                        .addWaiting(TokenData.Waiting.newBuilder()
-                                .setId(node.getId()).build())
-                        .build();
+            /* ------------- CHECK IF NODE IS INSIDE READY AND WAITING ------------- */
+            boolean insideReady = isInsideReady(newTokenData);
+            boolean insideWaiting = isInsideWaiting(newTokenData);
+
+
+            /* ------------ CHECK IF TARGET IS TO BE DELETED ----------- */
+            if (isTargetInsideDelete(newTokenData)) {
+                newTokenData = updateTargetFromDeleteList(newTokenData);
+            }
+
+
+            /* ------------------ CREATE CHANNEL -------------------- */
+            ManagedChannel channel = ManagedChannelBuilder
+                    .forTarget(
+                            TargetNode.getInstance().getTargetIpAddress() + ":" +
+                                    TargetNode.getInstance().getTargetPort())
+                    .usePlaintext(true).build();
+
+            NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
+
+
+
+            /* ------------------ CHECK TOKEN CONTENT ---------------- */
+
+            // check if token is full of stats and ready to send
+            if (isTokenFullAndReadyToSend(newTokenData)) {
+                double finalAvg = computeFinalAvg(newTokenData);
+
+                // post the stats to the gateway
+                sendStatsToGateway(finalAvg);
+                System.out.println("SENT STATS TO THE GATEWAY " + finalAvg);
+
+                // clean the ready and waiting list from the token
+                newTokenData = cleanReadyListFromToken(newTokenData);
+                newTokenData = cleanWaitingListFromToken(newTokenData);
+
                 stub.tokenDeliveryData(newTokenData);
                 channel.shutdown();
+
+            } else if (isStatReady()) {
+
+                // stats is READY
+                if (insideReady) {
+                    System.out.println("1");
+                    stub.tokenDeliveryData(newTokenData);
+                    channel.shutdown();
+                } else if (insideWaiting) {
+                    System.out.println("2");
+                    newTokenData = newTokenData.toBuilder()
+                            .addReady(TokenData.Ready.newBuilder()
+                                    .setId(node.getId())
+                                    .setValue(LocalAvgList.getInstance().getLastValue()))
+                            .build();
+                    stub.tokenDeliveryData(newTokenData);
+                    channel.shutdown();
+                } else if (!insideReady && !insideWaiting) {
+                    newTokenData = newTokenData.toBuilder()
+                            .addReady(TokenData.Ready.newBuilder()
+                                    .setId(node.getId())
+                                    .setValue(LocalAvgList.getInstance().getLastValue()))
+                            .addWaiting(TokenData.Waiting.newBuilder()
+                                    .setId(node.getId()))
+                            .build();
+                    stub.tokenDeliveryData(newTokenData);
+                    channel.shutdown();
+                }
+
+            } else {
+
+                // stats IS NOT READY
+                if (insideReady || insideWaiting) {
+                    System.out.println("3");
+
+                    stub.tokenDeliveryData(newTokenData);
+                    channel.shutdown();
+                    System.out.println("QUI NON ARRIVO");
+                } else if (!insideWaiting) {
+                    System.out.println("4");
+                    newTokenData = newTokenData.toBuilder()
+                            .addWaiting(TokenData.Waiting.newBuilder()
+                                    .setId(node.getId()).build())
+                            .build();
+                    stub.tokenDeliveryData(newTokenData);
+                    channel.shutdown();
+                }
+
             }
+
+            System.out.println("Invio token a " + TargetNode.getInstance().getTargetId());
+            System.out.println("Ready list:\n" + newTokenData.getReadyList());
+            System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
+            System.out.println("Delete list:\n" + newTokenData.getDeleteList());
 
         }
 
 
-
-
-        /*
-        // SLEEP DA RIMUOVERE, MESSA PER RALLENTARE UN PO'
+        /* SLEEP
         try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         */
-
-
-        System.out.println("Ready list:\n" + newTokenData.getReadyList());
-        System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
-        System.out.println("Invio token a " + TargetNode.getInstance().getTargetId());
-
 
     }
 
+    // return true if ready list equals waiting list and node is in ready list
+    public boolean isTokenFullAndReadyToSend(TokenData tokenData) {
+        return (tokenData.getReadyCount() == tokenData.getWaitingCount()) && isInsideReady(tokenData);
+    }
 
+    // return true if stat is ready
+    public boolean isStatReady() {
+        return LocalAvgList.getInstance().getSize() >= 1;
+    }
+
+    // insert node id and target on token
+    public TokenData insertDeleteOnToken(TokenData tokenData) {
+
+        tokenData = tokenData.toBuilder()
+                .addDelete(TokenData.Delete.newBuilder()
+                        .setId(node.getId())
+                        .setTargetId(TargetNode.getInstance().getTargetId())
+                        .setTargetIpAddress(TargetNode.getInstance().getTargetIpAddress())
+                        .setTargetPort(TargetNode.getInstance().getTargetPort()))
+                .build();
+
+        return tokenData;
+    }
+
+    public TokenData deleteFromReadyWaitingListOnToken(TokenData tokenData) {
+        TokenData temp = TokenData.newBuilder().build();
+        // DELETE THE NODE FROM READY LIST
+        for (Ready item : tokenData.getReadyList()) {
+            if (item.getId() != node.getId()) {
+                temp = temp.toBuilder().addReady(TokenData.Ready.newBuilder()
+                        .setId(item.getId())
+                        .setValue(item.getValue()))
+                        .build();
+            }
+        }
+        // DELETE THE NODE FROM WAITING LIST
+        for (Waiting item : tokenData.getWaitingList()) {
+            if (item.getId() != node.getId()) {
+                temp = temp.toBuilder().addWaiting(TokenData.Waiting.newBuilder()
+                        .setId(item.getId()))
+                        .build();
+            }
+        }
+        // SET THE SAME DELETE LIST
+        for (Delete item : tokenData.getDeleteList()) {
+            temp = temp.toBuilder().addDelete(TokenData.Delete.newBuilder()
+                    .setId(item.getId())
+                    .setTargetId(item.getTargetId())
+                    .setTargetIpAddress(item.getTargetIpAddress())
+                    .setTargetPort(item.getTargetPort()))
+                    .build();
+        }
+        return temp;
+    }
+
+    // return true if the node is inside ready list on the token
     public boolean isInsideReady(TokenData tokenData) {
         for (Ready item : tokenData.getReadyList()) {
             if (item.getId() == node.getId()) {
@@ -187,6 +274,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         return false;
     }
 
+    // return true if the node is inside waiting list on the token
     public boolean isInsideWaiting(TokenData tokenData) {
         for (Waiting item : tokenData.getWaitingList()) {
             if (item.getId() == node.getId()) {
@@ -196,6 +284,113 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         return false;
     }
 
+    // return true if the target is inside delete list on the token
+    public boolean isTargetInsideDelete(TokenData tokenData) {
+        for (Delete item : tokenData.getDeleteList()) {
+            if (item.getId() == TargetNode.getInstance().getTargetId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // set the new target based on delete list so, if your target is inside
+    // the list update it until there is no target inside this list
+    public TokenData updateTargetFromDeleteList(TokenData tokenData) {
+        int tempTargetId, tempTargetPort;
+        String tempTargetIpAddress;
+        while (isTargetInsideDelete(tokenData)) {
+            for (Delete item : tokenData.getDeleteList()) {
+                if (item.getId() == TargetNode.getInstance().getTargetId()) {
+                    tempTargetId = item.getTargetId();
+                    tempTargetIpAddress = item.getTargetIpAddress();
+                    tempTargetPort = item.getTargetPort();
+                    System.out.println(tempTargetId);
+                    tokenData = deleteTargetFromToken(tokenData);
+                    TargetNode.getInstance().setTargetId(tempTargetId);
+                    TargetNode.getInstance().setTargetIpAddress(tempTargetIpAddress);
+                    TargetNode.getInstance().setTargetPort(tempTargetPort);
+                }
+            }
+        }
+        return tokenData;
+    }
+
+    // delete the target from the token if it is inside
+    public TokenData deleteTargetFromToken(TokenData tokenData) {
+        TokenData temp = TokenData.newBuilder().build();
+        // SET THE SAME READY LIST
+        for (Ready item : tokenData.getReadyList()) {
+            temp = temp.toBuilder().addReady(TokenData.Ready.newBuilder()
+                    .setId(item.getId())
+                    .setValue(item.getValue()))
+                    .build();
+        }
+        // SET THE SAME WAITING LIST
+        for (Waiting item : tokenData.getWaitingList()) {
+            temp = temp.toBuilder().addWaiting(TokenData.Waiting.newBuilder()
+                    .setId(item.getId()))
+                    .build();
+        }
+        // SET THE DELETE LIST WITHOUT THE ONE UPDATED
+        for (Delete item : tokenData.getDeleteList()) {
+            if (!isTargetInsideDelete(tokenData)) {
+                temp = temp.toBuilder().addDelete(TokenData.Delete.newBuilder()
+                        .setId(item.getId())
+                        .setTargetId(item.getTargetId())
+                        .setTargetIpAddress(item.getTargetIpAddress())
+                        .setTargetPort(item.getTargetPort()))
+                        .build();
+            }
+        }
+
+        return temp;
+    }
+
+    // remove all the ready list
+    public TokenData cleanReadyListFromToken(TokenData tokenData) {
+        TokenData temp = TokenData.newBuilder().build();
+        // SET THE SAME WAITING LIST
+        for (Waiting item : tokenData.getWaitingList()) {
+            temp = temp.toBuilder().addWaiting(TokenData.Waiting.newBuilder()
+                    .setId(item.getId()))
+                    .build();
+        }
+        // SET THE SAME DELETE LIST
+        for (Delete item : tokenData.getDeleteList()) {
+            temp = temp.toBuilder().addDelete(TokenData.Delete.newBuilder()
+                    .setId(item.getId())
+                    .setTargetId(item.getTargetId())
+                    .setTargetIpAddress(item.getTargetIpAddress())
+                    .setTargetPort(item.getTargetPort()))
+                    .build();
+        }
+        return temp;
+    }
+
+    // remove all the waiting list
+    public TokenData cleanWaitingListFromToken(TokenData tokenData) {
+        TokenData temp = TokenData.newBuilder().build();
+        // SET THE SAME READY LIST
+        for (Ready item : tokenData.getReadyList()) {
+            temp = temp.toBuilder().addReady(TokenData.Ready.newBuilder()
+                    .setId(item.getId())
+                    .setValue(item.getValue()))
+                    .build();
+        }
+        // SET THE SAME DELETE LIST
+        for (Delete item : tokenData.getDeleteList()) {
+            temp = temp.toBuilder().addDelete(TokenData.Delete.newBuilder()
+                    .setId(item.getId())
+                    .setTargetId(item.getTargetId())
+                    .setTargetIpAddress(item.getTargetIpAddress())
+                    .setTargetPort(item.getTargetPort()))
+                    .build();
+        }
+        return temp;
+    }
+
+    // compute the avg of all the stats in ready list
     public double computeFinalAvg(TokenData tokenData) {
 
         double result = 0.0;
@@ -210,7 +405,8 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         return result / count;
     }
 
-    public String sendToGateway(double avg) {
+    // send stats to the gateway
+    public String sendStatsToGateway(double avg) {
         Client client = Client.create();
 
         WebResource webResource = client
@@ -236,6 +432,46 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
         return response.getEntity(String.class);
 
+    }
+
+    // send delete request to the gateway
+    public String postDeleteOnGateway(Node node) {
+        Client client = Client.create();
+
+        WebResource webResource = client
+                .resource("http://localhost:1200/nodes/remove");
+
+        ClientResponse response;
+
+        String jsonStr;
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        // get node object as a json string
+        try {
+            jsonStr = mapper.writeValueAsString(node);
+
+            System.out.println(jsonStr);
+
+            response = webResource.accept("application/json").type("application/json")
+                    .delete(ClientResponse.class, jsonStr);
+
+            System.out.println(response.getStatus());
+
+            if (response.getStatus() == 409) {
+                return "error409";
+            }
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed - HTTP error code : "
+                        + response.getStatus());
+            }
+            return response.getEntity(String.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 
