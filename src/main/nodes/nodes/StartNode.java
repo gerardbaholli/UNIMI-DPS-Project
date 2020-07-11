@@ -81,25 +81,16 @@ public class StartNode {
 
         System.out.println("Hit return to stop...");
         System.in.read();
-        // TODO: STOP NODE --------v
 
+        // set node status to wantToEsc = true
         NodeStatus.getInstance().setDelete(true);
 
-        // TODO: decommentare
-        /*
-        // this thread add the token delete to the network
-        StopNodeGRPC stopNodeGRPC = new StopNodeGRPC(node);
-        stopNodeGRPC.start();
-        */
-
-        // DELETE call to the gateway
+        // TODO: remove
         //System.out.println(remove(node));
-
 
         // TODO: shutdown the channel of the gRPC Server
         pm10Simulator.stopMeGently();
         System.out.println("Node stopped");
-
 
 
     }
@@ -170,6 +161,33 @@ public class StartNode {
         return null;
     }
 
+    public static void join(List<Node> nodeList, Node node){
+        Random rand = new Random();
+
+        // if it is not the first node, he randomly puts one as target
+        if (nodeList.size() > 1) {
+            Node randomNode;
+
+            // extract a random node to ask for the join
+            do {
+                randomNode = nodeList.get(rand.nextInt(nodeList.size()));
+            } while (randomNode.getId() == node.getId());
+
+            TargetNode.getInstance().setTargetId(randomNode.getId());
+            TargetNode.getInstance().setTargetIpAddress(randomNode.getIpAddress());
+            TargetNode.getInstance().setTargetPort(randomNode.getPort());
+
+        } else {
+            // if it is the first node, he put himself as target node
+            TargetNode.getInstance().setTargetId(node.getId());
+            TargetNode.getInstance().setTargetIpAddress(node.getIpAddress());
+            TargetNode.getInstance().setTargetPort(node.getPort());
+        }
+
+        System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
+    }
+
+    // TODO: remove this method
     public static String remove(Node node){
 
         Client client = Client.create();
@@ -204,32 +222,6 @@ public class StartNode {
         }
 
         return null;
-    }
-
-    public static void join(List<Node> nodeList, Node node){
-        Random rand = new Random();
-
-        // if it is not the first node, he randomly puts one as target
-        if (nodeList.size() > 1) {
-            Node randomNode;
-
-            // extract a random node to ask for the join
-            do {
-                randomNode = nodeList.get(rand.nextInt(nodeList.size()));
-            } while (randomNode.getId() == node.getId());
-
-            TargetNode.getInstance().setTargetId(randomNode.getId());
-            TargetNode.getInstance().setTargetIpAddress(randomNode.getIpAddress());
-            TargetNode.getInstance().setTargetPort(randomNode.getPort());
-
-        } else {
-            // if it is the first node, he put himself as target node
-            TargetNode.getInstance().setTargetId(node.getId());
-            TargetNode.getInstance().setTargetIpAddress(node.getIpAddress());
-            TargetNode.getInstance().setTargetPort(node.getPort());
-        }
-
-        System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
     }
 
 }

@@ -2,9 +2,7 @@ package nodes;
 
 import com.example.token.NodeServiceGrpc;
 import com.example.token.NodeServiceGrpc.NodeServiceImplBase;
-import com.example.token.NodeServiceOuterClass;
 import com.example.token.NodeServiceOuterClass.TokenData;
-import com.example.token.NodeServiceOuterClass.TokenDelete;
 import com.example.token.NodeServiceOuterClass.TokenData.Ready;
 import com.example.token.NodeServiceOuterClass.TokenData.Waiting;
 import com.example.token.NodeServiceOuterClass.TokenData.Delete;
@@ -78,11 +76,7 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         if (wantToEsc) {
             newTokenData = insertDeleteOnToken(newTokenData);
             newTokenData = deleteFromReadyWaitingListOnToken(newTokenData);
-            System.out.println("INSERTED ON DELETE LIST");
-
-            // TODO: mi inserisco in delete, mi cancello da ready e waiting
-            //  invio al gateway la richiesta di uscita e mando avanti il
-            //  token e BASTA
+            System.out.println("INSERT NODE " + node.getId() + " ON DELETE LIST");
 
             System.out.println("POST DELETE:");
             System.out.println(postDeleteOnGateway(node));
@@ -94,7 +88,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                             TargetNode.getInstance().getTargetIpAddress() + ":" +
                                     TargetNode.getInstance().getTargetPort())
                     .usePlaintext(true).build();
-
             NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
 
@@ -120,7 +113,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                             TargetNode.getInstance().getTargetIpAddress() + ":" +
                                     TargetNode.getInstance().getTargetPort())
                     .usePlaintext(true).build();
-
             NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
 
 
@@ -199,13 +191,13 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
 
 
-        /* SLEEP
+        ///* SLEEP
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        */
+        //*/
 
     }
 
@@ -472,64 +464,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
         }
 
         return null;
-    }
-
-
-    @Override
-    public synchronized void tokenDeliveryDelete(NodeServiceOuterClass.TokenDelete tokenDelete,
-                                                 StreamObserver<Empty> responseObserver) {
-
-        Empty response = Empty.newBuilder().build();
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
-
-        System.out.println("Arrivato TOKEN DELETE a nodo " + node.getId());
-
-
-        // CONTROLLA SE IL TOKEN E' ARRIVATO AL CREATORE
-        boolean isCreator = false;
-        if (node.getId() == tokenDelete.getId()) {
-            isCreator = true;
-            System.out.println("Appena arrivato al creatore!");
-        }
-
-
-        if (!isCreator) {
-
-            ManagedChannel channel = ManagedChannelBuilder
-                    .forTarget(
-                            TargetNode.getInstance().getTargetIpAddress() + ":" +
-                                    TargetNode.getInstance().getTargetPort())
-                    .usePlaintext(true).build();
-
-            // creating a blocking stub on the channel
-            NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
-
-            TokenDelete newTokenDelete = tokenDelete.toBuilder().build();
-
-            // CONTROLLA SE IL TARGET E' IL CREATORE DEL TOKEN
-            if (TargetNode.getInstance().getTargetId() == tokenDelete.getId()) {
-
-                System.out.println("Il mio target è il creatore!");
-                TargetNode.getInstance().setTargetId(tokenDelete.getTargetId());
-                TargetNode.getInstance().setTargetIpAddress(tokenDelete.getTargetIpAddress());
-                TargetNode.getInstance().setTargetPort(tokenDelete.getTargetPort());
-                System.out.println("Il mio nuovo target è: " + TargetNode.getInstance().getTargetId());
-
-            }
-
-
-            // send the token to the next node
-            stub.tokenDeliveryDelete(newTokenDelete);
-
-            channel.shutdown();
-
-
-        } else if (isCreator) {
-            System.out.println("Ok sono uscito!");
-        }
-
-
     }
 
 

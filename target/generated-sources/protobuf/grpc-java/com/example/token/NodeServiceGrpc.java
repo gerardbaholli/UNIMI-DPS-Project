@@ -53,19 +53,6 @@ public final class NodeServiceGrpc {
               com.example.token.NodeServiceOuterClass.Empty.getDefaultInstance()))
           .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("tokenDeliveryData"))
           .build();
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.example.token.NodeServiceOuterClass.TokenDelete,
-      com.example.token.NodeServiceOuterClass.Empty> METHOD_TOKEN_DELIVERY_DELETE =
-      io.grpc.MethodDescriptor.<com.example.token.NodeServiceOuterClass.TokenDelete, com.example.token.NodeServiceOuterClass.Empty>newBuilder()
-          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-          .setFullMethodName(generateFullMethodName(
-              "com.example.token.NodeService", "tokenDeliveryDelete"))
-          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.example.token.NodeServiceOuterClass.TokenDelete.getDefaultInstance()))
-          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.example.token.NodeServiceOuterClass.Empty.getDefaultInstance()))
-          .setSchemaDescriptor(new NodeServiceMethodDescriptorSupplier("tokenDeliveryDelete"))
-          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -108,13 +95,6 @@ public final class NodeServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_TOKEN_DELIVERY_DATA, responseObserver);
     }
 
-    /**
-     */
-    public void tokenDeliveryDelete(com.example.token.NodeServiceOuterClass.TokenDelete request,
-        io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(METHOD_TOKEN_DELIVERY_DELETE, responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -131,13 +111,6 @@ public final class NodeServiceGrpc {
                 com.example.token.NodeServiceOuterClass.TokenData,
                 com.example.token.NodeServiceOuterClass.Empty>(
                   this, METHODID_TOKEN_DELIVERY_DATA)))
-          .addMethod(
-            METHOD_TOKEN_DELIVERY_DELETE,
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.example.token.NodeServiceOuterClass.TokenDelete,
-                com.example.token.NodeServiceOuterClass.Empty>(
-                  this, METHODID_TOKEN_DELIVERY_DELETE)))
           .build();
     }
   }
@@ -175,14 +148,6 @@ public final class NodeServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_TOKEN_DELIVERY_DATA, getCallOptions()), request, responseObserver);
     }
-
-    /**
-     */
-    public void tokenDeliveryDelete(com.example.token.NodeServiceOuterClass.TokenDelete request,
-        io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(METHOD_TOKEN_DELIVERY_DELETE, getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -215,13 +180,6 @@ public final class NodeServiceGrpc {
     public com.example.token.NodeServiceOuterClass.Empty tokenDeliveryData(com.example.token.NodeServiceOuterClass.TokenData request) {
       return blockingUnaryCall(
           getChannel(), METHOD_TOKEN_DELIVERY_DATA, getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.example.token.NodeServiceOuterClass.Empty tokenDeliveryDelete(com.example.token.NodeServiceOuterClass.TokenDelete request) {
-      return blockingUnaryCall(
-          getChannel(), METHOD_TOKEN_DELIVERY_DELETE, getCallOptions(), request);
     }
   }
 
@@ -258,19 +216,10 @@ public final class NodeServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_TOKEN_DELIVERY_DATA, getCallOptions()), request);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.example.token.NodeServiceOuterClass.Empty> tokenDeliveryDelete(
-        com.example.token.NodeServiceOuterClass.TokenDelete request) {
-      return futureUnaryCall(
-          getChannel().newCall(METHOD_TOKEN_DELIVERY_DELETE, getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_JOIN_NETWORK = 0;
   private static final int METHODID_TOKEN_DELIVERY_DATA = 1;
-  private static final int METHODID_TOKEN_DELIVERY_DELETE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -295,10 +244,6 @@ public final class NodeServiceGrpc {
           break;
         case METHODID_TOKEN_DELIVERY_DATA:
           serviceImpl.tokenDeliveryData((com.example.token.NodeServiceOuterClass.TokenData) request,
-              (io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty>) responseObserver);
-          break;
-        case METHODID_TOKEN_DELIVERY_DELETE:
-          serviceImpl.tokenDeliveryDelete((com.example.token.NodeServiceOuterClass.TokenDelete) request,
               (io.grpc.stub.StreamObserver<com.example.token.NodeServiceOuterClass.Empty>) responseObserver);
           break;
         default:
@@ -364,7 +309,6 @@ public final class NodeServiceGrpc {
               .setSchemaDescriptor(new NodeServiceFileDescriptorSupplier())
               .addMethod(METHOD_JOIN_NETWORK)
               .addMethod(METHOD_TOKEN_DELIVERY_DATA)
-              .addMethod(METHOD_TOKEN_DELIVERY_DELETE)
               .build();
         }
       }
