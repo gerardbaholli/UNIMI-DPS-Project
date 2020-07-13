@@ -1,12 +1,16 @@
 package nodes;
 
 
+import com.example.token.NodeServiceGrpc;
+import com.example.token.NodeServiceOuterClass;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import simulator.PM10Simulator;
 
 import java.io.IOException;
@@ -21,7 +25,7 @@ public class StartNode {
 
         int idNode;
         String IP = "localhost";
-        int PORT = rand.nextInt((8090 - 8000) + 1) + 8000;
+        int PORT = rand.nextInt((9000 - 6000) + 1) + 6000;
 
         Node node = new Node(IP, PORT);
 
@@ -33,11 +37,6 @@ public class StartNode {
         // post call, sends to the gateway the intention to join the network
         NodeList.getInstance().setNodeList(start(node));
 
-        // TODO: eliminare, stampa lista nodi ricevuta dal gateway
-        System.out.println("LISTA NODI DEL GATEWAY:");
-        for (Node value : NodeList.getInstance().getNodeList())
-            System.out.println(value.getId());
-
 
         // sets the id node given from the gateway
         idNode = node.getId();
@@ -47,21 +46,18 @@ public class StartNode {
         ServerGRPC serverGRPC = new ServerGRPC(node);
         serverGRPC.start();
 
+
+        /*
         // read from the node list and select a target
-        join(NodeList.getInstance().getNodeList(), node);
-
-
-        // create the client GRPC
-        ClientGRPC clientGRPC = new ClientGRPC(node);
-        clientGRPC.start();
-
+        selectTarget(NodeList.getInstance().getNodeList(), node);
+        */
 
 
 
 
         /* ------------ NODE RUNNING ------------ */
 
-        System.out.println("Node running in the network");
+        System.out.println("Node running");
 
         Queue buffer = new Queue();
 
@@ -75,6 +71,10 @@ public class StartNode {
 
 
 
+        // accept new join request from the incoming nodes
+        JoinListener joinListener = new JoinListener(node);
+        joinListener.start();
+
 
 
         // ------------ STOPPING NODE ------------ */
@@ -82,14 +82,18 @@ public class StartNode {
         System.out.println("Hit return to stop...");
         System.in.read();
 
-        // set node status to wantToEsc = true
-        NodeStatus.getInstance().setDelete(true);
 
-        // TODO: remove
-        //System.out.println(remove(node));
+        // set node status to wantToEsc = true
+        synchronized (NodeStatus.getInstance()) {
+            NodeStatus.getInstance().setDelete(true);
+            NodeStatus.getInstance().notifyAll();
+        }
+
 
         // TODO: shutdown the channel of the gRPC Server
         pm10Simulator.stopMeGently();
+
+
         System.out.println("Node stopped");
 
 
@@ -106,13 +110,13 @@ public class StartNode {
             String response;
             do {
                 // generate random id
-                node.setId(rand.nextInt((5 - 1) + 1) + 1);
+                node.setId(rand.nextInt((15 - 1) + 1) + 1);
 
                 // get node object as a json string
                 jsonStr = mapper.writeValueAsString(node);
 
                 // send post and receive response as string
-                response = addNode(jsonStr);
+                response = addNodeToGateway(jsonStr);
             } while (Objects.equals(response, "error409"));
             // System.out.println("Output from Server:\n" + response);
 
@@ -131,7 +135,7 @@ public class StartNode {
 
     }
 
-    public static String addNode(String input){
+    public static String addNodeToGateway(String input){
 
         Client client = Client.create();
 
@@ -161,7 +165,7 @@ public class StartNode {
         return null;
     }
 
-    public static void join(List<Node> nodeList, Node node){
+    public static void selectTarget(List<Node> nodeList, Node node){
         Random rand = new Random();
 
         // if it is not the first node, he randomly puts one as target
@@ -187,9 +191,8 @@ public class StartNode {
         System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
     }
 
-    // TODO: remove this method
-    public static String remove(Node node){
-
+    // send delete request to the gateway
+    public static String postDeleteOnGateway(Node node) {
         Client client = Client.create();
 
         WebResource webResource = client
@@ -205,8 +208,12 @@ public class StartNode {
         try {
             jsonStr = mapper.writeValueAsString(node);
 
+            System.out.println(jsonStr);
+
             response = webResource.accept("application/json").type("application/json")
                     .delete(ClientResponse.class, jsonStr);
+
+            System.out.println(response.getStatus());
 
             if (response.getStatus() == 409) {
                 return "error409";

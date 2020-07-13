@@ -8,31 +8,65 @@ import com.example.token.NodeServiceGrpc.NodeServiceBlockingStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
+import java.util.List;
+import java.util.Random;
 
-public class ClientGRPC extends Thread {
+
+public class JoinListener extends Thread {
 
     private Node node;
 
-    public ClientGRPC(Node node) {
+    public JoinListener(Node node) {
         this.node = node;
     }
 
     @Override
     public void run() {
-        System.out.println("Sending join request message to " +
-                TargetNode.getInstance().getTargetId());
 
-        joinNet();
+        selectTarget(NodeList.getInstance().getNodeList(), node);
+
+        // ask node to join the network if there is an error
+        // select another target and retries the call
+        boolean status = false;
+        do {
+            try {
+                joinNet();
+                status = true;
+            } catch (Throwable t) {
+                selectTarget(NodeList.getInstance().getNodeList(), node);
+            }
+        } while (!status);
 
         System.out.println("Node " + node.getId() + " linked to node " +
                 TargetNode.getInstance().getTargetId());
 
 
-        System.out.println("Dimensione lista nodi " + NodeList.getInstance().getSize());
+
+
         // add token if there are only two nodes
-        if (NodeList.getInstance().getSize()==2){
+        if (NodeList.getInstance().getSize() == 1) {
             addToken();
         }
+        /*
+        else if (NodeList.getInstance().getSize() == 1) {
+            try {
+                while (TargetNode.getInstance().getTargetId() == node.getId()) {
+                    synchronized (LocalAvgList.getInstance()) {
+                        while (LocalAvgList.getInstance().getSize() < 1) {
+                            LocalAvgList.getInstance().wait();
+                        }
+                        sendStatsToGateway(LocalAvgList.getInstance().getLastValue());
+                        System.out.println("SENT STATS TO THE GATEWAY");
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        */
+
 
     }
 
@@ -75,7 +109,7 @@ public class ClientGRPC extends Thread {
     }
 
     // add the token data on the network
-    public void addToken(){
+    public void addToken() {
 
         ManagedChannel channel = ManagedChannelBuilder
                 .forTarget(
@@ -94,6 +128,33 @@ public class ClientGRPC extends Thread {
 
         channel.shutdown();
     }
+
+    public static void selectTarget(List<Node> nodeList, Node node) {
+        Random rand = new Random();
+
+        // if it is not the first node, he randomly puts one as target
+        if (nodeList.size() > 1) {
+            Node randomNode;
+
+            // extract a random node to ask for the join
+            do {
+                randomNode = nodeList.get(rand.nextInt(nodeList.size()));
+            } while (randomNode.getId() == node.getId());
+
+            TargetNode.getInstance().setTargetId(randomNode.getId());
+            TargetNode.getInstance().setTargetIpAddress(randomNode.getIpAddress());
+            TargetNode.getInstance().setTargetPort(randomNode.getPort());
+
+        } else {
+            // if it is the first node, he put himself as target node
+            TargetNode.getInstance().setTargetId(node.getId());
+            TargetNode.getInstance().setTargetIpAddress(node.getIpAddress());
+            TargetNode.getInstance().setTargetPort(node.getPort());
+        }
+
+        System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
+    }
+
 
 
 }

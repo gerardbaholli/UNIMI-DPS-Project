@@ -13,11 +13,13 @@ public class Queue implements Buffer {
     public synchronized void addMeasurement(Measurement m) {
         buffer.add(m);
         notify();
+        /*
         System.out.println(
                 m.getId() + " " +
                         m.getType() + " " +
                         m.getValue() + " " +
                         m.getTimestamp());
+        */
     }
 
     public synchronized double slidingWindow() throws InterruptedException {

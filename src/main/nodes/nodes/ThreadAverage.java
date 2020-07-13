@@ -21,8 +21,12 @@ public class ThreadAverage extends Thread {
                 e.printStackTrace();
             }
 
-            LocalAvgList.getInstance().addValue(avg);
-            System.out.println("The average is: " + avg);
+            synchronized (LocalAvgList.getInstance()){
+                LocalAvgList.getInstance().addValue(avg);
+                LocalAvgList.getInstance().notifyAll();
+                System.out.println("The average is: " + avg);
+            }
+
         }
 
     }
