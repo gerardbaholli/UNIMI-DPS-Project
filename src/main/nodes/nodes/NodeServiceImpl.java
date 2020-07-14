@@ -24,6 +24,8 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
     Node node;
 
+
+
     public NodeServiceImpl(Node node) {
         this.node = node;
     }
@@ -43,10 +45,12 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                 .setPort(TargetNode.getInstance().getTargetPort())
                 .setMessage("success").build();
 
+
         // update the target of the node receiving the join request
         TargetNode.getInstance().setTargetId(joinRequest.getId());
         TargetNode.getInstance().setTargetIpAddress(joinRequest.getIpAddress());
         TargetNode.getInstance().setTargetPort(joinRequest.getPort());
+
 
         joinResponseStreamObserver.onNext(joinResponse);
         joinResponseStreamObserver.onCompleted();
@@ -68,6 +72,16 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
         TokenData newTokenData = tokenData.toBuilder().build();
         boolean wantToEsc = NodeStatus.getInstance().isDelete();
+
+
+        // TO BE REMOVED FOR THE EXAM
+        /*
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
 
 
         // SE VUOLE USCIRE INSERISCE NEL TOKEN CHE VUOLE USCIRE
@@ -210,17 +224,12 @@ public class NodeServiceImpl extends NodeServiceImplBase {
             } while (!status);
 
 
-
-
-
             System.out.println("Invio token a " + TargetNode.getInstance().getTargetId());
             System.out.println("Ready list:\n" + newTokenData.getReadyList());
             System.out.println("Waiting list:\n" + newTokenData.getWaitingList());
             System.out.println("Delete list:\n" + newTokenData.getDeleteList());
 
         }
-
-
 
 
     }
@@ -324,9 +333,13 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                     tempTargetPort = item.getTargetPort();
                     System.out.println(tempTargetId);
                     tokenData = deleteTargetFromToken(tokenData);
-                    TargetNode.getInstance().setTargetId(tempTargetId);
-                    TargetNode.getInstance().setTargetIpAddress(tempTargetIpAddress);
-                    TargetNode.getInstance().setTargetPort(tempTargetPort);
+
+                    synchronized (TargetNode.getInstance()) {
+                        TargetNode.getInstance().setTargetId(tempTargetId);
+                        TargetNode.getInstance().setTargetIpAddress(tempTargetIpAddress);
+                        TargetNode.getInstance().setTargetPort(tempTargetPort);
+                    }
+
                 }
             }
         }

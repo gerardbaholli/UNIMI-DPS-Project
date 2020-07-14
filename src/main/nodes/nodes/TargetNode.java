@@ -10,13 +10,6 @@ public class TargetNode {
 
     private TargetNode(){}
 
-    /*
-    public TargetNode(int targetId, String targetIpAddress, int targetPort){
-        this.targetId = targetId;
-        this.targetIpAddress = targetIpAddress;
-        this.targetPort = targetPort;
-    }
-    */
 
     // singleton
     public synchronized static TargetNode getInstance(){

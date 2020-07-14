@@ -41,8 +41,6 @@ public class JoinListener extends Thread {
                 TargetNode.getInstance().getTargetId());
 
 
-
-
         // add token if there are only two nodes
         if (NodeList.getInstance().getSize() == 1) {
             addToken();
@@ -91,10 +89,12 @@ public class JoinListener extends Thread {
         // calling the method, it returns an instance of JoinResponse
         JoinResponse joinResponse = stub.joinNetwork(joinRequest);
 
+
         // save the new target node after the join
         TargetNode.getInstance().setTargetId(joinResponse.getId());
         TargetNode.getInstance().setTargetIpAddress(joinResponse.getIpAddress());
         TargetNode.getInstance().setTargetPort(joinResponse.getPort());
+
 
         // printing the answer
         System.out.println("Join Response:\n" +
@@ -154,7 +154,6 @@ public class JoinListener extends Thread {
 
         System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
     }
-
 
 
 }

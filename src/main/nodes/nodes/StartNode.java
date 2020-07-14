@@ -1,16 +1,11 @@
 package nodes;
 
 
-import com.example.token.NodeServiceGrpc;
-import com.example.token.NodeServiceOuterClass;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import simulator.PM10Simulator;
 
 import java.io.IOException;
@@ -46,11 +41,6 @@ public class StartNode {
         ServerGRPC serverGRPC = new ServerGRPC(node);
         serverGRPC.start();
 
-
-        /*
-        // read from the node list and select a target
-        selectTarget(NodeList.getInstance().getNodeList(), node);
-        */
 
 
 
@@ -165,70 +155,5 @@ public class StartNode {
         return null;
     }
 
-    public static void selectTarget(List<Node> nodeList, Node node){
-        Random rand = new Random();
-
-        // if it is not the first node, he randomly puts one as target
-        if (nodeList.size() > 1) {
-            Node randomNode;
-
-            // extract a random node to ask for the join
-            do {
-                randomNode = nodeList.get(rand.nextInt(nodeList.size()));
-            } while (randomNode.getId() == node.getId());
-
-            TargetNode.getInstance().setTargetId(randomNode.getId());
-            TargetNode.getInstance().setTargetIpAddress(randomNode.getIpAddress());
-            TargetNode.getInstance().setTargetPort(randomNode.getPort());
-
-        } else {
-            // if it is the first node, he put himself as target node
-            TargetNode.getInstance().setTargetId(node.getId());
-            TargetNode.getInstance().setTargetIpAddress(node.getIpAddress());
-            TargetNode.getInstance().setTargetPort(node.getPort());
-        }
-
-        System.out.println("Target node: " + TargetNode.getInstance().getTargetId());
-    }
-
-    // send delete request to the gateway
-    public static String postDeleteOnGateway(Node node) {
-        Client client = Client.create();
-
-        WebResource webResource = client
-                .resource("http://localhost:1200/nodes/remove");
-
-        ClientResponse response;
-
-        String jsonStr;
-        ObjectMapper mapper = new ObjectMapper();
-
-
-        // get node object as a json string
-        try {
-            jsonStr = mapper.writeValueAsString(node);
-
-            System.out.println(jsonStr);
-
-            response = webResource.accept("application/json").type("application/json")
-                    .delete(ClientResponse.class, jsonStr);
-
-            System.out.println(response.getStatus());
-
-            if (response.getStatus() == 409) {
-                return "error409";
-            }
-
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed - HTTP error code : "
-                        + response.getStatus());
-            }
-            return response.getEntity(String.class);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 
 }

@@ -27,6 +27,10 @@ public class Stats {
         return instance;
     }
 
+    public synchronized List<Stat> getStatsList() {
+        return new ArrayList<>(statsList);
+    }
+
 
     public synchronized String addStats(Stat s) {
         statsList.add(s);
@@ -34,10 +38,10 @@ public class Stats {
     }
 
 
-    public synchronized List<Stat> getLastNStats(int n) {
+    public List<Stat> getLastNStats(int n) {
 
         // create a copy of the list to iterate on it
-        List<Stat> tempList = new ArrayList<>(statsList);
+        List<Stat> tempList = new ArrayList<>(getStatsList());
 
         // create a clean array to add the last N stats
         List<Stat> response = new ArrayList<>();
@@ -50,10 +54,10 @@ public class Stats {
     }
 
 
-    public synchronized List<Double> getStanDevAvg(int n) {
+    public List<Double> getStanDevAvg(int n) {
 
         // create a copy of the list to iterate on it
-        List<Stat> tempList = new ArrayList<>(statsList);
+        List<Stat> tempList = new ArrayList<>(getStatsList());
 
         // create a clean array to add the last N stats
         List<Stat> lastNStats = new ArrayList<>();

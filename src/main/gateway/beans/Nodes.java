@@ -60,8 +60,8 @@ public class Nodes {
     }
 
     // OK
-    public synchronized int getNodesNumber(){
-        List<Node> tempList = new ArrayList<>(nodesList);
+    public int getNodesNumber(){
+        List<Node> tempList = new ArrayList<>(getNodesList());
         int count = 0;
         for (Node n : tempList){
             count++;
