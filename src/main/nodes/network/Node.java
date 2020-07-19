@@ -12,11 +12,15 @@ public class Node {
     private String targetIpAddress;
     private int targetPort;
 
-    private List<nodes.Node> nodeList;
+    private List<network.beans.Node> nodeList;
+
+    private boolean toDelete;
 
     private static Node instance;
 
-    private Node(){}
+    private Node(){
+        this.toDelete = false;
+    }
 
     public synchronized static Node getInstance(){
         if(instance==null)
@@ -24,64 +28,72 @@ public class Node {
         return instance;
     }
 
-    public int getId() {
+    public synchronized int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public synchronized void setId(int id) {
         this.id = id;
     }
 
-    public String getIpAddress() {
+    public synchronized String getIpAddress() {
         return ipAddress;
     }
 
-    public void setIpAddress(String ipAddress) {
+    public synchronized void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
     }
 
-    public int getPort() {
+    public synchronized int getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public synchronized void setPort(int port) {
         this.port = port;
     }
 
-    public int getTargetId() {
+    public synchronized int getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(int targetId) {
+    public synchronized void setTargetId(int targetId) {
         this.targetId = targetId;
     }
 
-    public String getTargetIpAddress() {
+    public synchronized String getTargetIpAddress() {
         return targetIpAddress;
     }
 
-    public void setTargetIpAddress(String targetIpAddress) {
+    public synchronized void setTargetIpAddress(String targetIpAddress) {
         this.targetIpAddress = targetIpAddress;
     }
 
-    public int getTargetPort() {
+    public synchronized int getTargetPort() {
         return targetPort;
     }
 
-    public void setTargetPort(int targetPort) {
+    public synchronized void setTargetPort(int targetPort) {
         this.targetPort = targetPort;
     }
 
-    public List<nodes.Node> getNodeList() {
+    public synchronized List<network.beans.Node> getNodeList() {
         return nodeList;
     }
 
-    public void setNodeList(List<nodes.Node> nodeList) {
+    public synchronized void setNodeList(List<network.beans.Node> nodeList) {
         this.nodeList = nodeList;
     }
 
-    public int getNodeListSize(){
+    public synchronized int getNodeListSize(){
         return nodeList.size();
+    }
+
+    public synchronized boolean isToDelete() {
+        return toDelete;
+    }
+
+    public synchronized void setToDelete() {
+        this.toDelete = true;
     }
 
 }

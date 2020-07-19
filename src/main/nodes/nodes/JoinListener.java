@@ -45,25 +45,7 @@ public class JoinListener extends Thread {
         if (NodeList.getInstance().getSize() == 1) {
             addToken();
         }
-        /*
-        else if (NodeList.getInstance().getSize() == 1) {
-            try {
-                while (TargetNode.getInstance().getTargetId() == node.getId()) {
-                    synchronized (LocalAvgList.getInstance()) {
-                        while (LocalAvgList.getInstance().getSize() < 1) {
-                            LocalAvgList.getInstance().wait();
-                        }
-                        sendStatsToGateway(LocalAvgList.getInstance().getLastValue());
-                        System.out.println("SENT STATS TO THE GATEWAY");
-                    }
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
-
-        }
-        */
 
 
     }

@@ -12,6 +12,7 @@ com\example\chat\ChatServiceGrpc$MethodHandlers.class
 com\example\grpc\GreetingServiceGrpc$GreetingServiceBlockingStub.class
 com\example\token2\TokenServiceOuterClass$EmptyOrBuilder.class
 com\example\token2\TokenServiceGrpc$TokenServiceFileDescriptorSupplier.class
+com\example\token2\TokenServiceOuterClass$Token$Waiting$Builder.class
 com\example\chat\ChatServiceGrpc$1.class
 com\example\token2\TokenServiceGrpc$TokenServiceFutureStub.class
 com\example\sum\SumServiceOuterClass$1.class
@@ -24,7 +25,10 @@ com\example\grpc\GreetingServiceGrpc$GreetingServiceBaseDescriptorSupplier.class
 com\example\token\NodeServiceOuterClass$TokenData$Ready.class
 com\example\token2\TokenServiceOuterClass.class
 com\example\token\NodeServiceOuterClass$JoinResponse$Builder.class
+com\example\token2\TokenServiceOuterClass$Token$Waiting$1.class
 com\example\token2\TokenServiceOuterClass$JoinRequest$Builder.class
+com\example\token2\TokenServiceOuterClass$Token$Delete$Builder.class
+com\example\token2\TokenServiceOuterClass$Token$Ready$1.class
 com\example\token\NodeServiceOuterClass$EmptyOrBuilder.class
 com\example\university\StudentOuterClass$1.class
 com\example\sum\SumServiceGrpc$MethodHandlers.class
@@ -35,10 +39,12 @@ com\example\university\StudentOuterClass$Student$Exam.class
 com\example\sum\SumServiceGrpc$SumServiceStub.class
 com\example\grpc\GreetingServiceGrpc$GreetingServiceStub.class
 com\example\chat\ChatServiceGrpc$ChatServiceFutureStub.class
+com\example\token2\TokenServiceOuterClass$Token$WaitingOrBuilder.class
 com\example\token\NodeServiceOuterClass$Empty$1.class
 com\example\chat\ChatServiceGrpc$ChatServiceBlockingStub.class
 com\example\token2\TokenServiceGrpc$MethodHandlers.class
 com\example\token\NodeServiceOuterClass$TokenData$1.class
+com\example\token2\TokenServiceOuterClass$Token$Delete$1.class
 com\example\token\NodeServiceOuterClass$JoinResponse$1.class
 com\example\token\NodeServiceOuterClass$TokenData$Delete$Builder.class
 com\example\grpc\GreetingServiceGrpc$1.class
@@ -52,6 +58,7 @@ com\example\sum\SumServiceGrpc$SumServiceFutureStub.class
 it\ewlab\researcher\ResearcherOuterClass.class
 com\example\token2\TokenServiceOuterClass$JoinResponse.class
 com\example\token2\TokenServiceGrpc$1.class
+com\example\token2\TokenServiceOuterClass$Token$DeleteOrBuilder.class
 com\example\sum\SumServiceGrpc$SumServiceMethodDescriptorSupplier.class
 com\example\sum\SumServiceGrpc$SumServiceBlockingStub.class
 com\example\token\NodeServiceGrpc$NodeServiceFileDescriptorSupplier.class
@@ -89,9 +96,11 @@ com\example\token\NodeServiceOuterClass$JoinRequest.class
 com\example\token\NodeServiceGrpc$NodeServiceFutureStub.class
 com\example\token2\TokenServiceOuterClass$JoinRequest$1.class
 com\example\token\NodeServiceOuterClass$JoinResponseOrBuilder.class
+com\example\token2\TokenServiceOuterClass$Token$Ready.class
 com\example\grpc\GreetingServiceGrpc$GreetingServiceFutureStub.class
 com\example\token\NodeServiceGrpc$NodeServiceImplBase.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$Paper.class
+com\example\token2\TokenServiceOuterClass$Token$Delete.class
 com\example\chat\ChatServiceGrpc$ChatServiceFileDescriptorSupplier.class
 com\example\token\NodeServiceGrpc$1.class
 com\example\university\StudentOuterClass.class
@@ -100,6 +109,7 @@ com\example\grpc\GreetingServiceGrpc.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$1.class
 com\example\university\StudentOuterClass$Student$Builder.class
 com\example\token\NodeServiceOuterClass$JoinResponse.class
+com\example\token2\TokenServiceOuterClass$Token$Waiting.class
 com\example\token\NodeServiceOuterClass$JoinRequest$1.class
 com\example\token2\TokenServiceOuterClass$Token.class
 com\example\token2\TokenServiceOuterClass$JoinResponseOrBuilder.class
@@ -115,6 +125,7 @@ com\example\chat\ChatServiceGrpc$ChatServiceImplBase.class
 com\example\token\NodeServiceOuterClass$Empty$Builder.class
 com\example\sum\SumServiceOuterClass$SumResponse.class
 com\example\university\StudentOuterClass$Student$ExamOrBuilder.class
+com\example\token2\TokenServiceOuterClass$Token$ReadyOrBuilder.class
 com\example\university\StudentOuterClass$Student$1.class
 com\example\token\NodeServiceOuterClass$TokenDataOrBuilder.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher$ResearcherType$1.class
@@ -122,6 +133,7 @@ com\example\token\NodeServiceOuterClass$JoinRequestOrBuilder.class
 com\example\sum\SumServiceOuterClass.class
 com\example\token2\TokenServiceOuterClass$JoinResponse$Builder.class
 com\example\token\NodeServiceOuterClass.class
+com\example\token2\TokenServiceOuterClass$Token$Ready$Builder.class
 com\example\token2\TokenServiceGrpc$TokenServiceImplBase.class
 it\ewlab\researcher\ResearcherOuterClass$Researcher.class
 com\example\token\NodeServiceGrpc$NodeServiceBlockingStub.class

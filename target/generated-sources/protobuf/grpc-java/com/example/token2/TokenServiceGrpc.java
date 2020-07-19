@@ -44,7 +44,7 @@ public final class TokenServiceGrpc {
   public static final io.grpc.MethodDescriptor<com.example.token2.TokenServiceOuterClass.Token,
       com.example.token2.TokenServiceOuterClass.Empty> METHOD_TOKEN_DELIVERY =
       io.grpc.MethodDescriptor.<com.example.token2.TokenServiceOuterClass.Token, com.example.token2.TokenServiceOuterClass.Empty>newBuilder()
-          .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
               "com.example.token2.TokenService", "tokenDelivery"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -106,7 +106,7 @@ public final class TokenServiceGrpc {
                   this, METHODID_JOIN_NETWORK)))
           .addMethod(
             METHOD_TOKEN_DELIVERY,
-            asyncServerStreamingCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 com.example.token2.TokenServiceOuterClass.Token,
                 com.example.token2.TokenServiceOuterClass.Empty>(
@@ -145,7 +145,7 @@ public final class TokenServiceGrpc {
      */
     public void tokenDelivery(com.example.token2.TokenServiceOuterClass.Token request,
         io.grpc.stub.StreamObserver<com.example.token2.TokenServiceOuterClass.Empty> responseObserver) {
-      asyncServerStreamingCall(
+      asyncUnaryCall(
           getChannel().newCall(METHOD_TOKEN_DELIVERY, getCallOptions()), request, responseObserver);
     }
   }
@@ -177,9 +177,8 @@ public final class TokenServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<com.example.token2.TokenServiceOuterClass.Empty> tokenDelivery(
-        com.example.token2.TokenServiceOuterClass.Token request) {
-      return blockingServerStreamingCall(
+    public com.example.token2.TokenServiceOuterClass.Empty tokenDelivery(com.example.token2.TokenServiceOuterClass.Token request) {
+      return blockingUnaryCall(
           getChannel(), METHOD_TOKEN_DELIVERY, getCallOptions(), request);
     }
   }
@@ -208,6 +207,14 @@ public final class TokenServiceGrpc {
         com.example.token2.TokenServiceOuterClass.JoinRequest request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_JOIN_NETWORK, getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.example.token2.TokenServiceOuterClass.Empty> tokenDelivery(
+        com.example.token2.TokenServiceOuterClass.Token request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_TOKEN_DELIVERY, getCallOptions()), request);
     }
   }
 

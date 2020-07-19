@@ -1,22 +1,22 @@
-package nodes;
+package network;
 
 import java.util.ArrayList;
 
-public class LocalAvgList {
+public class LocalAverageList {
 
     private ArrayList<Double> localList;
     private int size;
 
-    private static LocalAvgList instance;
+    private static LocalAverageList instance;
 
-    private LocalAvgList() {
+    private LocalAverageList() {
         this.localList = new ArrayList<>();
     }
 
     // singleton
-    public synchronized static LocalAvgList getInstance(){
+    public synchronized static LocalAverageList getInstance(){
         if(instance==null)
-            instance = new LocalAvgList();
+            instance = new LocalAverageList();
         return instance;
     }
 

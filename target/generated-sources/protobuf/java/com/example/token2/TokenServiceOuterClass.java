@@ -1452,9 +1452,76 @@ public final class TokenServiceOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 value = 1;</code>
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
      */
-    int getValue();
+    java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready> 
+        getReadyList();
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.Ready getReady(int index);
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    int getReadyCount();
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder> 
+        getReadyOrBuilderList();
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder getReadyOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting> 
+        getWaitingList();
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.Waiting getWaiting(int index);
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    int getWaitingCount();
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder> 
+        getWaitingOrBuilderList();
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder getWaitingOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete> 
+        getDeleteList();
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.Delete getDelete(int index);
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    int getDeleteCount();
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder> 
+        getDeleteOrBuilderList();
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder getDeleteOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code com.example.token2.Token}
@@ -1469,7 +1536,9 @@ public final class TokenServiceOuterClass {
       super(builder);
     }
     private Token() {
-      value_ = 0;
+      ready_ = java.util.Collections.emptyList();
+      waiting_ = java.util.Collections.emptyList();
+      delete_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1500,9 +1569,31 @@ public final class TokenServiceOuterClass {
               }
               break;
             }
-            case 8: {
-
-              value_ = input.readInt32();
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                ready_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Ready>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              ready_.add(
+                  input.readMessage(com.example.token2.TokenServiceOuterClass.Token.Ready.parser(), extensionRegistry));
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                waiting_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Waiting>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              waiting_.add(
+                  input.readMessage(com.example.token2.TokenServiceOuterClass.Token.Waiting.parser(), extensionRegistry));
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                delete_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Delete>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              delete_.add(
+                  input.readMessage(com.example.token2.TokenServiceOuterClass.Token.Delete.parser(), extensionRegistry));
               break;
             }
           }
@@ -1513,6 +1604,15 @@ public final class TokenServiceOuterClass {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          ready_ = java.util.Collections.unmodifiableList(ready_);
+        }
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          waiting_ = java.util.Collections.unmodifiableList(waiting_);
+        }
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          delete_ = java.util.Collections.unmodifiableList(delete_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -1529,13 +1629,1782 @@ public final class TokenServiceOuterClass {
               com.example.token2.TokenServiceOuterClass.Token.class, com.example.token2.TokenServiceOuterClass.Token.Builder.class);
     }
 
-    public static final int VALUE_FIELD_NUMBER = 1;
-    private int value_;
+    public interface ReadyOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token2.Token.Ready)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      int getId();
+
+      /**
+       * <code>double value = 2;</code>
+       */
+      double getValue();
+    }
     /**
-     * <code>int32 value = 1;</code>
+     * Protobuf type {@code com.example.token2.Token.Ready}
      */
-    public int getValue() {
-      return value_;
+    public  static final class Ready extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:com.example.token2.Token.Ready)
+        ReadyOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Ready.newBuilder() to construct.
+      private Ready(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Ready() {
+        id_ = 0;
+        value_ = 0D;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Ready(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                id_ = input.readInt32();
+                break;
+              }
+              case 17: {
+
+                value_ = input.readDouble();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Ready_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Ready_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.token2.TokenServiceOuterClass.Token.Ready.class, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder.class);
+      }
+
+      public static final int ID_FIELD_NUMBER = 1;
+      private int id_;
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+
+      public static final int VALUE_FIELD_NUMBER = 2;
+      private double value_;
+      /**
+       * <code>double value = 2;</code>
+       */
+      public double getValue() {
+        return value_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (id_ != 0) {
+          output.writeInt32(1, id_);
+        }
+        if (value_ != 0D) {
+          output.writeDouble(2, value_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (id_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, id_);
+        }
+        if (value_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(2, value_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.example.token2.TokenServiceOuterClass.Token.Ready)) {
+          return super.equals(obj);
+        }
+        com.example.token2.TokenServiceOuterClass.Token.Ready other = (com.example.token2.TokenServiceOuterClass.Token.Ready) obj;
+
+        boolean result = true;
+        result = result && (getId()
+            == other.getId());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getValue())
+            == java.lang.Double.doubleToLongBits(
+                other.getValue()));
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+        hash = (37 * hash) + VALUE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getValue()));
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.example.token2.TokenServiceOuterClass.Token.Ready prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code com.example.token2.Token.Ready}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:com.example.token2.Token.Ready)
+          com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Ready_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Ready_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.example.token2.TokenServiceOuterClass.Token.Ready.class, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder.class);
+        }
+
+        // Construct using com.example.token2.TokenServiceOuterClass.Token.Ready.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          id_ = 0;
+
+          value_ = 0D;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Ready_descriptor;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Ready getDefaultInstanceForType() {
+          return com.example.token2.TokenServiceOuterClass.Token.Ready.getDefaultInstance();
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Ready build() {
+          com.example.token2.TokenServiceOuterClass.Token.Ready result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Ready buildPartial() {
+          com.example.token2.TokenServiceOuterClass.Token.Ready result = new com.example.token2.TokenServiceOuterClass.Token.Ready(this);
+          result.id_ = id_;
+          result.value_ = value_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.example.token2.TokenServiceOuterClass.Token.Ready) {
+            return mergeFrom((com.example.token2.TokenServiceOuterClass.Token.Ready)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.example.token2.TokenServiceOuterClass.Token.Ready other) {
+          if (other == com.example.token2.TokenServiceOuterClass.Token.Ready.getDefaultInstance()) return this;
+          if (other.getId() != 0) {
+            setId(other.getId());
+          }
+          if (other.getValue() != 0D) {
+            setValue(other.getValue());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.example.token2.TokenServiceOuterClass.Token.Ready parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.example.token2.TokenServiceOuterClass.Token.Ready) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int id_ ;
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public int getId() {
+          return id_;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder setId(int value) {
+          
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder clearId() {
+          
+          id_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private double value_ ;
+        /**
+         * <code>double value = 2;</code>
+         */
+        public double getValue() {
+          return value_;
+        }
+        /**
+         * <code>double value = 2;</code>
+         */
+        public Builder setValue(double value) {
+          
+          value_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double value = 2;</code>
+         */
+        public Builder clearValue() {
+          
+          value_ = 0D;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:com.example.token2.Token.Ready)
+      }
+
+      // @@protoc_insertion_point(class_scope:com.example.token2.Token.Ready)
+      private static final com.example.token2.TokenServiceOuterClass.Token.Ready DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.example.token2.TokenServiceOuterClass.Token.Ready();
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Ready getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Ready>
+          PARSER = new com.google.protobuf.AbstractParser<Ready>() {
+        public Ready parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Ready(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Ready> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Ready> getParserForType() {
+        return PARSER;
+      }
+
+      public com.example.token2.TokenServiceOuterClass.Token.Ready getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface WaitingOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token2.Token.Waiting)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      int getId();
+    }
+    /**
+     * Protobuf type {@code com.example.token2.Token.Waiting}
+     */
+    public  static final class Waiting extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:com.example.token2.Token.Waiting)
+        WaitingOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Waiting.newBuilder() to construct.
+      private Waiting(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Waiting() {
+        id_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Waiting(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                id_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Waiting_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Waiting_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.token2.TokenServiceOuterClass.Token.Waiting.class, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder.class);
+      }
+
+      public static final int ID_FIELD_NUMBER = 1;
+      private int id_;
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (id_ != 0) {
+          output.writeInt32(1, id_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (id_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, id_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.example.token2.TokenServiceOuterClass.Token.Waiting)) {
+          return super.equals(obj);
+        }
+        com.example.token2.TokenServiceOuterClass.Token.Waiting other = (com.example.token2.TokenServiceOuterClass.Token.Waiting) obj;
+
+        boolean result = true;
+        result = result && (getId()
+            == other.getId());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.example.token2.TokenServiceOuterClass.Token.Waiting prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code com.example.token2.Token.Waiting}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:com.example.token2.Token.Waiting)
+          com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Waiting_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Waiting_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.example.token2.TokenServiceOuterClass.Token.Waiting.class, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder.class);
+        }
+
+        // Construct using com.example.token2.TokenServiceOuterClass.Token.Waiting.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          id_ = 0;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Waiting_descriptor;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Waiting getDefaultInstanceForType() {
+          return com.example.token2.TokenServiceOuterClass.Token.Waiting.getDefaultInstance();
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Waiting build() {
+          com.example.token2.TokenServiceOuterClass.Token.Waiting result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Waiting buildPartial() {
+          com.example.token2.TokenServiceOuterClass.Token.Waiting result = new com.example.token2.TokenServiceOuterClass.Token.Waiting(this);
+          result.id_ = id_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.example.token2.TokenServiceOuterClass.Token.Waiting) {
+            return mergeFrom((com.example.token2.TokenServiceOuterClass.Token.Waiting)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.example.token2.TokenServiceOuterClass.Token.Waiting other) {
+          if (other == com.example.token2.TokenServiceOuterClass.Token.Waiting.getDefaultInstance()) return this;
+          if (other.getId() != 0) {
+            setId(other.getId());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.example.token2.TokenServiceOuterClass.Token.Waiting parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.example.token2.TokenServiceOuterClass.Token.Waiting) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int id_ ;
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public int getId() {
+          return id_;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder setId(int value) {
+          
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder clearId() {
+          
+          id_ = 0;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:com.example.token2.Token.Waiting)
+      }
+
+      // @@protoc_insertion_point(class_scope:com.example.token2.Token.Waiting)
+      private static final com.example.token2.TokenServiceOuterClass.Token.Waiting DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.example.token2.TokenServiceOuterClass.Token.Waiting();
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Waiting getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Waiting>
+          PARSER = new com.google.protobuf.AbstractParser<Waiting>() {
+        public Waiting parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Waiting(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Waiting> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Waiting> getParserForType() {
+        return PARSER;
+      }
+
+      public com.example.token2.TokenServiceOuterClass.Token.Waiting getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface DeleteOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:com.example.token2.Token.Delete)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      int getId();
+
+      /**
+       * <code>int32 targetId = 2;</code>
+       */
+      int getTargetId();
+
+      /**
+       * <code>string targetIpAddress = 3;</code>
+       */
+      java.lang.String getTargetIpAddress();
+      /**
+       * <code>string targetIpAddress = 3;</code>
+       */
+      com.google.protobuf.ByteString
+          getTargetIpAddressBytes();
+
+      /**
+       * <code>int32 targetPort = 4;</code>
+       */
+      int getTargetPort();
+    }
+    /**
+     * Protobuf type {@code com.example.token2.Token.Delete}
+     */
+    public  static final class Delete extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:com.example.token2.Token.Delete)
+        DeleteOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Delete.newBuilder() to construct.
+      private Delete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Delete() {
+        id_ = 0;
+        targetId_ = 0;
+        targetIpAddress_ = "";
+        targetPort_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Delete(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                id_ = input.readInt32();
+                break;
+              }
+              case 16: {
+
+                targetId_ = input.readInt32();
+                break;
+              }
+              case 26: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                targetIpAddress_ = s;
+                break;
+              }
+              case 32: {
+
+                targetPort_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Delete_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Delete_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.example.token2.TokenServiceOuterClass.Token.Delete.class, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder.class);
+      }
+
+      public static final int ID_FIELD_NUMBER = 1;
+      private int id_;
+      /**
+       * <code>int32 id = 1;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+
+      public static final int TARGETID_FIELD_NUMBER = 2;
+      private int targetId_;
+      /**
+       * <code>int32 targetId = 2;</code>
+       */
+      public int getTargetId() {
+        return targetId_;
+      }
+
+      public static final int TARGETIPADDRESS_FIELD_NUMBER = 3;
+      private volatile java.lang.Object targetIpAddress_;
+      /**
+       * <code>string targetIpAddress = 3;</code>
+       */
+      public java.lang.String getTargetIpAddress() {
+        java.lang.Object ref = targetIpAddress_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          targetIpAddress_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string targetIpAddress = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTargetIpAddressBytes() {
+        java.lang.Object ref = targetIpAddress_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          targetIpAddress_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int TARGETPORT_FIELD_NUMBER = 4;
+      private int targetPort_;
+      /**
+       * <code>int32 targetPort = 4;</code>
+       */
+      public int getTargetPort() {
+        return targetPort_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (id_ != 0) {
+          output.writeInt32(1, id_);
+        }
+        if (targetId_ != 0) {
+          output.writeInt32(2, targetId_);
+        }
+        if (!getTargetIpAddressBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 3, targetIpAddress_);
+        }
+        if (targetPort_ != 0) {
+          output.writeInt32(4, targetPort_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (id_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, id_);
+        }
+        if (targetId_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(2, targetId_);
+        }
+        if (!getTargetIpAddressBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, targetIpAddress_);
+        }
+        if (targetPort_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(4, targetPort_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof com.example.token2.TokenServiceOuterClass.Token.Delete)) {
+          return super.equals(obj);
+        }
+        com.example.token2.TokenServiceOuterClass.Token.Delete other = (com.example.token2.TokenServiceOuterClass.Token.Delete) obj;
+
+        boolean result = true;
+        result = result && (getId()
+            == other.getId());
+        result = result && (getTargetId()
+            == other.getTargetId());
+        result = result && getTargetIpAddress()
+            .equals(other.getTargetIpAddress());
+        result = result && (getTargetPort()
+            == other.getTargetPort());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + getId();
+        hash = (37 * hash) + TARGETID_FIELD_NUMBER;
+        hash = (53 * hash) + getTargetId();
+        hash = (37 * hash) + TARGETIPADDRESS_FIELD_NUMBER;
+        hash = (53 * hash) + getTargetIpAddress().hashCode();
+        hash = (37 * hash) + TARGETPORT_FIELD_NUMBER;
+        hash = (53 * hash) + getTargetPort();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(com.example.token2.TokenServiceOuterClass.Token.Delete prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code com.example.token2.Token.Delete}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:com.example.token2.Token.Delete)
+          com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Delete_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Delete_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.example.token2.TokenServiceOuterClass.Token.Delete.class, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder.class);
+        }
+
+        // Construct using com.example.token2.TokenServiceOuterClass.Token.Delete.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          id_ = 0;
+
+          targetId_ = 0;
+
+          targetIpAddress_ = "";
+
+          targetPort_ = 0;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.example.token2.TokenServiceOuterClass.internal_static_com_example_token2_Token_Delete_descriptor;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Delete getDefaultInstanceForType() {
+          return com.example.token2.TokenServiceOuterClass.Token.Delete.getDefaultInstance();
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Delete build() {
+          com.example.token2.TokenServiceOuterClass.Token.Delete result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.example.token2.TokenServiceOuterClass.Token.Delete buildPartial() {
+          com.example.token2.TokenServiceOuterClass.Token.Delete result = new com.example.token2.TokenServiceOuterClass.Token.Delete(this);
+          result.id_ = id_;
+          result.targetId_ = targetId_;
+          result.targetIpAddress_ = targetIpAddress_;
+          result.targetPort_ = targetPort_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.example.token2.TokenServiceOuterClass.Token.Delete) {
+            return mergeFrom((com.example.token2.TokenServiceOuterClass.Token.Delete)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.example.token2.TokenServiceOuterClass.Token.Delete other) {
+          if (other == com.example.token2.TokenServiceOuterClass.Token.Delete.getDefaultInstance()) return this;
+          if (other.getId() != 0) {
+            setId(other.getId());
+          }
+          if (other.getTargetId() != 0) {
+            setTargetId(other.getTargetId());
+          }
+          if (!other.getTargetIpAddress().isEmpty()) {
+            targetIpAddress_ = other.targetIpAddress_;
+            onChanged();
+          }
+          if (other.getTargetPort() != 0) {
+            setTargetPort(other.getTargetPort());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.example.token2.TokenServiceOuterClass.Token.Delete parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.example.token2.TokenServiceOuterClass.Token.Delete) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int id_ ;
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public int getId() {
+          return id_;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder setId(int value) {
+          
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 id = 1;</code>
+         */
+        public Builder clearId() {
+          
+          id_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int targetId_ ;
+        /**
+         * <code>int32 targetId = 2;</code>
+         */
+        public int getTargetId() {
+          return targetId_;
+        }
+        /**
+         * <code>int32 targetId = 2;</code>
+         */
+        public Builder setTargetId(int value) {
+          
+          targetId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 targetId = 2;</code>
+         */
+        public Builder clearTargetId() {
+          
+          targetId_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object targetIpAddress_ = "";
+        /**
+         * <code>string targetIpAddress = 3;</code>
+         */
+        public java.lang.String getTargetIpAddress() {
+          java.lang.Object ref = targetIpAddress_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            targetIpAddress_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string targetIpAddress = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+            getTargetIpAddressBytes() {
+          java.lang.Object ref = targetIpAddress_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            targetIpAddress_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string targetIpAddress = 3;</code>
+         */
+        public Builder setTargetIpAddress(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          targetIpAddress_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string targetIpAddress = 3;</code>
+         */
+        public Builder clearTargetIpAddress() {
+          
+          targetIpAddress_ = getDefaultInstance().getTargetIpAddress();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string targetIpAddress = 3;</code>
+         */
+        public Builder setTargetIpAddressBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          targetIpAddress_ = value;
+          onChanged();
+          return this;
+        }
+
+        private int targetPort_ ;
+        /**
+         * <code>int32 targetPort = 4;</code>
+         */
+        public int getTargetPort() {
+          return targetPort_;
+        }
+        /**
+         * <code>int32 targetPort = 4;</code>
+         */
+        public Builder setTargetPort(int value) {
+          
+          targetPort_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 targetPort = 4;</code>
+         */
+        public Builder clearTargetPort() {
+          
+          targetPort_ = 0;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:com.example.token2.Token.Delete)
+      }
+
+      // @@protoc_insertion_point(class_scope:com.example.token2.Token.Delete)
+      private static final com.example.token2.TokenServiceOuterClass.Token.Delete DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new com.example.token2.TokenServiceOuterClass.Token.Delete();
+      }
+
+      public static com.example.token2.TokenServiceOuterClass.Token.Delete getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Delete>
+          PARSER = new com.google.protobuf.AbstractParser<Delete>() {
+        public Delete parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Delete(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Delete> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Delete> getParserForType() {
+        return PARSER;
+      }
+
+      public com.example.token2.TokenServiceOuterClass.Token.Delete getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int READY_FIELD_NUMBER = 1;
+    private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready> ready_;
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready> getReadyList() {
+      return ready_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder> 
+        getReadyOrBuilderList() {
+      return ready_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    public int getReadyCount() {
+      return ready_.size();
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.Ready getReady(int index) {
+      return ready_.get(index);
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder getReadyOrBuilder(
+        int index) {
+      return ready_.get(index);
+    }
+
+    public static final int WAITING_FIELD_NUMBER = 2;
+    private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting> waiting_;
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting> getWaitingList() {
+      return waiting_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder> 
+        getWaitingOrBuilderList() {
+      return waiting_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    public int getWaitingCount() {
+      return waiting_.size();
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.Waiting getWaiting(int index) {
+      return waiting_.get(index);
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder getWaitingOrBuilder(
+        int index) {
+      return waiting_.get(index);
+    }
+
+    public static final int DELETE_FIELD_NUMBER = 3;
+    private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete> delete_;
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete> getDeleteList() {
+      return delete_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder> 
+        getDeleteOrBuilderList() {
+      return delete_;
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    public int getDeleteCount() {
+      return delete_.size();
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.Delete getDelete(int index) {
+      return delete_.get(index);
+    }
+    /**
+     * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+     */
+    public com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder getDeleteOrBuilder(
+        int index) {
+      return delete_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1550,8 +3419,14 @@ public final class TokenServiceOuterClass {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (value_ != 0) {
-        output.writeInt32(1, value_);
+      for (int i = 0; i < ready_.size(); i++) {
+        output.writeMessage(1, ready_.get(i));
+      }
+      for (int i = 0; i < waiting_.size(); i++) {
+        output.writeMessage(2, waiting_.get(i));
+      }
+      for (int i = 0; i < delete_.size(); i++) {
+        output.writeMessage(3, delete_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1561,9 +3436,17 @@ public final class TokenServiceOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (value_ != 0) {
+      for (int i = 0; i < ready_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, value_);
+          .computeMessageSize(1, ready_.get(i));
+      }
+      for (int i = 0; i < waiting_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, waiting_.get(i));
+      }
+      for (int i = 0; i < delete_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, delete_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1581,8 +3464,12 @@ public final class TokenServiceOuterClass {
       com.example.token2.TokenServiceOuterClass.Token other = (com.example.token2.TokenServiceOuterClass.Token) obj;
 
       boolean result = true;
-      result = result && (getValue()
-          == other.getValue());
+      result = result && getReadyList()
+          .equals(other.getReadyList());
+      result = result && getWaitingList()
+          .equals(other.getWaitingList());
+      result = result && getDeleteList()
+          .equals(other.getDeleteList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -1594,8 +3481,18 @@ public final class TokenServiceOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue();
+      if (getReadyCount() > 0) {
+        hash = (37 * hash) + READY_FIELD_NUMBER;
+        hash = (53 * hash) + getReadyList().hashCode();
+      }
+      if (getWaitingCount() > 0) {
+        hash = (37 * hash) + WAITING_FIELD_NUMBER;
+        hash = (53 * hash) + getWaitingList().hashCode();
+      }
+      if (getDeleteCount() > 0) {
+        hash = (37 * hash) + DELETE_FIELD_NUMBER;
+        hash = (53 * hash) + getDeleteList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1721,12 +3618,31 @@ public final class TokenServiceOuterClass {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getReadyFieldBuilder();
+          getWaitingFieldBuilder();
+          getDeleteFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        value_ = 0;
-
+        if (readyBuilder_ == null) {
+          ready_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          readyBuilder_.clear();
+        }
+        if (waitingBuilder_ == null) {
+          waiting_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          waitingBuilder_.clear();
+        }
+        if (deleteBuilder_ == null) {
+          delete_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          deleteBuilder_.clear();
+        }
         return this;
       }
 
@@ -1749,7 +3665,34 @@ public final class TokenServiceOuterClass {
 
       public com.example.token2.TokenServiceOuterClass.Token buildPartial() {
         com.example.token2.TokenServiceOuterClass.Token result = new com.example.token2.TokenServiceOuterClass.Token(this);
-        result.value_ = value_;
+        int from_bitField0_ = bitField0_;
+        if (readyBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            ready_ = java.util.Collections.unmodifiableList(ready_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.ready_ = ready_;
+        } else {
+          result.ready_ = readyBuilder_.build();
+        }
+        if (waitingBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            waiting_ = java.util.Collections.unmodifiableList(waiting_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.waiting_ = waiting_;
+        } else {
+          result.waiting_ = waitingBuilder_.build();
+        }
+        if (deleteBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            delete_ = java.util.Collections.unmodifiableList(delete_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.delete_ = delete_;
+        } else {
+          result.delete_ = deleteBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -1791,8 +3734,83 @@ public final class TokenServiceOuterClass {
 
       public Builder mergeFrom(com.example.token2.TokenServiceOuterClass.Token other) {
         if (other == com.example.token2.TokenServiceOuterClass.Token.getDefaultInstance()) return this;
-        if (other.getValue() != 0) {
-          setValue(other.getValue());
+        if (readyBuilder_ == null) {
+          if (!other.ready_.isEmpty()) {
+            if (ready_.isEmpty()) {
+              ready_ = other.ready_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureReadyIsMutable();
+              ready_.addAll(other.ready_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.ready_.isEmpty()) {
+            if (readyBuilder_.isEmpty()) {
+              readyBuilder_.dispose();
+              readyBuilder_ = null;
+              ready_ = other.ready_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              readyBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getReadyFieldBuilder() : null;
+            } else {
+              readyBuilder_.addAllMessages(other.ready_);
+            }
+          }
+        }
+        if (waitingBuilder_ == null) {
+          if (!other.waiting_.isEmpty()) {
+            if (waiting_.isEmpty()) {
+              waiting_ = other.waiting_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureWaitingIsMutable();
+              waiting_.addAll(other.waiting_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.waiting_.isEmpty()) {
+            if (waitingBuilder_.isEmpty()) {
+              waitingBuilder_.dispose();
+              waitingBuilder_ = null;
+              waiting_ = other.waiting_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              waitingBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getWaitingFieldBuilder() : null;
+            } else {
+              waitingBuilder_.addAllMessages(other.waiting_);
+            }
+          }
+        }
+        if (deleteBuilder_ == null) {
+          if (!other.delete_.isEmpty()) {
+            if (delete_.isEmpty()) {
+              delete_ = other.delete_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureDeleteIsMutable();
+              delete_.addAll(other.delete_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.delete_.isEmpty()) {
+            if (deleteBuilder_.isEmpty()) {
+              deleteBuilder_.dispose();
+              deleteBuilder_ = null;
+              delete_ = other.delete_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              deleteBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getDeleteFieldBuilder() : null;
+            } else {
+              deleteBuilder_.addAllMessages(other.delete_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1820,31 +3838,726 @@ public final class TokenServiceOuterClass {
         }
         return this;
       }
+      private int bitField0_;
 
-      private int value_ ;
+      private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready> ready_ =
+        java.util.Collections.emptyList();
+      private void ensureReadyIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          ready_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Ready>(ready_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Ready, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder, com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder> readyBuilder_;
+
       /**
-       * <code>int32 value = 1;</code>
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
        */
-      public int getValue() {
-        return value_;
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready> getReadyList() {
+        if (readyBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(ready_);
+        } else {
+          return readyBuilder_.getMessageList();
+        }
       }
       /**
-       * <code>int32 value = 1;</code>
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
        */
-      public Builder setValue(int value) {
-        
-        value_ = value;
-        onChanged();
+      public int getReadyCount() {
+        if (readyBuilder_ == null) {
+          return ready_.size();
+        } else {
+          return readyBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Ready getReady(int index) {
+        if (readyBuilder_ == null) {
+          return ready_.get(index);
+        } else {
+          return readyBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder setReady(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Ready value) {
+        if (readyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyIsMutable();
+          ready_.set(index, value);
+          onChanged();
+        } else {
+          readyBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>int32 value = 1;</code>
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
        */
-      public Builder clearValue() {
-        
-        value_ = 0;
-        onChanged();
+      public Builder setReady(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          readyBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder addReady(com.example.token2.TokenServiceOuterClass.Token.Ready value) {
+        if (readyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyIsMutable();
+          ready_.add(value);
+          onChanged();
+        } else {
+          readyBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder addReady(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Ready value) {
+        if (readyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureReadyIsMutable();
+          ready_.add(index, value);
+          onChanged();
+        } else {
+          readyBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder addReady(
+          com.example.token2.TokenServiceOuterClass.Token.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.add(builderForValue.build());
+          onChanged();
+        } else {
+          readyBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder addReady(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder builderForValue) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          readyBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder addAllReady(
+          java.lang.Iterable<? extends com.example.token2.TokenServiceOuterClass.Token.Ready> values) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, ready_);
+          onChanged();
+        } else {
+          readyBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder clearReady() {
+        if (readyBuilder_ == null) {
+          ready_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          readyBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public Builder removeReady(int index) {
+        if (readyBuilder_ == null) {
+          ensureReadyIsMutable();
+          ready_.remove(index);
+          onChanged();
+        } else {
+          readyBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Ready.Builder getReadyBuilder(
+          int index) {
+        return getReadyFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder getReadyOrBuilder(
+          int index) {
+        if (readyBuilder_ == null) {
+          return ready_.get(index);  } else {
+          return readyBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder> 
+           getReadyOrBuilderList() {
+        if (readyBuilder_ != null) {
+          return readyBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(ready_);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Ready.Builder addReadyBuilder() {
+        return getReadyFieldBuilder().addBuilder(
+            com.example.token2.TokenServiceOuterClass.Token.Ready.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Ready.Builder addReadyBuilder(
+          int index) {
+        return getReadyFieldBuilder().addBuilder(
+            index, com.example.token2.TokenServiceOuterClass.Token.Ready.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Ready ready = 1;</code>
+       */
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Ready.Builder> 
+           getReadyBuilderList() {
+        return getReadyFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Ready, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder, com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder> 
+          getReadyFieldBuilder() {
+        if (readyBuilder_ == null) {
+          readyBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token2.TokenServiceOuterClass.Token.Ready, com.example.token2.TokenServiceOuterClass.Token.Ready.Builder, com.example.token2.TokenServiceOuterClass.Token.ReadyOrBuilder>(
+                  ready_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          ready_ = null;
+        }
+        return readyBuilder_;
+      }
+
+      private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting> waiting_ =
+        java.util.Collections.emptyList();
+      private void ensureWaitingIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          waiting_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Waiting>(waiting_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Waiting, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder, com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder> waitingBuilder_;
+
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting> getWaitingList() {
+        if (waitingBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(waiting_);
+        } else {
+          return waitingBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public int getWaitingCount() {
+        if (waitingBuilder_ == null) {
+          return waiting_.size();
+        } else {
+          return waitingBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Waiting getWaiting(int index) {
+        if (waitingBuilder_ == null) {
+          return waiting_.get(index);
+        } else {
+          return waitingBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder setWaiting(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Waiting value) {
+        if (waitingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingIsMutable();
+          waiting_.set(index, value);
+          onChanged();
+        } else {
+          waitingBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder setWaiting(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          waitingBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder addWaiting(com.example.token2.TokenServiceOuterClass.Token.Waiting value) {
+        if (waitingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingIsMutable();
+          waiting_.add(value);
+          onChanged();
+        } else {
+          waitingBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder addWaiting(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Waiting value) {
+        if (waitingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWaitingIsMutable();
+          waiting_.add(index, value);
+          onChanged();
+        } else {
+          waitingBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder addWaiting(
+          com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.add(builderForValue.build());
+          onChanged();
+        } else {
+          waitingBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder addWaiting(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder builderForValue) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          waitingBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder addAllWaiting(
+          java.lang.Iterable<? extends com.example.token2.TokenServiceOuterClass.Token.Waiting> values) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, waiting_);
+          onChanged();
+        } else {
+          waitingBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder clearWaiting() {
+        if (waitingBuilder_ == null) {
+          waiting_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          waitingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public Builder removeWaiting(int index) {
+        if (waitingBuilder_ == null) {
+          ensureWaitingIsMutable();
+          waiting_.remove(index);
+          onChanged();
+        } else {
+          waitingBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder getWaitingBuilder(
+          int index) {
+        return getWaitingFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder getWaitingOrBuilder(
+          int index) {
+        if (waitingBuilder_ == null) {
+          return waiting_.get(index);  } else {
+          return waitingBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder> 
+           getWaitingOrBuilderList() {
+        if (waitingBuilder_ != null) {
+          return waitingBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(waiting_);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder addWaitingBuilder() {
+        return getWaitingFieldBuilder().addBuilder(
+            com.example.token2.TokenServiceOuterClass.Token.Waiting.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder addWaitingBuilder(
+          int index) {
+        return getWaitingFieldBuilder().addBuilder(
+            index, com.example.token2.TokenServiceOuterClass.Token.Waiting.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Waiting waiting = 2;</code>
+       */
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder> 
+           getWaitingBuilderList() {
+        return getWaitingFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Waiting, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder, com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder> 
+          getWaitingFieldBuilder() {
+        if (waitingBuilder_ == null) {
+          waitingBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token2.TokenServiceOuterClass.Token.Waiting, com.example.token2.TokenServiceOuterClass.Token.Waiting.Builder, com.example.token2.TokenServiceOuterClass.Token.WaitingOrBuilder>(
+                  waiting_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          waiting_ = null;
+        }
+        return waitingBuilder_;
+      }
+
+      private java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete> delete_ =
+        java.util.Collections.emptyList();
+      private void ensureDeleteIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          delete_ = new java.util.ArrayList<com.example.token2.TokenServiceOuterClass.Token.Delete>(delete_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Delete, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder, com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder> deleteBuilder_;
+
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete> getDeleteList() {
+        if (deleteBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(delete_);
+        } else {
+          return deleteBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public int getDeleteCount() {
+        if (deleteBuilder_ == null) {
+          return delete_.size();
+        } else {
+          return deleteBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Delete getDelete(int index) {
+        if (deleteBuilder_ == null) {
+          return delete_.get(index);
+        } else {
+          return deleteBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder setDelete(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Delete value) {
+        if (deleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDeleteIsMutable();
+          delete_.set(index, value);
+          onChanged();
+        } else {
+          deleteBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder setDelete(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder builderForValue) {
+        if (deleteBuilder_ == null) {
+          ensureDeleteIsMutable();
+          delete_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          deleteBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder addDelete(com.example.token2.TokenServiceOuterClass.Token.Delete value) {
+        if (deleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDeleteIsMutable();
+          delete_.add(value);
+          onChanged();
+        } else {
+          deleteBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder addDelete(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Delete value) {
+        if (deleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDeleteIsMutable();
+          delete_.add(index, value);
+          onChanged();
+        } else {
+          deleteBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder addDelete(
+          com.example.token2.TokenServiceOuterClass.Token.Delete.Builder builderForValue) {
+        if (deleteBuilder_ == null) {
+          ensureDeleteIsMutable();
+          delete_.add(builderForValue.build());
+          onChanged();
+        } else {
+          deleteBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder addDelete(
+          int index, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder builderForValue) {
+        if (deleteBuilder_ == null) {
+          ensureDeleteIsMutable();
+          delete_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          deleteBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder addAllDelete(
+          java.lang.Iterable<? extends com.example.token2.TokenServiceOuterClass.Token.Delete> values) {
+        if (deleteBuilder_ == null) {
+          ensureDeleteIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, delete_);
+          onChanged();
+        } else {
+          deleteBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder clearDelete() {
+        if (deleteBuilder_ == null) {
+          delete_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          deleteBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public Builder removeDelete(int index) {
+        if (deleteBuilder_ == null) {
+          ensureDeleteIsMutable();
+          delete_.remove(index);
+          onChanged();
+        } else {
+          deleteBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Delete.Builder getDeleteBuilder(
+          int index) {
+        return getDeleteFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder getDeleteOrBuilder(
+          int index) {
+        if (deleteBuilder_ == null) {
+          return delete_.get(index);  } else {
+          return deleteBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public java.util.List<? extends com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder> 
+           getDeleteOrBuilderList() {
+        if (deleteBuilder_ != null) {
+          return deleteBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(delete_);
+        }
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Delete.Builder addDeleteBuilder() {
+        return getDeleteFieldBuilder().addBuilder(
+            com.example.token2.TokenServiceOuterClass.Token.Delete.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public com.example.token2.TokenServiceOuterClass.Token.Delete.Builder addDeleteBuilder(
+          int index) {
+        return getDeleteFieldBuilder().addBuilder(
+            index, com.example.token2.TokenServiceOuterClass.Token.Delete.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .com.example.token2.Token.Delete delete = 3;</code>
+       */
+      public java.util.List<com.example.token2.TokenServiceOuterClass.Token.Delete.Builder> 
+           getDeleteBuilderList() {
+        return getDeleteFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.example.token2.TokenServiceOuterClass.Token.Delete, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder, com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder> 
+          getDeleteFieldBuilder() {
+        if (deleteBuilder_ == null) {
+          deleteBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.example.token2.TokenServiceOuterClass.Token.Delete, com.example.token2.TokenServiceOuterClass.Token.Delete.Builder, com.example.token2.TokenServiceOuterClass.Token.DeleteOrBuilder>(
+                  delete_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          delete_ = null;
+        }
+        return deleteBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -2295,6 +5008,21 @@ public final class TokenServiceOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_example_token2_Token_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_token2_Token_Ready_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_token2_Token_Ready_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_token2_Token_Waiting_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_token2_Token_Waiting_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_example_token2_Token_Delete_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_example_token2_Token_Delete_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_example_token2_Empty_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2312,12 +5040,19 @@ public final class TokenServiceOuterClass {
       "\":\n\013JoinRequest\022\n\n\002id\030\001 \001(\005\022\021\n\tipAddress" +
       "\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"L\n\014JoinResponse\022\n\n\002" +
       "id\030\001 \001(\005\022\021\n\tipAddress\030\002 \001(\t\022\014\n\004port\030\003 \001(" +
-      "\005\022\017\n\007message\030\004 \001(\t\"\026\n\005Token\022\r\n\005value\030\001 \001" +
-      "(\005\"\007\n\005Empty2\251\001\n\014TokenService\022P\n\013joinNetw" +
+      "\005\022\017\n\007message\030\004 \001(\t\"\255\002\n\005Token\022.\n\005ready\030\001 " +
+      "\003(\0132\037.com.example.token2.Token.Ready\0222\n\007" +
+      "waiting\030\002 \003(\0132!.com.example.token2.Token" +
+      ".Waiting\0220\n\006delete\030\003 \003(\0132 .com.example.t" +
+      "oken2.Token.Delete\032\"\n\005Ready\022\n\n\002id\030\001 \001(\005\022" +
+      "\r\n\005value\030\002 \001(\001\032\025\n\007Waiting\022\n\n\002id\030\001 \001(\005\032S\n",
+      "\006Delete\022\n\n\002id\030\001 \001(\005\022\020\n\010targetId\030\002 \001(\005\022\027\n" +
+      "\017targetIpAddress\030\003 \001(\t\022\022\n\ntargetPort\030\004 \001" +
+      "(\005\"\007\n\005Empty2\247\001\n\014TokenService\022P\n\013joinNetw" +
       "ork\022\037.com.example.token2.JoinRequest\032 .c" +
-      "om.example.token2.JoinResponse\022G\n\rtokenD" +
+      "om.example.token2.JoinResponse\022E\n\rtokenD" +
       "elivery\022\031.com.example.token2.Token\032\031.com" +
-      ".example.token2.Empty0\001b\006proto3"
+      ".example.token2.Emptyb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2348,7 +5083,25 @@ public final class TokenServiceOuterClass {
     internal_static_com_example_token2_Token_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_example_token2_Token_descriptor,
-        new java.lang.String[] { "Value", });
+        new java.lang.String[] { "Ready", "Waiting", "Delete", });
+    internal_static_com_example_token2_Token_Ready_descriptor =
+      internal_static_com_example_token2_Token_descriptor.getNestedTypes().get(0);
+    internal_static_com_example_token2_Token_Ready_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_token2_Token_Ready_descriptor,
+        new java.lang.String[] { "Id", "Value", });
+    internal_static_com_example_token2_Token_Waiting_descriptor =
+      internal_static_com_example_token2_Token_descriptor.getNestedTypes().get(1);
+    internal_static_com_example_token2_Token_Waiting_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_token2_Token_Waiting_descriptor,
+        new java.lang.String[] { "Id", });
+    internal_static_com_example_token2_Token_Delete_descriptor =
+      internal_static_com_example_token2_Token_descriptor.getNestedTypes().get(2);
+    internal_static_com_example_token2_Token_Delete_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_example_token2_Token_Delete_descriptor,
+        new java.lang.String[] { "Id", "TargetId", "TargetIpAddress", "TargetPort", });
     internal_static_com_example_token2_Empty_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_com_example_token2_Empty_fieldAccessorTable = new

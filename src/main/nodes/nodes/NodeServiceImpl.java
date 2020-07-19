@@ -75,13 +75,13 @@ public class NodeServiceImpl extends NodeServiceImplBase {
 
 
         // TO BE REMOVED FOR THE EXAM
-        /*
+
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        */
+
 
 
         // SE VUOLE USCIRE INSERISCE NEL TOKEN CHE VUOLE USCIRE
@@ -118,100 +118,6 @@ public class NodeServiceImpl extends NodeServiceImplBase {
                 try {
                     computeToken(newTokenData);
                     status = true;
-
-
-                /*
-
-                /* ------------- CHECK IF NODE IS INSIDE READY AND WAITING -------------
-                boolean insideReady = isInsideReady(newTokenData);
-                boolean insideWaiting = isInsideWaiting(newTokenData);
-
-
-                /* ------------ CHECK IF TARGET IS TO BE DELETED -----------
-                if (isTargetInsideDelete(newTokenData)) {
-                    newTokenData = updateTargetFromDeleteList(newTokenData);
-                }
-
-
-                /* ------------------ CREATE CHANNEL --------------------
-                ManagedChannel channel = ManagedChannelBuilder
-                        .forTarget(
-                                TargetNode.getInstance().getTargetIpAddress() + ":" +
-                                        TargetNode.getInstance().getTargetPort())
-                        .usePlaintext(true).build();
-                NodeServiceGrpc.NodeServiceBlockingStub stub = NodeServiceGrpc.newBlockingStub(channel);
-
-
-
-                /* ------------------ CHECK TOKEN CONTENT ----------------
-
-
-                // check if token is full of stats and ready to send
-                if (isTokenFullAndReadyToSend(newTokenData)) {
-                    double finalAvg = computeFinalAvg(newTokenData);
-
-                    // post the stats to the gateway
-                    sendStatsToGateway(finalAvg);
-                    System.out.println("SENT STATS TO THE GATEWAY " + finalAvg);
-
-                    // clean the ready and waiting list from the token
-                    newTokenData = cleanReadyListFromToken(newTokenData);
-                    newTokenData = cleanWaitingListFromToken(newTokenData);
-
-                    stub.tokenDeliveryData(newTokenData);
-                    channel.shutdown();
-
-                } else if (isStatReady()) {
-
-                    // stats is READY
-                    if (insideReady) {
-                        System.out.println("1");
-                        stub.tokenDeliveryData(newTokenData);
-                        channel.shutdown();
-                    } else if (insideWaiting) {
-                        System.out.println("2");
-                        newTokenData = newTokenData.toBuilder()
-                                .addReady(TokenData.Ready.newBuilder()
-                                        .setId(node.getId())
-                                        .setValue(LocalAvgList.getInstance().getLastValue()))
-                                .build();
-                        stub.tokenDeliveryData(newTokenData);
-                        channel.shutdown();
-                    } else if (!insideReady && !insideWaiting) {
-                        newTokenData = newTokenData.toBuilder()
-                                .addReady(TokenData.Ready.newBuilder()
-                                        .setId(node.getId())
-                                        .setValue(LocalAvgList.getInstance().getLastValue()))
-                                .addWaiting(TokenData.Waiting.newBuilder()
-                                        .setId(node.getId()))
-                                .build();
-                        stub.tokenDeliveryData(newTokenData);
-                        channel.shutdown();
-                    }
-
-                } else {
-
-                    // stats IS NOT READY
-                    if (insideReady || insideWaiting) {
-                        System.out.println("3");
-                        stub.tokenDeliveryData(newTokenData);
-                        channel.shutdown();
-                    } else if (!insideWaiting) {
-                        System.out.println("4");
-                        newTokenData = newTokenData.toBuilder()
-                                .addWaiting(TokenData.Waiting.newBuilder()
-                                        .setId(node.getId()).build())
-                                .build();
-                        System.out.println("Target Id: " + TargetNode.getInstance().getTargetId());
-                        System.out.println("Target Ip Address: " + TargetNode.getInstance().getTargetIpAddress());
-                        System.out.println("Target Port: " + TargetNode.getInstance().getTargetPort());
-                        stub.tokenDeliveryData(newTokenData);
-                        channel.shutdown();
-                    }
-
-                }
-                */
-
 
                 } catch (Throwable throwable) {
                     System.out.println("Error catched: " + throwable.getMessage());

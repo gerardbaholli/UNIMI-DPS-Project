@@ -2,8 +2,6 @@ package services;
 
 import beans.Node;
 import beans.Nodes;
-import beans.Stat;
-import beans.Stats;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -14,7 +12,7 @@ public class NodesService {
     //restituisce la lista di nodi
     @GET
     @Produces({"application/json", "application/xml"})
-    public Response getNodesList(){
+    public Response getNodesList() {
         return Response.ok(Nodes.getInstance().getNodesList()).build();
     }
 
@@ -22,23 +20,25 @@ public class NodesService {
     @Path("add")
     @POST
     @Consumes({"application/json", "application/xml"})
-    public Response addNode(Node n){
-        String result = Nodes.getInstance().add(n);
-        if (result!=null){
-            if (result.equals("Success"))
-                return Response.ok(Nodes.getInstance()).build();
-            else if (result.equals("Warning"))
-                return Response.status(Response.Status.CONFLICT).build();
-            else if (result.equals("Fail"))
-                return Response.status(Response.Status.BAD_REQUEST).build();
+    public Response addNode(Node n) {
+        synchronized (Nodes.getInstance()) {
+            String result = Nodes.getInstance().add(n);
+            if (result != null) {
+                if (result.equals("Success"))
+                    return Response.ok(Nodes.getInstance()).build();
+                else if (result.equals("Warning"))
+                    return Response.status(Response.Status.CONFLICT).build();
+                else if (result.equals("Fail"))
+                    return Response.status(Response.Status.BAD_REQUEST).build();
+            }
+            return null;
         }
-        return null;
     }
 
     @Path("remove")
     @DELETE
     @Consumes({"application/json", "application/xml"})
-    public Response deleteNode(Node n){
+    public Response deleteNode(Node n) {
         String result = Nodes.getInstance().delete(n);
         if (result.equals("Success"))
             return Response.ok().build();
@@ -52,10 +52,9 @@ public class NodesService {
     @Path("nodesNumber")
     @GET
     @Produces({"application/json", "application/xml"})
-    public Response getNodesNumber(){
+    public Response getNodesNumber() {
         return Response.ok(Nodes.getInstance().getNodesNumber()).build();
     }
-
 
 
 }
