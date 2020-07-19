@@ -51,13 +51,13 @@ public class TokenServiceImpl extends TokenServiceImplBase {
         System.out.println("Arrivato token a nodo " + Node.getInstance().getId());
         System.out.println("DELETE? " + Node.getInstance().isToDelete());
 
-        /*
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        */
+
 
         Token newToken = token.toBuilder().build();
 
@@ -74,6 +74,7 @@ public class TokenServiceImpl extends TokenServiceImplBase {
                 stub.tokenDelivery(newToken);
             }
             shutdownChannel();
+            System.exit(0);
         } else {
             computeToken(newToken);
         }

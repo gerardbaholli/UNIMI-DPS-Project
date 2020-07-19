@@ -31,8 +31,11 @@ public class ServerGRPC extends Thread {
             e.printStackTrace();
         }
 
+        server.shutdown();
+
 
     }
+
 
 
 }

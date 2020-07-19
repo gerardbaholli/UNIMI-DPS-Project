@@ -32,7 +32,7 @@ public class StartPeer {
         contactGateway();
 
         if (listSizeBiggerThanOne()) {
-            joinNetwork();
+            persistenceJoin();
             updateTargetChannel();
         } else {
             setHimselfAsTarget();
@@ -162,11 +162,24 @@ public class StartPeer {
         return (Node.getInstance().getNodeListSize() > 1);
     }
 
-    public static void joinNetwork() {
+    public static void persistenceJoin() {
+        // ask node to join the network if there is an error
+        // select another target and retries the call
+        boolean status = false;
+        do {
+            try {
+                joinNetwork();
+                status = true;
+            } catch (Throwable t) {
+                selectTarget();
+            }
+        } while (!status);
+    }
+
+    public static void selectTarget() {
         Random rand = new Random();
 
         synchronized (Node.getInstance()) {
-
             // randomly puts one node as target
             if (Node.getInstance().getNodeListSize() > 1) {
                 network.beans.Node randomNode;
@@ -190,9 +203,11 @@ public class StartPeer {
             }
 
             System.out.println("Target node: " + Node.getInstance().getTargetId());
+        }
+    }
 
-            /* ------- SEND MESSAGE TO THE TARGET --------- */
-
+    public static void joinNetwork() {
+        synchronized (Node.getInstance()) {
             Channel.getInstance().setChannel(
                     Node.getInstance().getTargetIpAddress(),
                     Node.getInstance().getTargetPort());
@@ -218,9 +233,7 @@ public class StartPeer {
             Node.getInstance().setTargetIpAddress(joinResponse.getIpAddress());
             Node.getInstance().setTargetPort(joinResponse.getPort());
             shutdownChannel();
-
         }
-
     }
 
     public static void sendToken() {
@@ -254,7 +267,8 @@ public class StartPeer {
         Channel.getInstance().shutdownChannel();
     }
 
-    public static void setNodeToBeDelete(){
+    public static void setNodeToBeDelete() {
         Node.getInstance().setToDelete();
     }
+
 }

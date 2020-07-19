@@ -7,19 +7,26 @@ import java.io.IOException;
 
 public class ServerGRPC extends Thread {
 
-    public ServerGRPC(){}
+    Server server;
+
+    public ServerGRPC() {
+        this.server = ServerBuilder.forPort(Node.getInstance().getPort())
+                .addService(new TokenServiceImpl()).build();
+    }
 
     @Override
-    public void run(){
-        Server server = ServerBuilder.forPort(Node.getInstance().getPort())
-                .addService(new TokenServiceImpl()).build();
+    public void run() {
         try {
-            server.start();
+            this.server.start();
             System.out.println("Server GRPC started at port " + Node.getInstance().getPort());
-            server.awaitTermination();
+            this.server.awaitTermination();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void shutdownServer() {
+        this.server.shutdown();
     }
 
 }
